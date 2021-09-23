@@ -6,6 +6,8 @@ let dataOfJsonFilePhotographer = [];
 let dataOfJsonFilePhotographerAfterclassAssociation = [];
 let dataOfJsonFileMedia = [];
 let filterToApply;
+let tagListInHeader;
+let tagListInHeaderAsArray = [];
 const typePhotographer = "photographers";
 const typeMedia = "media";
 
@@ -19,8 +21,8 @@ class Photographers {
 	tagline;
 	price;
 	portrait;
-	// url;
-	constructor(name, id, city, country, tags, tagline, price, portrait) {
+	url;
+	constructor(name, id, city, country, tags, tagline, price, portrait, url) {
 		this.name = name;
 		this.id = id;
 		this.city = city;
@@ -29,7 +31,7 @@ class Photographers {
 		this.tagline = tagline;
 		this.price = price;
 		this.portrait = portrait;
-		// this.url = url;
+		this.url = url;
 	}
 	// returncard() {}
 	// Ajouter une méhode pour retourner l'url de la page du photographe qui est égale à la concaténation des éléments du nom :
@@ -58,55 +60,71 @@ const getData = async () => {
 		console.log(e);
 	}
 };
-// Now this returns a promise, because it’s an async function:
-getData();
+
 
 function filterOnHashtag() {
 	console.log(this.value);
 	alert(this.id);
-	filterToApply = this.id;
+	filterToApply = this.id; //Filter to apply
 	let articleElement = document.querySelectorAll("article");
-	console.log(articleElement);
 	let articleElementAsArray = Array.prototype.slice.call(articleElement);
+	// console.log(typeof articleElementAsArray);
 	articleElementAsArray.forEach(function (val) {
 		let tagToLookAt = val.querySelectorAll("div a span");
 		let tagToLookAtAsArray = Array.prototype.slice.call(tagToLookAt);
+		// console.log(tagToLookAtAsArray);
+		// console.log(typeof tagToLookAtAsArray);
+		// console.log(val);
+		// console.log(typeof val);
+		let tagNumber = 1 ;
 		tagToLookAtAsArray.forEach(function (val2) {
+			// console.log(val2);
+			// console.log(typeof val2);
 			let tagFound = false;
+			console.log("Tag numero " + tagNumber );
+			tagNumber++;
 			if (val2.innerHTML == filterToApply) {
-				alert("trouvé");
 				tagFound = true;
 			} else {
 				tagFound = false;
 			}
 			if (tagFound === true) {
 				val.classList.remove("notdisplayed");
-				console.log("notdisplayed removed");
+				console.log(val);
 			} else {
+				// console.log(val);
 				val.classList.add("notdisplayed");
 			}
 		});
 	});
 }
 //So to get the result back you can wrap this in an IIFE like this:
-(async () => {
+const mainFunction = async () =>  {
 	dataOfJsonFileData = await getData();
 	dataOfJsonFilePhotographer = dataOfJsonFileData.photographers;
 	placeDataInObject(dataOfJsonFilePhotographer);
-	console.log(dataOfJsonFilePhotographerAfterclassAssociation[0].name)
+	// console.log(dataOfJsonFilePhotographerAfterclassAssociation[0].name)
 	document.getElementById(
 		"all-photographers"
-	).innerHTML = `${dataOfJsonFilePhotographer
+	).innerHTML = `${dataOfJsonFilePhotographerAfterclassAssociation
 		.map(photographersTemplate)
 		.join("")}`;
 	//To add eventlitener on tag -> Inspiration from video https://www.youtube.com/watch?v=JixTYeCLf4Q
-	let tagListInHeader = document.querySelectorAll("nav > a");
-	let tagListInHeaderAsArray = Array.prototype.slice.call(tagListInHeader);
+	tagListInHeader = document.querySelectorAll("nav > a");
+	tagListInHeaderAsArray = Array.prototype.slice.call(tagListInHeader);
 	tagListInHeaderAsArray.forEach(function (val) {
 		val.addEventListener("click", filterOnHashtag);
 		// console.log(val);
+		console.log("je suis passé par la")
+
 	});
-})();
+};
+
+console.log("je suis passé par ici")
+document.addEventListener("DOMContentLoaded", function() {
+	mainFunction();
+	console.log("je démarre par la")
+  });
 
 // const found = array1.find(element => element > 10);
 // filterToApply
@@ -147,7 +165,7 @@ ${tagsTemplate(photographerData.tags)}
 //	${tagsTemplate(photographerData.price)}
 
 function placeDataInObject(dataOfJsonFilePhotographer) {
-	console.log(typeof dataOfJsonFilePhotographer)
+	// console.log(typeof dataOfJsonFilePhotographer)
 	for (var i = 0; i < dataOfJsonFilePhotographer.length; i++) {
 		let name = dataOfJsonFilePhotographer[i].name;
 		let id = dataOfJsonFilePhotographer[i].id;
@@ -157,9 +175,7 @@ function placeDataInObject(dataOfJsonFilePhotographer) {
 		let tagline = dataOfJsonFilePhotographer[i].tagline;
 		let price = dataOfJsonFilePhotographer[i].price;
 		let portrait = dataOfJsonFilePhotographer[i].portrait;
-		// console.log(portrait);
-		// console.log(typeof portrait);
-		// let url = urlOfHtmlPages + name.replace(" ", "-") + "html";
+		let url = urlOfHtmlPages + name.replace(" ", "-") + ".html";
 		dataOfJsonFilePhotographerAfterclassAssociation[i] = new Photographers(
 			name,
 			id,
@@ -168,9 +184,9 @@ function placeDataInObject(dataOfJsonFilePhotographer) {
 			tags,
 			tagline,
 			price,
-			portrait
-			// url
+			portrait,
+			url
 		);
-		console.log(dataOfJsonFilePhotographerAfterclassAssociation[i]);
+		// console.log(dataOfJsonFilePhotographerAfterclassAssociation[i]);
 	}
 }

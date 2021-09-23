@@ -161,3 +161,40 @@ class Photographers {
 	// returncard() {}
 	// Ajouter une méhode pour retourner l'url de la page du photographe qui est égale à la concaténation des éléments du nom :
 }
+
+function filterOnHashtag() {
+	console.log(this.value);
+	// alert(this.id);
+	filterToApply = this.id; //Filter to apply
+	let articleElement = document.querySelectorAll("article");
+	let articleElementAsArray = Array.prototype.slice.call(articleElement);
+	// console.log(typeof articleElementAsArray);
+	articleElementAsArray.forEach(function (val) {
+		let tagToLookAt = val.querySelectorAll("div a span");
+		let tagToLookAtAsArray = Array.prototype.slice.call(tagToLookAt);
+		// console.log(tagToLookAtAsArray);
+		// console.log(typeof tagToLookAtAsArray);
+		// console.log(val);
+		// console.log(typeof val);
+		let tagNumber = 1 ;
+		tagToLookAtAsArray.forEach(function (val2) {
+			// console.log(val2);
+			// console.log(typeof val2);
+			let tagFound = false;
+			console.log("Tag numero " + tagNumber );
+			tagNumber++;
+			if (val2.innerHTML == filterToApply) {
+				tagFound = true;
+			} else {
+				tagFound = false;
+			}
+			if (tagFound === true) {
+				val.classList.remove("notdisplayed");
+				console.log(val);
+			} else {
+				// console.log(val);
+				val.classList.add("notdisplayed");
+			}
+		});
+	});
+}
