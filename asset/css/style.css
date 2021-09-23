@@ -24,7 +24,7 @@ section article {
   position: absolute;
   left: -10000px;
   display: block;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .skip-link {
@@ -38,9 +38,10 @@ section article {
   padding: 0.4em;
   padding-top: 0.1em;
   padding-bottom: 0.1em;
-  border-width: 0.1px;
+  border-width: 0.05px;
   color: #901c1c;
   font-weight: bold;
+  font-size: 0.7em;
 }
 
 a {
@@ -48,13 +49,19 @@ a {
   color: #901c1c;
 }
 
-.all-photographers {
+#all-photographers {
   height: 100vh;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
   margin: 10px;
+  clear: both;
+}
+
+.notdisplayed {
+  display: none;
+  background-color: aqua;
 }
 
 article {
@@ -109,6 +116,10 @@ article > a .photograph-vignet {
   font-size: 0.8em;
 }
 
+.categories {
+  font-size: 8px;
+}
+
 .price {
   color: #525252;
   font-size: 0.8em;
@@ -117,5 +128,24 @@ article > a .photograph-vignet {
 p {
   margin-top: 0.6em;
   margin-bottom: 0.6em;
+}
+
+.header-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  float: left;
 }
 /*# sourceMappingURL=style.css.map */

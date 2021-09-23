@@ -8,15 +8,13 @@ section {
 	position: absolute;
 	left: -10000px;
 	display: block;
-	font-size: 2em;
+	font-size: 1.5em;
 }
 .skip-link {
 	position: static;
 }
 
 //Image
-
-
 .hashtag-links {
 	border: solid;
 	border-color: $color-tertiary;
@@ -24,23 +22,30 @@ section {
 	padding: 0.4em;
 	padding-top: 0.1em;
 	padding-bottom: 0.1em;
-	border-width: 0.1px;
+	border-width: 0.05px;
 	color: $color-primary;
 	font-weight: bold;
+	font-size: 0.7em;
 }
 a {
 	text-decoration: none;
 	color: $color-primary;
 }
-.all-photographers {
+#all-photographers {
 	height: 100vh;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: 1fr 1fr 1fr;
 	margin: 10px;
-}
+	clear: both; 
+}	
+.notdisplayed{
+		display: none;
+		background-color: aqua;
+	}
 article {
 	display: flex;
 	flex-flow: column wrap;
+
 	>a {
 		.image-container {
 			width: 200px;
@@ -70,6 +75,9 @@ article {
 .tagline {
 	font-size: 0.8em;
 }
+.categories{
+	font-size: 8px;
+}
 .price {
 	color: $color-tertiary;
 	font-size: 0.8em;
@@ -77,4 +85,13 @@ article {
 p {
 	margin-top: 0.6em;
 	margin-bottom: 0.6em;
+}
+
+.header-container{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content:flex-start;
+	align-items: center;
+	align-content:flex-start;
+	float: left;
 }
