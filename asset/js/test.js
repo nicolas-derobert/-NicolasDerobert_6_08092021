@@ -198,3 +198,13 @@ function filterOnHashtag() {
 		});
 	});
 }
+
+	// 		let tagFound = new RegExp(filterToApply, "gi").test(val2.innerHTML);
+	// 		If (!tagFound)
+	// 		{
+	// 			console.log(val);
+	// val.classList.add("notdisplayed");}
+	// else{ 
+	// val.classList.remove("notdisplayed");
+	// console.log(val);}
+	// 	});
