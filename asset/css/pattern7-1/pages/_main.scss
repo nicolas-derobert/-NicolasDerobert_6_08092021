@@ -1,70 +1,42 @@
-section {
-	article {
-		text-align: center;
-	}
-}
-.skip-link {
-	overflow: hidden;
-	position: absolute;
-	left: -10000px;
-	display: block;
-	font-size: 1.5em;
-}
-.skip-link {
-	position: static;
-}
 
-//Image
-.hashtag-links {
-	border: solid;
-	border-color: $color-tertiary;
-	border-radius: 20% / 50%;
-	padding: 0.4em;
-	padding-top: 0.1em;
-	padding-bottom: 0.1em;
-	border-width: 0.05px;
-	color: $color-primary;
-	font-weight: bold;
-	font-size: 0.7em;
+//Global formating
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
+
+body{
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	font-family: "DM Sans", sans-serif;
+
 }
-a {
-	text-decoration: none;
+p {
+	margin-top: 0.6em;
+	margin-bottom: 0.6em;
+}
+h1{
+	padding-top: 15px;
 	color: $color-primary;
 }
-#all-photographers {
-	height: 100vh;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	margin: 10px;
-	clear: both; 
-}	
-.notdisplayed{
-		display: none;
-		background-color: aqua;
-	}
-article {
-	display: flex;
-	flex-flow: column wrap;
+h2 {
+	color: $color-secondary;
+	font-weight: 400;
+	font-size: 36px;
+    margin-top: 0.2em;
+	margin-bottom: 0.2em;
+}
 
-	>a {
-		.image-container {
-			width: 200px;
-			height: 200px;
-			position: relative;
-			overflow: hidden;
-			border-radius: 50%;
-		}
-		.photograph-vignet {
-			display: inline;
-			margin: 0 auto;
-			height: 100%;
-			width: auto;  
-		}
-		display: flex;
-		flex-flow: column wrap;
-		justify-content: center;
-		align-items: center;
+.image-container {
+	height: 200px;
+	margin: auto;
+	clip-path: circle();
+	img {
+		height: 150%;
+		object-fit: contain;
 	}
+}
+.notdisplayed {
+	display: none;
+	background-color: aqua;
 }
 .location {
 	color: $color-primary;
@@ -75,23 +47,13 @@ article {
 .tagline {
 	font-size: 0.8em;
 }
-.categories{
+.categories {
 	font-size: 8px;
 }
 .price {
 	color: $color-tertiary;
 	font-size: 0.8em;
 }
-p {
-	margin-top: 0.6em;
-	margin-bottom: 0.6em;
-}
 
-.header-container{
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content:flex-start;
-	align-items: center;
-	align-content:flex-start;
-	float: left;
-}
+
+

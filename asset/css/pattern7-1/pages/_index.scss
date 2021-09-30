@@ -1,0 +1,28 @@
+.index-page {
+	article {
+		display: flex;
+		flex-flow: column wrap;
+		padding: 10%;
+		text-align: center;
+		.fa-heart {
+			margin-left: 10px;
+		}
+	}
+}
+#all-photographers {
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	margin: 10px;
+	clear: both;
+}
+.header-container {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	align-content: flex-start;
+	float: left;
+	margin-right: 20px;
+	margin-top: 0px;
+}

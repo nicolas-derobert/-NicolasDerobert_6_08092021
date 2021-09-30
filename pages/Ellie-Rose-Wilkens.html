@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../asset/css/style.css" />
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+			integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+			crossorigin="anonymous"
+		/>
+		<title>Page d'accueil</title>
+	</head>
+	<body class="photographer-page">
+		<header role="”banner”">
+			<!-- <div class="skip-link">
+				<a href="#main-content">Aller au contenu principal</a>
+			</div> -->
+			<div class="header-container">
+				<div class="logo">
+					<a href="../index.html"
+						><img src="../asset/img/logo/fisheye.png" alt="Fisheye home Page"
+					/></a>
+				</div>
+			</div>
+		</header>
+		<main id="#main-content">
+			<section id="photographer">
+				<div>
+					<h1 id="name"></h1>
+					<p id="location">
+						${photographerData.city + " "} ${ photographerData.country }
+					</p>
+					<p id="tagline">${photographerData.tagline}</p>
+					<div id="tags">
+						<a href="${tagsData}"
+							><span aria-label="Event" class="hashtag-links"
+								>${tagsData}</span
+							></a
+						><a href="${tagsData}"
+							><span aria-label="Event" class="hashtag-links"
+								>${tagsData}</span
+							></a
+						>
+					</div>
+				</div>
+				<div id="button-area">
+					<button id="contactez-moi">Contactez-moi</button>
+				</div>
+				<div id="image-area">
+					<div class="image-container">
+						<img
+							src=""
+							alt=""
+							aria-labelledby="nom"
+							id="photograph-vignet"
+						/>
+					</div>
+				</div>
+			</section>
+			<section id="filter"></section>
+			<section id="all-media"></section>
+			<section id="like-and-price">
+				<div class="like-area">
+					<div class="media-like-counter"></div>
+					<i class="fas fa-heart filled-heart"></i>
+				</div>
+				<div id="price"></div>
+			</section>
+		</main>
+		<footer></footer>
+	</body>
+	<script type="text/javascript" src="../asset/js/generic-scripts.js"></script>
+	<script
+		type="text/javascript"
+		src="../asset/js/photograpers-pages.js"
+	></script>
+</html>
