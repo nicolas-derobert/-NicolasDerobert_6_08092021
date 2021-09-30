@@ -18,6 +18,8 @@ let heartIcone;
 let heartIconeAsArray = [];
 let counterOfLikes;
 let counterOfLikesAsArray = [];
+
+let idOfMedia
 const typePhotographer = "photographers";
 const typeMedia = "media";
 

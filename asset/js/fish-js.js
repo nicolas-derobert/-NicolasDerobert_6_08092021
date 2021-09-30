@@ -12,11 +12,11 @@ const filterOnHashtag = function (event, val) {
 		// console.log(val);
 		// console.log(typeof val);
 		let tagNumber = 1;
+		let tagFound = false;
 		tagToLookAtAsArray.forEach(function (val2) {
 			// console.log(val2);
 			// console.log(typeof val2);
-			let tagFound = false;
-			// console.log("Tag numero " + tagNumber);
+					// console.log("Tag numero " + tagNumber);
 			tagNumber++;
 			if (val2.innerHTML == filterToApply) {
 				tagFound = true;

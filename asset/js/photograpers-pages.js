@@ -45,22 +45,40 @@ function mediaTemplate(mediaData) {
 	}
 }
 
-const recountLike = function(event, val)  {
-	console.log(typeof val);
-	console.log(val.id);
+const recountLike = function (event, val) {
+	// console.log(typeof val);
+	// console.log(val.id);
+	let result = [];
+	// console.log(typeof dataOfJsonFileMediaAfterclassAssociation);
 
 	// console.log(val.path[1].id);
-	let idOfMedia = val.id;
-	let result = dataOfJsonFileMediaAfterclassAssociation.filter((obj) => {
-		obj.id === idOfMedia;
-	});
-	console.log(idOfMedia);
-	result.likes++;
-	// console.log(dataOfJsonFileMediaAfterclassAssociation);
+	idOfMedia = val.id;
+	// result = dataOfJsonFileMediaAfterclassAssociation.filter((obj) => {
+	// obj.id == idOfMedia;
+	// 	console.log(obj.id);
+	// });
+
+	for (let i = 0; (dataOfJsonFileMediaAfterclassAssociation.length -1); i++) {
+		const item = dataOfJsonFileMediaAfterclassAssociation[i];
+		// console.log(item);
+		// console.log(idOfMedia);
+		// console.log(i);
+		console.log(dataOfJsonFileMediaAfterclassAssociation);
+		if (dataOfJsonFileMediaAfterclassAssociation[i].id == idOfMedia) {
+			result.push(item);
+			console.log(result);
+		}
+	}
+
+
+	// console.log(result);
+	// console.log(idOfMedia);
+	// result.likes++;
+	alert();
 	console.log(typeof result);
 	console.log(result);
 	mediaTemplate(result);
-}
+};
 
 const mainFunction = async () => {
 	dataOfJsonFileData = await getData();
@@ -106,12 +124,12 @@ const mainFunction = async () => {
 	heartIcone = document.querySelectorAll("div.heart");
 	heartIconeAsArray = Array.prototype.slice.call(heartIcone);
 	heartIconeAsArray.forEach(function (val) {
-		val.addEventListener("click", (event)=>{
-			recountLike(event, val)
+		val.addEventListener("click", (event) => {
+			recountLike(event, val);
 		});
 	});
 };
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", (event) => {
 	mainFunction();
 });
