@@ -1,5 +1,5 @@
 //Ressources used for coding : https://www.linkedin.com/learning/javascript-essential-training/pass-arguments-through-event-listeners
-let url = "../asset/data/FishEyeData.json";
+let url = "./asset/data/FishEyeData.json";
 let urlOfHtmlPages = "./pages/";
 let urlOfImagesPages = "./asset/img/Photographers ID Photos";
 let urlOfImagesPagesOfPhotographers = "../asset/img/Photographers ID Photos";
