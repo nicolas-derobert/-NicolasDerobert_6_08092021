@@ -1,10 +1,11 @@
 //Ressources used for coding : https://www.linkedin.com/learning/javascript-essential-training/pass-arguments-through-event-listeners
-let url = "./asset/data/FishEyeData.json";
+const urlFromIndex = "./asset/data/FishEyeData.json";
+const urlFromOtherPages = "../asset/data/FishEyeData.json";
 let urlOfHtmlPages = "./pages/";
 let urlOfImagesPages = "./asset/img/Photographers ID Photos";
 let urlOfImagesPagesOfPhotographers = "../asset/img/Photographers ID Photos";
 let urlOfImagesPagesOfElie = "../asset/img/Ellie Rose";
-
+let idOfPage;
 
 let dataOfJsonFileMedia = [];
 let dataOfJsonFileMediaAfterclassAssociation = [];
@@ -19,7 +20,7 @@ let heartIconeAsArray = [];
 let counterOfLikes;
 let counterOfLikesAsArray = [];
 
-let idOfMedia
+let idOfMedia;
 const typePhotographer = "photographers";
 const typeMedia = "media";
 
@@ -44,6 +45,7 @@ class Photographers {
 	// returncard() {}
 	// Ajouter une méhode pour retourner l'url de la page du photographe qui est égale à la concaténation des éléments du nom :
 }
+
 class Media {
 	id;
 	photographerId;
@@ -52,7 +54,19 @@ class Media {
 	video;
 	tags;
 	likes;
-	constructor(id, photographerId, title, image, video, tags, likes) {
+	date;
+	price;
+	constructor(
+		id,
+		photographerId,
+		title,
+		image,
+		video,
+		tags,
+		likes,
+		date,
+		price
+	) {
 		this.id = id;
 		this.photographerId = photographerId;
 		this.title = title;
@@ -60,6 +74,8 @@ class Media {
 		this.video = video;
 		this.tags = tags;
 		this.likes = likes;
+		this.date = date;
+		this.price = price;
 	}
 }
 
@@ -107,6 +123,9 @@ function placeDataOfMediaInObject(dataOfJsonFileMedia) {
 		let video = dataOfJsonFileMedia[i].video;
 		let tags = dataOfJsonFileMedia[i].tags;
 		let likes = dataOfJsonFileMedia[i].likes;
+		let date = dataOfJsonFileMedia[i].date;
+		let price = dataOfJsonFileMedia[i].price;
+
 		// let url = urlOfImagesPages +  + image;
 		dataOfJsonFileMediaAfterclassAssociation[i] = new Media(
 			id,
@@ -115,7 +134,9 @@ function placeDataOfMediaInObject(dataOfJsonFileMedia) {
 			image,
 			video,
 			tags,
-			likes
+			likes,
+			date,
+			price
 		); //url
 	}
 }
@@ -131,7 +152,7 @@ const getData = async () => {
 
 const doFetch = async function () {
 	try {
-		const response = await fetch(url);
+		const response = await fetch(urlToApply);
 		const myResult = await response.json();
 		return myResult;
 	} catch (error) {

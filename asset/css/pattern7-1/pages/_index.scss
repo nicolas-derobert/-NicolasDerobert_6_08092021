@@ -1,12 +1,17 @@
 .index-page {
 	article {
-		display: flex;
 		flex-flow: column wrap;
 		padding: 10%;
 		text-align: center;
-		.fa-heart {
-			margin-left: 10px;
+		&.notdisplayed {
+			display: none;
 		}
+		&.displayed {
+			display: flex;
+		}
+		// .fa-heart {
+		// 	margin-left: 10px;
+		// }
 	}
 }
 #all-photographers {

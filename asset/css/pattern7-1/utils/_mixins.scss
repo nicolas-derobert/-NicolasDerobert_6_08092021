@@ -1,0 +1,14 @@
+// Media Querries
+@mixin mobile-column-positionning {
+    @media screen and (max-width: $breakpoint-tablet) {
+        grid-template-columns: 1fr;
+    }
+  }
+  
+  @mixin mobile-generic {
+    @media screen and (min-width: $breakpoint-tablet) {
+      @content;
+    }
+  }
+
+  

@@ -1,4 +1,45 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: black;
+}
+
+.modal.displayed {
+  display: block;
+}
+
+.modal.notdisplayed {
+  display: none;
+}
+
+.modal .modal-content {
+  width: 90%;
+  margin: auto;
+  max-width: 1200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.modal .modal-content img {
+  width: 100%;
+}
+
+.modal .close {
+  color: white;
+  font-size: 2em;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
 .skip-link {
   overflow: hidden;
   position: absolute;
@@ -64,11 +105,6 @@ h2 {
      object-fit: contain;
 }
 
-.notdisplayed {
-  display: none;
-  background-color: aqua;
-}
-
 .location {
   color: #901c1c;
   font-size: 1.2em;
@@ -90,9 +126,6 @@ h2 {
 }
 
 .index-page article {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column wrap;
@@ -101,8 +134,14 @@ h2 {
   text-align: center;
 }
 
-.index-page article .fa-heart {
-  margin-left: 10px;
+.index-page article.notdisplayed {
+  display: none;
+}
+
+.index-page article.displayed {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 #all-photographers {
@@ -180,6 +219,13 @@ h2 {
   margin: 10px;
 }
 
+@media screen and (max-width: 768px) {
+  #all-media {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+
 .photographer-page article {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -216,18 +262,21 @@ h2 {
   -webkit-box-direction: normal;
       -ms-flex-flow: row nowrap;
           flex-flow: row nowrap;
-  font-size: 24px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   color: #901c1c;
 }
 
-.photographer-page article .description-and-like .fa-heart {
+.photographer-page article .description-and-like h2 {
+  font-size: 24px;
+}
+
+.fa-heart {
   margin-left: 10px;
+  font-size: 16px;
 }
 
 #like-and-price {
@@ -252,5 +301,17 @@ h2 {
   width: 200px;
   height: 50px;
   border-radius: 5px;
+}
+
+.like-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 /*# sourceMappingURL=style.css.map */

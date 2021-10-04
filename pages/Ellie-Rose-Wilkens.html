@@ -13,7 +13,7 @@
 		/>
 		<title>Page d'accueil</title>
 	</head>
-	<body class="photographer-page">
+	<body class="photographer-page" id="930">
 		<header role="”banner”">
 			<!-- <div class="skip-link">
 				<a href="#main-content">Aller au contenu principal</a>
@@ -51,25 +51,33 @@
 				</div>
 				<div id="image-area">
 					<div class="image-container">
-						<img
-							src=""
-							alt=""
-							aria-labelledby="nom"
-							id="photograph-vignet"
-						/>
+						<img src="" alt="" aria-labelledby="nom" id="photograph-vignet" />
 					</div>
 				</div>
 			</section>
-			<section id="filter"></section>
+			<section id="filter">
+				<span> trier par </span>
+				<select id="sortTool">
+					<option value="popularity">Popularité</option>
+					<option value="date">Date</option>
+					<option value="title">Titre</option>
+				</select>
+			</section>
 			<section id="all-media"></section>
 			<section id="like-and-price">
 				<div class="like-area">
-					<div class="media-like-counter"></div>
+					<div id="media-like-counter"></div>
 					<i class="fas fa-heart filled-heart"></i>
 				</div>
 				<div id="price"></div>
 			</section>
 		</main>
+		<div class="modal notdisplayed">
+			<span class="close">&times</span>
+			<div class="modal-content">
+				<img src="" alt="" />
+			</div>
+		</div>
 		<footer></footer>
 	</body>
 	<script type="text/javascript" src="../asset/js/generic-scripts.js"></script>
@@ -77,4 +85,5 @@
 		type="text/javascript"
 		src="../asset/js/photograpers-pages.js"
 	></script>
+	<script type="text/javascript" src="../asset/js/lightbox-scripts.js"></script>
 </html>

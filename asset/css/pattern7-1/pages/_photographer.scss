@@ -23,15 +23,15 @@
 	}
 }
 
-
-
 #all-media {
 	height: 100vh;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	margin: 10px;
-	// clear: both;
+	@include mobile-column-positionning;
 }
+
+
 
 .photographer-page {
 	article {
@@ -39,6 +39,7 @@
 		flex-flow: column nowrap;
 		margin: 10%;
 		text-align: center;
+
 		.media-container {
 			height: 300px;
 			width: 350px;
@@ -54,30 +55,38 @@
 		.description-and-like {
 			display: flex;
 			flex-flow: row nowrap;
-			font-size: 24px;
-			align-items: center;
-			justify-content: space-between;
-			color: $color-primary;
-			.fa-heart {
-				margin-left: 10px;
+			h2{
+				font-size: 24px;
 			}
+			align-items: center;
+			justify-content: space-around;
+			color: $color-primary;
+
 		}
 	}
 }
 
+.fa-heart {
+	margin-left: 10px;
+	font-size: 16px;
+}
 #like-and-price {
 	display: block;
 	background-color: $color-secondary;
 	position: fixed;
 	display: flex;
 	flex-flow: row nowrap;
-justify-content: space-around;
-align-items:flex-start;
-padding-top: 10px;
-
+	justify-content: space-around;
+	align-items: flex-start;
+	padding-top: 10px;
 	bottom: -10px;
 	right: 36px;
 	width: 200px;
 	height: 50px;
 	border-radius: 5px;
+}
+.like-area{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
 }
