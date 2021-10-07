@@ -1,6 +1,3 @@
-
-
-
 function mediaTemplate(mediaData) {
 	if (mediaData.image) {
 		return `<article class="">
@@ -77,9 +74,11 @@ const applySorting = function (sorting) {
 				.sort((a, b) => new Date(b.date) - new Date(a.date));
 	} else if (sorting == "title") {
 		dataOfJsonFileMediaAfterclassAssociationSorted =
-			dataOfJsonFileMediaAfterclassAssociation.sort((a, b) => (a.title > b.title) ? 1 : -1)
+			dataOfJsonFileMediaAfterclassAssociation.sort((a, b) =>
+				a.title > b.title ? 1 : -1
+			);
 	}
-console.log(dataOfJsonFileMediaAfterclassAssociationSorted)
+	console.log(dataOfJsonFileMediaAfterclassAssociationSorted);
 	document.getElementById(
 		"all-media"
 	).innerHTML = `${dataOfJsonFileMediaAfterclassAssociationSorted
@@ -187,37 +186,52 @@ const mainFunction = async () => {
 	});
 	applyListener();
 
+	// Pour aller plus loin : https://www.youtube.com/watch?v=jk2rFuWImcI&t=207s
+	const modale = document.querySelector(".modal");
+	const close = document.querySelector(".close");
+	const next = document.querySelector(".next");
+	const prev = document.querySelector(".prev");
+	const links = document.querySelectorAll(".media-container a");
+	console.log(links);
 
-const modale =document.querySelector(".modal")
-const close =document.querySelector(".close")
-const links = document.querySelectorAll(".media-container a")
+	let ImgDestination;
 
-	// 	links.forEach(function (val) {
-	// 	val.addEventListener("click", (event) => {
-	// 		event.preventDefault();
-	// 		modale.classList.add("displayed")
-	// 		modale.classList.remove("notdisplayed");
-	// 		ImgDestination.src = this.href;
-	// 	});
-	// });
-	for(let link of links){
-		link.addEventListener("click", function(e){
+	links.forEach(function (link) {
+		link.addEventListener("click", function (e) {
 			e.preventDefault();
-			modale.classList.add("displayed")
+			modale.classList.add("displayed");
 			modale.classList.remove("notdisplayed");
-			const ImgDestination = modale.querySelectorAll(".modal-content img")
-			console.log( ImgDestination);		
-			console.log( ImgDestination[0].src);
-
-			console.log(links);
-			console.log(this.href);
+			ImgDestination = modale.querySelectorAll(".modal-content img");
+			// console.log( ImgDestination);
+			// console.log( ImgDestination[0].src);
 			ImgDestination[0].src = this.href;
-		})
-	}
-	close.addEventListener("click", function(){
-		modale.classList.add("notdisplayed")
+		});
+	});
+	prev.addEventListener("click", function (e) {
+		let currentImagePosition = ImgDestination[0].src;
+		let iteration = 0;
+		for (let link of links.entries()) {
+			if (link[1].href == currentImagePosition) {
+				ImgDestination[0].src = links[iteration - 1].href;
+			}
+			iteration++;
+		}
+	});
+	next.addEventListener("click", function (e) {
+		let currentImagePosition = ImgDestination[0].src;
+		let iteration = 0;
+		for (let link of links.entries()) {
+			if (link[1].href == currentImagePosition) {
+				ImgDestination[0].src = links[iteration + 1].href;
+			}
+			iteration++;
+		}
+	});
+
+	close.addEventListener("click", function () {
+		modale.classList.add("notdisplayed");
 		modale.classList.remove("displayed");
-	})
+	});
 };
 
 document.addEventListener("DOMContentLoaded", (event) => {

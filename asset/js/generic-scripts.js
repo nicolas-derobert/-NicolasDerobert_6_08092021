@@ -1,28 +1,33 @@
 //Ressources used for coding : https://www.linkedin.com/learning/javascript-essential-training/pass-arguments-through-event-listeners
+
+// All const and variables that are used for website wit a global scope 
+//URL
 const urlFromIndex = "./asset/data/FishEyeData.json";
 const urlFromOtherPages = "../asset/data/FishEyeData.json";
-let urlOfHtmlPages = "./pages/";
-let urlOfImagesPages = "./asset/img/Photographers ID Photos";
-let urlOfImagesPagesOfPhotographers = "../asset/img/Photographers ID Photos";
-let urlOfImagesPagesOfElie = "../asset/img/Ellie Rose";
-let idOfPage;
+const urlOfHtmlPages = "./pages/";
+const urlOfImagesPages = "./asset/img/Photographers ID Photos";
+const urlOfImagesPagesOfPhotographers = "../asset/img/Photographers ID Photos";
+const urlOfImagesPagesOfElie = "../asset/img/Ellie Rose";
+// array of data 
 
 let dataOfJsonFileMedia = [];
 let dataOfJsonFileMediaAfterclassAssociation = [];
 let dataOfJsonFileData = [];
 let dataOfJsonFilePhotographer = [];
 let dataOfJsonFilePhotographerAfterclassAssociation = [];
-let filterToApply;
-let tagListInHeader;
 let tagListInHeaderAsArray = [];
-let heartIcone;
 let heartIconeAsArray = [];
-let counterOfLikes;
 let counterOfLikesAsArray = [];
 
+let heartIcone;
+let counterOfLikes;
+let idOfPage;
+let filterToApply;
+let tagListInHeader;
 let idOfMedia;
-const typePhotographer = "photographers";
-const typeMedia = "media";
+
+// const typePhotographer = "photographers";
+// const typeMedia = "media";
 
 class Photographers {
 	id;
