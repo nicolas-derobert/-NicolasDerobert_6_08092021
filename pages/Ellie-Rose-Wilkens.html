@@ -70,14 +70,16 @@
 					</div>
 				</div>
 			</section>
-			<section id="filter">
-				<span> trier par </span>
+			<span> trier par </span>
+
+			<div id="filter" class="selection-area ">
 				<select id="sortTool">
 					<option value="popularity">Popularité</option>
 					<option value="date">Date</option>
 					<option value="title">Titre</option>
 				</select>
-			</section>
+				<span class="arrow"></span>
+			</div>
 			<section id="all-media"></section>
 			<section id="like-and-price">
 				<div class="like-area">
@@ -87,12 +89,70 @@
 				<div id="price"></div>
 			</section>
 		</main>
-		<div class="modal notdisplayed">
-			<button class="close">&times</button>
+		<div role="dialog" class="modal notdisplayed">
+			<button class="close">close</button>
 			<button class="next">Suivant</button>
 			<button class="prev">Précédent</button>
-			<div class="modal-content">
-				<img src="" alt="" />
+			<div class="modal-content"></div>
+		</div>
+		<div
+			role="dialog"
+			class="modal-form notdisplayed"
+			aria-labelledby="h1-form"
+		>
+			<button class="close-form">close</button>
+			<div class="modal-form-content">
+				<form
+					name="reserve"
+					action="index.html"
+					method="get"
+					onsubmit="return validate();"
+				>
+					<h1 id="h1-form">vfreiuhfoi hbgfeyhiu uhfei</h1>
+					<div class="formData">
+						<label for="first name">Prénom</label><br />
+						<input
+							class="text-control"
+							type="text"
+							id="input-first-name"
+							name="first name"
+							minlength="2"
+						/>
+					</div>
+					<div class="formData">
+						<label for="last name">Nom</label><br />
+						<input
+							class="text-control"
+							type="text"
+							id="input-last-name"
+							name="last name"
+						/><br />
+					</div>
+					<div class="formData">
+						<label for="email">E-mail</label><br />
+						<input
+							class="text-control"
+							type="email"
+							id="input-email"
+							name="email"
+						/><br />
+					</div>
+					<div class="formData">
+						<label for="Your message">Message</label><br />
+						<input
+							class="text-control"
+							type="text"
+							id="input-message"
+							name="Your message"
+						/><br />
+					</div>
+					<input
+						class="btn-submit"
+						type="submit"
+						class="button"
+						value="Envoyer"
+					/>
+				</form>
 			</div>
 		</div>
 		<footer></footer>

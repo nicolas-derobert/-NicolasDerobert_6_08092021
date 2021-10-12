@@ -58,6 +58,7 @@ const applyListener = function () {
 const applySorting = function (sorting) {
 	let dataOfJsonFileMediaAfterclassAssociationSorted;
 	let medias = document.getElementById("all-media");
+
 	while (medias.firstChild) {
 		medias.firstChild.remove();
 	}
@@ -67,7 +68,6 @@ const applySorting = function (sorting) {
 				return b.likes - a.likes;
 			});
 	} else if (sorting == "date") {
-		alert("traitement par date");
 		dataOfJsonFileMediaAfterclassAssociationSorted =
 			dataOfJsonFileMediaAfterclassAssociation
 				.slice()
@@ -78,7 +78,6 @@ const applySorting = function (sorting) {
 				a.title > b.title ? 1 : -1
 			);
 	}
-	console.log(dataOfJsonFileMediaAfterclassAssociationSorted);
 	document.getElementById(
 		"all-media"
 	).innerHTML = `${dataOfJsonFileMediaAfterclassAssociationSorted
@@ -167,11 +166,6 @@ const mainFunction = async () => {
 	document.getElementById("photograph-vignet").alt =
 		dataOfJsonFilePhotographer[1].name;
 
-	// dataOfJsonFilePhotographer[1].name.replace(" ", "").replace("-", "") +
-	// console.log(dataOfJsonFileMediaAfterclassAssociation);
-	// console.log(typeof dataOfJsonFileMediaAfterclassAssociation);
-	// console.log(dataOfJsonFileMediaAfterclassAssociation);
-
 	document.getElementById(
 		"all-media"
 	).innerHTML = `${dataOfJsonFileMediaAfterclassAssociation
@@ -180,9 +174,28 @@ const mainFunction = async () => {
 		})
 		.map(mediaTemplate)
 		.join("")}`;
+	// FILTER
+	selectElement = document.querySelector("#sortTool");
 
+	console.log(selectElement);
+	console.log(selectElement.selectedIndex);
+	dropboxStatus = selectElement.selectedIndex;
+	console.log(dropboxStatus);
 	document.getElementById("sortTool").addEventListener("change", function () {
 		applySorting(this.value);
+		// document.querySelector(".arrow").classList.remove("active");
+	});
+	selectElement.addEventListener("click", function (e) {
+		document.querySelector(".arrow").classList.add("active");
+		let newStatus = selectElement.selectedIndex;
+		if (newStatus!= dropboxStatus) {
+			document.querySelector(".arrow").classList.toggle("active");
+			dropboxStatus = selectElement.selectedIndex;
+			console.log(dropboxStatus);
+		}
+	});
+	selectElement.addEventListener("blur", function () {
+		document.querySelector(".arrow").classList.remove("active");
 	});
 	applyListener();
 
@@ -192,8 +205,6 @@ const mainFunction = async () => {
 	const next = document.querySelector(".next");
 	const prev = document.querySelector(".prev");
 	const links = document.querySelectorAll(".media-container a");
-	console.log(links);
-
 	let ImgDestination;
 
 	links.forEach(function (link) {
@@ -201,36 +212,64 @@ const mainFunction = async () => {
 			e.preventDefault();
 			modale.classList.add("displayed");
 			modale.classList.remove("notdisplayed");
-			ImgDestination = modale.querySelectorAll(".modal-content img");
-			// console.log( ImgDestination);
-			// console.log( ImgDestination[0].src);
-			ImgDestination[0].src = this.href;
+			ImgDestination = modale.querySelectorAll(".modal-content");
+			let clonedNode = this.cloneNode(true);
+			ImgDestination[0].appendChild(clonedNode);
 		});
 	});
 	prev.addEventListener("click", function (e) {
-		let currentImagePosition = ImgDestination[0].src;
+		let currentImagePosition = ImgDestination[0].childNodes[1];
 		let iteration = 0;
 		for (let link of links.entries()) {
-			if (link[1].href == currentImagePosition) {
-				ImgDestination[0].src = links[iteration - 1].href;
+			if (link[1].isEqualNode(currentImagePosition)) {
+				ImgDestination[0].childNodes[1].remove();
+				if (iteration < 1) {
+					iteration = 1;
+				}
+				let clonedNode = links[iteration - 1].cloneNode(true);
+				ImgDestination[0].appendChild(clonedNode);
 			}
 			iteration++;
+			// if (iteration > 0) {
+			// 	iteration++;
+			// }
 		}
 	});
 	next.addEventListener("click", function (e) {
-		let currentImagePosition = ImgDestination[0].src;
+		let currentImagePosition = ImgDestination[0].childNodes[1];
 		let iteration = 0;
 		for (let link of links.entries()) {
-			if (link[1].href == currentImagePosition) {
-				ImgDestination[0].src = links[iteration + 1].href;
+			if (link[1].isEqualNode(currentImagePosition)) {
+				ImgDestination[0].childNodes[1].remove();
+				if (iteration > links.length - 2) {
+					iteration = links.length - 2;
+				}
+				let clonedNode = links[iteration + 1].cloneNode(true);
+				ImgDestination[0].appendChild(clonedNode);
 			}
 			iteration++;
 		}
 	});
-
 	close.addEventListener("click", function () {
 		modale.classList.add("notdisplayed");
 		modale.classList.remove("displayed");
+		ImgDestination[0].childNodes[1].remove();
+	});
+	//FORMULAIRE
+
+	const modaleForm = document.querySelector(".modal-form");
+	const closeForm = document.querySelector(".close-form");
+	const submitButtonn = document.querySelector(".btn-submit"); // Button to close modal
+	const formButton = document.getElementById("contactez-moi");
+
+	formButton.addEventListener("click", function (e) {
+		modaleForm.classList.add("displayed");
+		modaleForm.classList.remove("notdisplayed");
+	});
+
+	closeForm.addEventListener("click", function (e) {
+		modaleForm.classList.add("notdisplayed");
+		modaleForm.classList.remove("displayed");
 	});
 };
 

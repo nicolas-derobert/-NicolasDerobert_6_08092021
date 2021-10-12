@@ -25,6 +25,7 @@ let idOfPage;
 let filterToApply;
 let tagListInHeader;
 let idOfMedia;
+let dropboxStatus
 
 // const typePhotographer = "photographers";
 // const typeMedia = "media";
