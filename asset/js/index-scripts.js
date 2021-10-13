@@ -34,7 +34,7 @@ const filterOnHashtag = function (event, val) {
 const mainFunction = async () => {
 	let idOfPage = document.getElementsByTagName("body").id;
 	console.log(idOfPage);
-	if (idOfPage == index) {
+	if (idOfPage == index || idOfPage == "") {
 		urlToApply = urlFromIndex;
 	} else {
 		urlToApply = urlFromOtherPages;
