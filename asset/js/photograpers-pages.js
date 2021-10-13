@@ -177,10 +177,9 @@ const mainFunction = async () => {
 	// FILTER
 	selectElement = document.querySelector("#sortTool");
 
-	console.log(selectElement);
-	console.log(selectElement.selectedIndex);
+	// console.log(selectElement);
+	// console.log(selectElement.selectedIndex);
 	dropboxStatus = selectElement.selectedIndex;
-	console.log(dropboxStatus);
 	document.getElementById("sortTool").addEventListener("change", function () {
 		applySorting(this.value);
 		// document.querySelector(".arrow").classList.remove("active");
@@ -188,7 +187,7 @@ const mainFunction = async () => {
 	selectElement.addEventListener("click", function (e) {
 		document.querySelector(".arrow").classList.add("active");
 		let newStatus = selectElement.selectedIndex;
-		if (newStatus!= dropboxStatus) {
+		if (newStatus != dropboxStatus) {
 			document.querySelector(".arrow").classList.toggle("active");
 			dropboxStatus = selectElement.selectedIndex;
 			console.log(dropboxStatus);
@@ -206,23 +205,35 @@ const mainFunction = async () => {
 	const prev = document.querySelector(".prev");
 	const links = document.querySelectorAll(".media-container a");
 	let ImgDestination;
-
 	links.forEach(function (link) {
-		link.addEventListener("click", function (e) {
+		link.addEventListener("click", function (e) {// Add an eventLister on each image ;
 			e.preventDefault();
-			modale.classList.add("displayed");
-			modale.classList.remove("notdisplayed");
-			ImgDestination = modale.querySelectorAll(".modal-content");
-			let clonedNode = this.cloneNode(true);
-			ImgDestination[0].appendChild(clonedNode);
+			modale.classList.add("displayed"); //Display modal
+			modale.classList.remove("notdisplayed"); 
+			ImgDestination = modale.querySelectorAll(".modal-content"); //Identify where the image will be displayed
+
+			let clonedNode = this.cloneNode(true); // The image clicked is cloned
+			ImgDestination[0].appendChild(clonedNode); // The node is diplayed in modal
+			// console.log(ImgDestination);
+			// console.log(ImgDestination[0]);
+			// console.log(ImgDestination[0].baseURI);
+			// console.log(ImgDestination[0].childNodes[0].nodeType);
+			// console.log(ImgDestination[0].childNodes[1]);
 		});
 	});
 	prev.addEventListener("click", function (e) {
-		let currentImagePosition = ImgDestination[0].childNodes[1];
+
+		let currentImagePosition = ImgDestination[0].childNodes[0]; //identify where is the currentPosition
+		// console.log(ImgDestination[0]);
+		// console.log(ImgDestination[0].childNodes[1]);
+		// console.log(currentImagePosition);
+
 		let iteration = 0;
-		for (let link of links.entries()) {
+		for (let link of links.entries()) { 
+					console.log(link[1]);
+
 			if (link[1].isEqualNode(currentImagePosition)) {
-				ImgDestination[0].childNodes[1].remove();
+				ImgDestination[0].childNodes[0].remove();
 				if (iteration < 1) {
 					iteration = 1;
 				}
@@ -236,11 +247,11 @@ const mainFunction = async () => {
 		}
 	});
 	next.addEventListener("click", function (e) {
-		let currentImagePosition = ImgDestination[0].childNodes[1];
+		let currentImagePosition = ImgDestination[0].childNodes[0];
 		let iteration = 0;
 		for (let link of links.entries()) {
 			if (link[1].isEqualNode(currentImagePosition)) {
-				ImgDestination[0].childNodes[1].remove();
+				ImgDestination[0].childNodes[0].remove();
 				if (iteration > links.length - 2) {
 					iteration = links.length - 2;
 				}
@@ -253,18 +264,32 @@ const mainFunction = async () => {
 	close.addEventListener("click", function () {
 		modale.classList.add("notdisplayed");
 		modale.classList.remove("displayed");
-		ImgDestination[0].childNodes[1].remove();
+		ImgDestination[0].childNodes[0].remove();
 	});
 	//FORMULAIRE
 
 	const modaleForm = document.querySelector(".modal-form");
+	const form = document.querySelector("#form");
 	const closeForm = document.querySelector(".close-form");
 	const submitButtonn = document.querySelector(".btn-submit"); // Button to close modal
 	const formButton = document.getElementById("contactez-moi");
+	const formTitle = document.getElementById("h1-form");
+	const formInputFirstName = document.getElementById("input-first-name");
+	const formInputLastName = document.getElementById("input-last-name");
+	const formInputEmail = document.getElementById("input-email");
+	const formeTitleText = "Contactez-moi ";
+	form.addEventListener("submit", function (e) {
+		e.preventDefault();
+		console.log(formInputFirstName.innerHTML);
+		console.log(formInputLastName.innerHTML);
+		console.log(formInputEmail.innerHTML);
+
+	});
 
 	formButton.addEventListener("click", function (e) {
 		modaleForm.classList.add("displayed");
 		modaleForm.classList.remove("notdisplayed");
+		formTitle.innerHTML = formeTitleText + dataOfJsonFilePhotographer[1].name;
 	});
 
 	closeForm.addEventListener("click", function (e) {

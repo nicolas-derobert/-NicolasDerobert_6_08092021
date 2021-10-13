@@ -22,7 +22,6 @@
 .selection-area .arrow.active {
   -webkit-transform: rotateX(180deg);
           transform: rotateX(180deg);
-  top: -6px;
 }
 
 .selection-area select {
