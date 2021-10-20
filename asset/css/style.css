@@ -26,15 +26,15 @@
 
 .selection-area select {
   border-style: none;
-  padding: 0.6em 0.9em;
-  font-size: 0.9em;
+  padding: 0.6rem 0.9rem;
+  font-size: 1.6rem;
   background-color: #901c1c;
   color: #FFFFFF;
   width: 100%;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  padding: 1em 5em 1em 1.5em;
+  padding: 1rem 5rem 1rem 1.5rem;
 }
 
 .modal {
@@ -155,7 +155,7 @@
 
 .modal-form .modal-form-content {
   height: 90vh;
-  background-color: #DB8876;
+  background-color: #D3573C;
   margin: auto;
   max-width: 800px;
   border-radius: 5px;
@@ -168,12 +168,12 @@
 }
 
 .modal-form .modal-form-content form #h1-form {
-  font-size: 64px;
+  font-size: 6.4rem;
   color: #000000;
-  -webkit-margin-before: 0.2em;
-          margin-block-start: 0.2em;
-  -webkit-margin-after: 0.2em;
-          margin-block-end: 0.2em;
+  -webkit-margin-before: 0.2rem;
+          margin-block-start: 0.2rem;
+  -webkit-margin-after: 0.2rem;
+          margin-block-end: 0.2rem;
 }
 
 .modal-form .modal-form-content form label {
@@ -221,7 +221,7 @@
   position: absolute;
   left: -10000px;
   display: block;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   position: static;
 }
 
@@ -229,13 +229,13 @@
   border: solid;
   border-color: #525252;
   border-radius: 20% / 50%;
-  padding: 0.4em;
-  padding-top: 0.1em;
-  padding-bottom: 0.1em;
+  padding: 0.4rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
   border-width: 0.05px;
   color: #901c1c;
   font-weight: bold;
-  font-size: 0.7em;
+  font-size: 1.2rem;
 }
 
 a {
@@ -248,6 +248,10 @@ a {
 *::after {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
 }
 
 body {
@@ -263,16 +267,16 @@ p {
 }
 
 h1 {
-  padding-top: 15px;
+  padding-top: 1.5rem;
   color: #901c1c;
 }
 
 h2 {
-  color: #DB8876;
+  color: #D3573C;
   font-weight: 400;
-  font-size: 36px;
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
+  font-size: 3.6rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 
 .image-container {
@@ -290,22 +294,18 @@ h2 {
 
 .location {
   color: #901c1c;
-  font-size: 1.2em;
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
-}
-
-.tagline {
-  font-size: 0.8em;
+  font-size: 1.3rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 
 .categories {
-  font-size: 8px;
+  font-size: 1.2rem;
 }
 
 .price {
   color: #525252;
-  font-size: 0.8em;
+  font-size: 0.9rem;
 }
 
 .index-page article {
@@ -463,7 +463,7 @@ h2 {
 
 #like-and-price {
   display: block;
-  background-color: #DB8876;
+  background-color: #D3573C;
   position: fixed;
   display: -webkit-box;
   display: -ms-flexbox;

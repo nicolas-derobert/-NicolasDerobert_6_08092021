@@ -7,6 +7,9 @@
 *::after {
   box-sizing: border-box;
 }
+html{
+	font-size: 10px;
+}
 body{
 	width: 100%;
 	padding: 0px;
@@ -19,15 +22,15 @@ p {
 	margin-bottom: 0.6em;
 }
 h1{
-	padding-top: 15px;
+	padding-top: 1.5rem;
 	color: $color-primary;
 }
 h2 {
 	color: $color-secondary;
 	font-weight: 400;
-	font-size: 36px;
-    margin-top: 0.2em;
-	margin-bottom: 0.2em;
+	font-size: 3.6rem;
+    margin-top: 0.2rem;
+	margin-bottom: 0.2rem;
 }
 
 .image-container {
@@ -42,19 +45,19 @@ h2 {
 
 .location {
 	color: $color-primary;
-	font-size: 1.2em;
-	margin-top: 0.2em;
-	margin-bottom: 0.2em;
+	font-size: 1.3rem;
+	margin-top: 0.2rem;
+	margin-bottom: 0.2rem;
 }
 .tagline {
-	font-size: 0.8em;
+	// font-size: 0.8rem;
 }
 .categories {
-	font-size: 8px;
+	font-size: 1.2rem;
 }
 .price {
 	color: $color-tertiary;
-	font-size: 0.8em;
+	font-size: 0.9rem;
 }
 
 

@@ -1,6 +1,6 @@
 //Ressources used for coding : https://www.linkedin.com/learning/javascript-essential-training/pass-arguments-through-event-listeners
 
-// All const and variables that are used for website wit a global scope 
+// All const and variables that are used for website wit a global scope
 //URL
 const urlFromIndex = "./asset/data/FishEyeData.json";
 const urlFromOtherPages = "../asset/data/FishEyeData.json";
@@ -8,7 +8,7 @@ const urlOfHtmlPages = "./pages/";
 const urlOfImagesPages = "./asset/img/Photographers ID Photos";
 const urlOfImagesPagesOfPhotographers = "../asset/img/Photographers ID Photos";
 const urlOfImagesPagesOfElie = "../asset/img/Ellie Rose";
-// array of data 
+// array of data
 
 let dataOfJsonFileMedia = [];
 let dataOfJsonFileMediaAfterclassAssociation = [];
@@ -25,18 +25,20 @@ let idOfPage;
 let filterToApply;
 let tagListInHeader;
 let idOfMedia;
-let dropboxStatus
+let dropboxStatus;
 
 // const typePhotographer = "photographers";
 // const typeMedia = "media";
 
 class Photographers {
+	name;
 	id;
-	photographerId;
-	title;
-	image;
+	city;
+	country;
 	tags;
-	likes;
+	tagline;
+	price;
+	portrait;
 	constructor(name, id, city, country, tags, tagline, price, portrait, url) {
 		this.name = name;
 		this.id = id;
@@ -62,6 +64,7 @@ class Media {
 	likes;
 	date;
 	price;
+	Isliked;
 	constructor(
 		id,
 		photographerId,
@@ -71,7 +74,8 @@ class Media {
 		tags,
 		likes,
 		date,
-		price
+		price,
+		Isliked
 	) {
 		this.id = id;
 		this.photographerId = photographerId;
@@ -82,14 +86,22 @@ class Media {
 		this.likes = likes;
 		this.date = date;
 		this.price = price;
+		this.Isliked = Isliked;
 	}
 }
 
+// function tagsTemplate(tagsData) {
+// 	return ` ${tagsData
+// 		.map(
+// 			(tagsData) =>
+// 				`<a href=${tagsData}><span aria-label="${tagsData}" class="hashtag-links" role="link">${tagsData}</span></a>`
+// 		)
+// 		.join("")}	`;
+// }
 function tagsTemplate(tagsData) {
 	return ` ${tagsData
 		.map(
-			(tagsData) =>
-				`<a href=${tagsData}><span aria-label="Event" class="hashtag-links">${tagsData}</span></a>`
+			(tagsData) => `<a href=${tagsData} class="hashtag-links">${tagsData}</a>`
 		)
 		.join("")}	`;
 }
@@ -131,6 +143,7 @@ function placeDataOfMediaInObject(dataOfJsonFileMedia) {
 		let likes = dataOfJsonFileMedia[i].likes;
 		let date = dataOfJsonFileMedia[i].date;
 		let price = dataOfJsonFileMedia[i].price;
+		let Isliked = false;
 
 		// let url = urlOfImagesPages +  + image;
 		dataOfJsonFileMediaAfterclassAssociation[i] = new Media(
@@ -142,7 +155,8 @@ function placeDataOfMediaInObject(dataOfJsonFileMedia) {
 			tags,
 			likes,
 			date,
-			price
+			price,
+			Isliked
 		); //url
 	}
 }

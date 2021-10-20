@@ -5,7 +5,7 @@ const filterOnHashtag = function (event, val) {
 	let articleElementAsArray = Array.prototype.slice.call(articleElement);
 	console.log(articleElementAsArray);
 	articleElementAsArray.forEach(function (val) {
-		let tagToLookAt = val.querySelectorAll("div a span");
+		let tagToLookAt = val.querySelectorAll("div a");
 		let tagToLookAtAsArray = Array.prototype.slice.call(tagToLookAt); // This code line allow the transfomation of tagToLookAt collection in an array --> full explanation in  : https://shifteleven.com/articles/2007/06/28/array-like-objects-in-javascript/
 		console.log("tableau de tous les tags");
 		console.log(tagToLookAt);
@@ -66,11 +66,11 @@ function photographersTemplate(photographerData) {
 	<a href="${photographerData.url}">
 <div class="image-container">		<img
 			src="asset/img/Photographers ID Photos/${photographerData.portrait}"
-			alt="${photographerData.name}"
-			aria-labelledby="nom"
+			alt=""
+			aria-labelledby="${photographerData.id}"
 			class="photograph-vignet"
 		/></div>
-		<h2 id="nom">${photographerData.name}</h2></a
+		<h2 id="${photographerData.id}">${photographerData.name}</h2></a
 	>
 	<p class="location">${photographerData.city + " "} ${
 		photographerData.country

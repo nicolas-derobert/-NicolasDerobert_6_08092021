@@ -95,8 +95,9 @@ const recountLike = function (event, val) {
 	console.log(arrayLength);
 	for (let i = 0; i < arrayLength; i++) {
 		const item = dataOfJsonFileMediaAfterclassAssociation[i];
-		if (dataOfJsonFileMediaAfterclassAssociation[i].id == idOfMedia) {
+		if (dataOfJsonFileMediaAfterclassAssociation[i].id == idOfMedia && dataOfJsonFileMediaAfterclassAssociation[i].Isliked == false ) {// Check the id of media and this media has already been checked
 			dataOfJsonFileMediaAfterclassAssociation[i].likes++;
+			dataOfJsonFileMediaAfterclassAssociation[i].Isliked = true;
 			console.log(dataOfJsonFileMediaAfterclassAssociation[i].likes);
 		}
 	}
