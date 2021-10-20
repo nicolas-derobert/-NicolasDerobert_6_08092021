@@ -177,11 +177,11 @@
 }
 
 .modal-form .modal-form-content form label {
-  font-size: 30px;
+  font-size: 3rem;
 }
 
 .modal-form .modal-form-content form input {
-  font-size: 20px;
+  font-size: 2rem;
   height: 62px;
   width: 100%;
   border-radius: 5px;
@@ -223,6 +223,11 @@
   display: block;
   font-size: 1.5rem;
   position: static;
+  display: none;
+}
+
+.skip-link.displayed {
+  display: block;
 }
 
 .hashtag-links {
@@ -426,6 +431,10 @@ h2 {
   margin: auto;
   -webkit-clip-path: polygon(0% 10%, 100% 10%, 100% 90%, 0% 90%);
           clip-path: polygon(0% 10%, 100% 10%, 100% 90%, 0% 90%);
+}
+
+.photographer-page article .media-container a:focus {
+  border-width: 10px;
 }
 
 .photographer-page article .media-container img {

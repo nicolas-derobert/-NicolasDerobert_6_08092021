@@ -50,8 +50,7 @@ class Photographers {
 		this.portrait = portrait;
 		this.url = url;
 	}
-	// returncard() {}
-	// Ajouter une méhode pour retourner l'url de la page du photographe qui est égale à la concaténation des éléments du nom :
+
 }
 
 class Media {
@@ -117,7 +116,7 @@ function placeDataInObject(dataOfJsonFilePhotographer) {
 		let price = dataOfJsonFilePhotographer[i].price;
 		let portrait = dataOfJsonFilePhotographer[i].portrait;
 		let url = urlOfHtmlPages + name.replace(" ", "-") + ".html";
-		let urlOfPortrait = urlOfHtmlPages + name.replace(" ", "-") + ".html";
+		// let urlOfPortrait = urlOfHtmlPages + name.replace(" ", "-") + ".html";
 		dataOfJsonFilePhotographerAfterclassAssociation[i] = new Photographers(
 			name,
 			id,
@@ -162,16 +161,6 @@ function placeDataOfMediaInObject(dataOfJsonFileMedia) {
 }
 const getData = async () => {
 	try {
-		dataOfJsonFileData = await doFetch();
-		return dataOfJsonFileData;
-	} catch (e) {
-		console.log("Error");
-		console.log(e);
-	}
-};
-
-const doFetch = async function () {
-	try {
 		const response = await fetch(urlToApply);
 		const myResult = await response.json();
 		return myResult;
@@ -182,3 +171,4 @@ const doFetch = async function () {
 		);
 	}
 };
+

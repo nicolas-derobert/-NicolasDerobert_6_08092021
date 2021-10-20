@@ -89,3 +89,9 @@ ${tagsTemplate(photographerData.tags)}
 document.addEventListener("DOMContentLoaded", (event) => {
 	mainFunction();
 });
+
+// To show manage bypass block
+document.addEventListener('scroll', function scrolling(e) {
+	document.querySelector(".skip-link").classList.add("displayed");
+	document.removeEventListener('scroll',scrolling);
+});

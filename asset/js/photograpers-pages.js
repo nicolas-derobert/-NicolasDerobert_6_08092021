@@ -13,7 +13,7 @@ function mediaTemplate(mediaData) {
 			<div class="media-like-counter" >${mediaData.likes}</div>
 			<div class="heart" id="${
 				mediaData.id
-			}"> <i class="fas fa-heart filled-heart"></i></div>	
+			}" tabindex="0" > <i class="fas fa-heart filled-heart"></i></div>	
 		</div>		
 		</div>
 	</article>`;
@@ -22,7 +22,7 @@ function mediaTemplate(mediaData) {
 		return `		 
 		<article class="">
 		<div class="media-container">
-			<a href="${urlOfImagesPagesOfElie + "/" + mediaData.image}"><video controls
+			<a href="${urlOfImagesPagesOfElie + "/" + mediaData.video}"><video controls
   poster="${
 		urlOfImagesPagesOfElie + "/" + mediaData.video.split(".")[0]
 	}.png"  aria-label="${mediaData.title}">
@@ -206,33 +206,14 @@ const mainFunction = async () => {
 	const prev = document.querySelector(".prev");
 	const links = document.querySelectorAll(".media-container a");
 	let ImgDestination;
-	links.forEach(function (link) {
-		link.addEventListener("click", function (e) {// Add an eventLister on each image ;
-			e.preventDefault();
-			modale.classList.add("displayed"); //Display modal
-			modale.classList.remove("notdisplayed"); 
-			ImgDestination = modale.querySelectorAll(".modal-content"); //Identify where the image will be displayed
 
-			let clonedNode = this.cloneNode(true); // The image clicked is cloned
-			ImgDestination[0].appendChild(clonedNode); // The node is diplayed in modal
-			// console.log(ImgDestination);
-			// console.log(ImgDestination[0]);
-			// console.log(ImgDestination[0].baseURI);
-			// console.log(ImgDestination[0].childNodes[0].nodeType);
-			// console.log(ImgDestination[0].childNodes[1]);
-		});
-	});
-	prev.addEventListener("click", function (e) {
+	// All function to manage lightbox
 
+	function gotoprevious(e){
 		let currentImagePosition = ImgDestination[0].childNodes[0]; //identify where is the currentPosition
-		// console.log(ImgDestination[0]);
-		// console.log(ImgDestination[0].childNodes[1]);
-		// console.log(currentImagePosition);
-
 		let iteration = 0;
 		for (let link of links.entries()) { 
 					console.log(link[1]);
-
 			if (link[1].isEqualNode(currentImagePosition)) {
 				ImgDestination[0].childNodes[0].remove();
 				if (iteration < 1) {
@@ -242,13 +223,11 @@ const mainFunction = async () => {
 				ImgDestination[0].appendChild(clonedNode);
 			}
 			iteration++;
-			// if (iteration > 0) {
-			// 	iteration++;
-			// }
 		}
-	});
-	next.addEventListener("click", function (e) {
-		let currentImagePosition = ImgDestination[0].childNodes[0];
+	}
+
+function gotonext(e) {
+	let currentImagePosition = ImgDestination[0].childNodes[0];
 		let iteration = 0;
 		for (let link of links.entries()) {
 			if (link[1].isEqualNode(currentImagePosition)) {
@@ -261,14 +240,45 @@ const mainFunction = async () => {
 			}
 			iteration++;
 		}
-	});
-	close.addEventListener("click", function () {
-		modale.classList.add("notdisplayed");
-		modale.classList.remove("displayed");
-		ImgDestination[0].childNodes[0].remove();
-	});
-	//FORMULAIRE
+}
 
+function choosedirection(e) {
+    e = e || window.event;
+    if (e.keyCode == '37') {
+		gotoprevious()    }
+    else if (e.keyCode == '39') {
+		gotonext()    }
+		else if (e.keyCode == '27') {
+			exit()    }
+}
+function exit(e){
+
+	modale.classList.add("notdisplayed");
+	modale.classList.remove("displayed");
+	ImgDestination[0].childNodes[0].remove();
+} 
+
+function placemedia(e) {
+// Add an eventLister on each image ;
+e.preventDefault();
+modale.classList.add("displayed"); //Display modal
+modale.classList.remove("notdisplayed"); 
+ImgDestination = modale.querySelectorAll(".modal-content"); //Identify where the image will be displayed
+let clonedNode = this.cloneNode(true); // The image clicked is cloned
+ImgDestination[0].appendChild(clonedNode); // The node is diplayed in modal
+}
+
+// All event listener to manage lightbox
+prev.addEventListener("click", gotoprevious);
+next.addEventListener("click", gotonext);
+document.addEventListener("keydown", choosedirection);
+links.forEach(function (link) {
+	link.addEventListener("click", placemedia );
+});
+
+close.addEventListener("click", exit);
+
+	//FORMULAIRE
 	const modaleForm = document.querySelector(".modal-form");
 	const form = document.querySelector("#form");
 	const closeForm = document.querySelector(".close-form");
