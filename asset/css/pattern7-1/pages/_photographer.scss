@@ -44,16 +44,28 @@
 			height: 300px;
 			width: 350px;
 			margin: auto;
-			clip-path: polygon(0% 10%, 100% 10%, 100% 90%, 0% 90%);
+			overflow: hidden;
+			// clip-path: polygon(0% 10%, 100% 10%, 100% 90%, 0% 90%);
 			a:focus{
 				border-width: 10px;
 			}
-			img {
-				height: 170%;
+			a{
+				display: block;
+				height: 100%;
+				width: 100%;
+				img {
+					object-fit: cover;
+					width: 100%;
+					height: 100%;
+
+				}
+				video {
+					object-fit: cover;
+					height: 100%;
+					width: 100%;
+				}
 			}
-			video {
-				height: 170%;
-			}
+			
 		}
 		.description-and-like {
 			display: flex;

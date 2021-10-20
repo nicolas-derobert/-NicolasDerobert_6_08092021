@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 html{
-	font-size: 10px;
+	font-size: 16px;
 }
 body{
 	width: 100%;
@@ -22,6 +22,7 @@ p {
 	margin-bottom: 0.6em;
 }
 h1{
+	margin: auto;
 	padding-top: 1.5rem;
 	color: $color-primary;
 }
@@ -49,9 +50,9 @@ h2 {
 	margin-top: 0.2rem;
 	margin-bottom: 0.2rem;
 }
-.tagline {
-	// font-size: 0.8rem;
-}
+// .tagline {
+// 	// font-size: 0.8rem;
+// }
 .categories {
 	font-size: 1.2rem;
 }

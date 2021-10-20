@@ -95,7 +95,11 @@ const recountLike = function (event, val) {
 	console.log(arrayLength);
 	for (let i = 0; i < arrayLength; i++) {
 		const item = dataOfJsonFileMediaAfterclassAssociation[i];
-		if (dataOfJsonFileMediaAfterclassAssociation[i].id == idOfMedia && dataOfJsonFileMediaAfterclassAssociation[i].Isliked == false ) {// Check the id of media and this media has already been checked
+		if (
+			dataOfJsonFileMediaAfterclassAssociation[i].id == idOfMedia &&
+			dataOfJsonFileMediaAfterclassAssociation[i].Isliked == false
+		) {
+			// Check the id of media and this media has already been checked
 			dataOfJsonFileMediaAfterclassAssociation[i].likes++;
 			dataOfJsonFileMediaAfterclassAssociation[i].Isliked = true;
 			console.log(dataOfJsonFileMediaAfterclassAssociation[i].likes);
@@ -209,11 +213,11 @@ const mainFunction = async () => {
 
 	// All function to manage lightbox
 
-	function gotoprevious(e){
+	function gotoprevious(e) {
 		let currentImagePosition = ImgDestination[0].childNodes[0]; //identify where is the currentPosition
 		let iteration = 0;
-		for (let link of links.entries()) { 
-					console.log(link[1]);
+		for (let link of links.entries()) {
+			console.log(link[1]);
 			if (link[1].isEqualNode(currentImagePosition)) {
 				ImgDestination[0].childNodes[0].remove();
 				if (iteration < 1) {
@@ -226,8 +230,8 @@ const mainFunction = async () => {
 		}
 	}
 
-function gotonext(e) {
-	let currentImagePosition = ImgDestination[0].childNodes[0];
+	function gotonext(e) {
+		let currentImagePosition = ImgDestination[0].childNodes[0];
 		let iteration = 0;
 		for (let link of links.entries()) {
 			if (link[1].isEqualNode(currentImagePosition)) {
@@ -240,43 +244,49 @@ function gotonext(e) {
 			}
 			iteration++;
 		}
-}
+	}
 
-function choosedirection(e) {
-    e = e || window.event;
-    if (e.keyCode == '37') {
-		gotoprevious()    }
-    else if (e.keyCode == '39') {
-		gotonext()    }
-		else if (e.keyCode == '27') {
-			exit()    }
-}
-function exit(e){
+	function choosedirection(e) {
+		e = e || window.event;
+		if (e.keyCode == "37") {
+			gotoprevious();
+		} else if (e.keyCode == "39") {
+			gotonext();
+		} else if (e.keyCode == "27") {
+			exit();
+		}
+	}
+	function exit(e) {
+		if (modale.classList.contains("displayed")) {
+			modale.classList.add("notdisplayed");
+			modale.classList.remove("displayed");
+			ImgDestination[0].childNodes[0].remove();
+		}else if(modaleForm.classList.contains("displayed"))
+		{
+			modaleForm.classList.add("notdisplayed");
+			modaleForm.classList.remove("displayed");		
+		}
+	}
 
-	modale.classList.add("notdisplayed");
-	modale.classList.remove("displayed");
-	ImgDestination[0].childNodes[0].remove();
-} 
+	function placemedia(e) {
+		// Add an eventLister on each image ;
+		e.preventDefault();
+		modale.classList.add("displayed"); //Display modal
+		modale.classList.remove("notdisplayed");
+		ImgDestination = modale.querySelectorAll(".modal-content"); //Identify where the image will be displayed
+		let clonedNode = this.cloneNode(true); // The image clicked is cloned
+		ImgDestination[0].appendChild(clonedNode); // The node is diplayed in modal
+	}
 
-function placemedia(e) {
-// Add an eventLister on each image ;
-e.preventDefault();
-modale.classList.add("displayed"); //Display modal
-modale.classList.remove("notdisplayed"); 
-ImgDestination = modale.querySelectorAll(".modal-content"); //Identify where the image will be displayed
-let clonedNode = this.cloneNode(true); // The image clicked is cloned
-ImgDestination[0].appendChild(clonedNode); // The node is diplayed in modal
-}
+	// All event listener to manage lightbox
+	prev.addEventListener("click", gotoprevious);
+	next.addEventListener("click", gotonext);
+	document.addEventListener("keydown", choosedirection);
+	links.forEach(function (link) {
+		link.addEventListener("click", placemedia);
+	});
 
-// All event listener to manage lightbox
-prev.addEventListener("click", gotoprevious);
-next.addEventListener("click", gotonext);
-document.addEventListener("keydown", choosedirection);
-links.forEach(function (link) {
-	link.addEventListener("click", placemedia );
-});
-
-close.addEventListener("click", exit);
+	close.addEventListener("click", exit);
 
 	//FORMULAIRE
 	const modaleForm = document.querySelector(".modal-form");
@@ -289,24 +299,25 @@ close.addEventListener("click", exit);
 	const formInputLastName = document.getElementById("input-last-name");
 	const formInputEmail = document.getElementById("input-email");
 	const formeTitleText = "Contactez-moi ";
-	form.addEventListener("submit", function (e) {
-		e.preventDefault();
-		console.log(formInputFirstName.innerHTML);
-		console.log(formInputLastName.innerHTML);
-		console.log(formInputEmail.innerHTML);
 
-	});
+function submitform(e){
+	e.preventDefault();
+	console.log(formInputFirstName.value);
+	console.log(formInputLastName.value);
+	console.log(formInputEmail.value);
+	exit()
+}
 
-	formButton.addEventListener("click", function (e) {
-		modaleForm.classList.add("displayed");
+	form.addEventListener("submit", submitform);
+
+	function callform(e){
+				modaleForm.classList.add("displayed");
 		modaleForm.classList.remove("notdisplayed");
 		formTitle.innerHTML = formeTitleText + dataOfJsonFilePhotographer[1].name;
-	});
+	}
+	formButton.addEventListener("click", callform);
 
-	closeForm.addEventListener("click", function (e) {
-		modaleForm.classList.add("notdisplayed");
-		modaleForm.classList.remove("displayed");
-	});
+	closeForm.addEventListener("click", exit);
 };
 
 document.addEventListener("DOMContentLoaded", (event) => {

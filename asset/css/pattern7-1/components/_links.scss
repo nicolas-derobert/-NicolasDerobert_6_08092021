@@ -14,14 +14,15 @@
 .hashtag-links {
 	border: solid;
 	border-color: $color-tertiary;
-	border-radius: 20% / 50%;
-	padding: 0.4rem;
-	padding-top: 0.1rem;
-	padding-bottom: 0.1rem;
+	border-radius: 500px; //explanation for this value here https://drafts.csswg.org/css-backgrounds/#corner-overlap
+	padding: 0.3rem;
+	padding-top: 0.05rem;
+	padding-bottom: 0.05rem;
 	border-width: 0.05px;
 	color: $color-primary;
 	font-weight: bold;
-	font-size: 1.2rem;
+	font-size: 1rem;
+	margin: 0.5rem 0.2rem;
 }
 a {
 	text-decoration: none;

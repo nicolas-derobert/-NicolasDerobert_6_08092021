@@ -66,13 +66,13 @@
 				</div>
 				<div id="image-area">
 					<div class="image-container">
-						<img src="" alt=""  id="photograph-vignet" />
+						<img src="" alt="" id="photograph-vignet" />
 					</div>
 				</div>
 			</section>
 			<label for="sortTool"> Trier par </label>
 
-			<div id="filter" class="selection-area ">
+			<div id="filter" class="selection-area">
 				<select id="sortTool">
 					<option value="popularity">Popularité</option>
 					<option value="date">Date</option>
@@ -91,9 +91,11 @@
 		</main>
 		<div role="dialog" class="modal notdisplayed">
 			<button class="close">close</button>
-			<button class="next">Suivant</button>
-			<button class="prev">Précédent</button>
-			<div class="modal-content"></div>
+			<div class="modal-box">
+				<button class="prev">Précédent</button>
+				<div class="modal-content"></div>
+				<button class="next">Suivant</button>
+			</div>
 		</div>
 		<div
 			role="dialog"
@@ -107,7 +109,7 @@
 					action="index.html"
 					method="get"
 					id="form"
-					onsubmit="return validate();"
+					onsubmit=""
 				>
 					<h1 id="h1-form">vfreiuhfoi hbgfeyhiu uhfei</h1>
 					<div class="formData">

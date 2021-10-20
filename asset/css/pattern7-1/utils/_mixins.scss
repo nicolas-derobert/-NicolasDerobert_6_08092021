@@ -5,10 +5,28 @@
     }
   }
   
-  @mixin mobile-generic {
-    @media screen and (min-width: $breakpoint-tablet) {
+  @mixin desktop-generic {
+    @media screen and (max-width: $breakpoint-large) {
       @content;
     }
   }
 
   
+  // @mixin tablet-and-more-row-positionning {
+  //   @media screen and (min-width: $breakpoint-tablet) {
+  //     display: flex;
+  //     flex-flow: row nowrap;
+  //     justify-content: space-around;
+  //   }
+  // }
+  
+  // @mixin tablet-and-more-generic {
+  //   @media screen and (min-width: $breakpoint-tablet) {
+  //     @content;
+  //   }
+  // }
+  // @mixin large-devices-and-more-generic {
+  //   @media screen and (min-width: $breakpoint-large) {
+  //     @content;
+  //   }
+  // }

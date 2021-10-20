@@ -13,6 +13,28 @@
 		// 	margin-left: 10px;
 		// }
 	}
+	header{
+		width: 70vw;
+		margin: 0px;
+
+	}
+	main{
+		position: relative;
+		h1{
+			position: absolute;
+			top: 1vh;
+			right: 5vh;
+			margin: 0px;
+			@include desktop-generic {
+font-size: 1.4rem;
+height: 8vh;
+top: 4vh;
+
+			}
+			// width: 100%;
+		}
+	}
+
 }
 #all-photographers {
 	height: 100vh;
@@ -20,6 +42,8 @@
 	grid-template-columns: 1fr 1fr 1fr;
 	margin: 10px;
 	clear: both;
+	@include mobile-column-positionning;
+
 }
 .header-container {
 	display: flex;
@@ -30,4 +54,30 @@
 	float: left;
 	margin-right: 20px;
 	margin-top: 0px;
+	.logo{
+		a{
+			img{
+				@include desktop-generic {
+					margin-top: 3vh;
+					height: 8vh;
+				}
+			}
+		}
+		@include desktop-generic {
+			width: 100vw;
+		}
+	}
+	nav{
+		padding: 1rem;
+		display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	@include desktop-generic {
+		width: 100vw;
+	}
+	}
+	@include desktop-generic {
+		flex-flow: column nowrap;
+		  }
 }
