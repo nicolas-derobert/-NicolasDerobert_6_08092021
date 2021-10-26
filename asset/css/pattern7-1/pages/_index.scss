@@ -1,4 +1,13 @@
 .index-page {
+	.image-container {
+		height: 200px;
+		margin: auto;
+		clip-path: circle();
+		img {
+			height: 150%;
+			object-fit: contain;
+		}
+	}
 	article {
 		flex-flow: column wrap;
 		padding: 10%;

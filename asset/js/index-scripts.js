@@ -53,9 +53,14 @@ const mainFunction = async () => {
 	tagListInHeader = document.querySelectorAll("nav > span");
 	tagListInHeaderAsArray = Array.prototype.slice.call(tagListInHeader);
 	tagListInHeaderAsArray.forEach(function (val) {
-		val.addEventListener("click", (event) => {
+		val.addEventListener("click", (e) => {
 			console.log(val);
-			filterOnHashtag(event, val);
+			filterOnHashtag(e, val);
+		});
+		val.addEventListener("keypress", (e) => {
+			if(e.keyCode === 13) {
+				filterOnHashtag(e, val);
+				}
 		});
 	});
 };
@@ -67,7 +72,7 @@ function photographersTemplate(photographerData) {
 <div class="image-container">		<img
 			src="asset/img/Photographers ID Photos/${photographerData.portrait}"
 			alt=""
-			aria-labelledby="${photographerData.id}"
+			
 			class="photograph-vignet"
 		/></div>
 		<h2 id="${photographerData.id}">${photographerData.name}</h2></a
@@ -81,7 +86,7 @@ function photographersTemplate(photographerData) {
 ${tagsTemplate(photographerData.tags)}
 	</div>
 </article>
-	`;
+	`;//élément retiré car redondant  :aria-labelledby="${photographerData.id}"
 }
 
 //	${tagsTemplate(photographerData.price)}

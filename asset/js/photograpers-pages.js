@@ -13,11 +13,11 @@ function mediaTemplate(mediaData) {
 			<div class="media-like-counter" >${mediaData.likes}</div>
 			<div class="heart" id="${
 				mediaData.id
-			}" tabindex="0" > <i class="fas fa-heart filled-heart"></i></div>	
+			}" tabindex="0" > <i class="fa fa-heart"></i></div>	
 		</div>		
 		</div>
 	</article>`;
-	}
+	}//<i class="fas fa-heart filled-heart"></i>
 	if (mediaData.video) {
 		return `		 
 		<article class="">
@@ -37,24 +37,62 @@ function mediaTemplate(mediaData) {
 			<div class="media-like-counter" >${mediaData.likes}</div>
 			<div class="heart" id="${
 				mediaData.id
-			}"> <i class="fas fa-heart filled-heart"></i></div>	
+			}" tabindex="0"> <i class="fa fa-heart"></i></div>	
 		</div>		
 		</div>
 </article>
 		 `;
 	}
 }
+ 
 
 const applyListener = function () {
 	heartIcone = document.querySelectorAll("div.heart");
 	heartIconeAsArray = Array.prototype.slice.call(heartIcone);
 	heartIconeAsArray.forEach(function (val) {
-		val.addEventListener("click", (event) => {
-			recountLike(event, val);
+		val.addEventListener("click", (e) => {
+			recountLike(e, val);
+		});
+		val.addEventListener("keypress", (e) => {
+			if(e.keyCode === 13) {
+				recountLike(e, val);
+			}
 		});
 	});
 };
 
+// const applySorting = function (sorting) {
+// 	let dataOfJsonFileMediaAfterclassAssociationSorted;
+// 	let medias = document.getElementById("all-media");
+
+// 	while (medias.firstChild) {
+// 		medias.firstChild.remove();
+// 	}
+// 	if (sorting == "popularity") {
+// 		dataOfJsonFileMediaAfterclassAssociationSorted =
+// 			dataOfJsonFileMediaAfterclassAssociation.slice().sort(function (a, b) {
+// 				return b.likes - a.likes;
+// 			});
+// 	} else if (sorting == "date") {
+// 		dataOfJsonFileMediaAfterclassAssociationSorted =
+// 			dataOfJsonFileMediaAfterclassAssociation
+// 				.slice()
+// 				.sort((a, b) => new Date(b.date) - new Date(a.date));
+// 	} else if (sorting == "title") {
+// 		dataOfJsonFileMediaAfterclassAssociationSorted =
+// 			dataOfJsonFileMediaAfterclassAssociation.sort((a, b) =>
+// 				a.title > b.title ? 1 : -1
+// 			);
+// 	}
+// 	document.getElementById(
+// 		"all-media"
+// 	).innerHTML = `${dataOfJsonFileMediaAfterclassAssociationSorted
+// 		.filter((obj) => {
+// 			return obj.photographerId == idOfPage;
+// 		})
+// 		.map(mediaTemplate)
+// 		.join("")}`;
+// };
 const applySorting = function (sorting) {
 	let dataOfJsonFileMediaAfterclassAssociationSorted;
 	let medias = document.getElementById("all-media");
@@ -62,17 +100,17 @@ const applySorting = function (sorting) {
 	while (medias.firstChild) {
 		medias.firstChild.remove();
 	}
-	if (sorting == "popularity") {
+	if (sorting == "Popularité") {
 		dataOfJsonFileMediaAfterclassAssociationSorted =
 			dataOfJsonFileMediaAfterclassAssociation.slice().sort(function (a, b) {
 				return b.likes - a.likes;
 			});
-	} else if (sorting == "date") {
+	} else if (sorting == "Date") {
 		dataOfJsonFileMediaAfterclassAssociationSorted =
 			dataOfJsonFileMediaAfterclassAssociation
 				.slice()
 				.sort((a, b) => new Date(b.date) - new Date(a.date));
-	} else if (sorting == "title") {
+	} else if (sorting == "Titre") {
 		dataOfJsonFileMediaAfterclassAssociationSorted =
 			dataOfJsonFileMediaAfterclassAssociation.sort((a, b) =>
 				a.title > b.title ? 1 : -1

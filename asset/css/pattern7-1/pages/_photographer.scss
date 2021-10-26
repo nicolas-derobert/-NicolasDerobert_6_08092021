@@ -1,13 +1,32 @@
 // Style of header container
 #photographer {
-	width: 84%;
+	max-width: 74vw;
+	height: 30vh;
+	clear: both;
+	// height: 50vh;
 	background-color: $color-fourthly;
 	margin: 4%;
-	padding: 4%;
+	padding: 2%;
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-around;
 	align-items: center;
+	@include mobile-generic {
+		background-color: $color-sixthly;
+		width: 100%;
+		justify-content: space-between;
+		margin: auto;
+	}
+	h1 {
+		color: $color-secondary;
+		font-size: 2rem;
+	}
+	#location {
+		color: $color-primary;
+	}
+	#tagline {
+		color: $color-tertiary;
+	}
 	#button-area {
 		// position: absolute;
 		white-space: nowrap;
@@ -19,6 +38,29 @@
 			color: $color-sixthly;
 			border-radius: 5px;
 			border: none;
+			height: 69px;
+			@include mobile-generic {
+				position: fixed;
+				left: 50%;
+				transform: translate(-50%, 0%);
+				bottom: 1vh;
+				height: 35px;
+				padding: 1vh;
+			}
+		}
+	}
+	#image-area {
+		height: 100%;
+		width: 30%;
+		.image-container {
+			height: 100%;
+			width: 100%;
+			clip-path: circle();
+			img {
+				height: 100%;
+				width: 100%;
+				object-fit: cover;
+			}
 		}
 	}
 }
@@ -28,10 +70,9 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	margin: 10px;
+	@include desktop-column-positionning;
 	@include mobile-column-positionning;
 }
-
-
 
 .photographer-page {
 	article {
@@ -39,17 +80,19 @@
 		flex-flow: column nowrap;
 		margin: 10%;
 		text-align: center;
-
+		@include mobile-generic {
+			margin: 0%;
+		}
 		.media-container {
 			height: 300px;
 			width: 350px;
 			margin: auto;
 			overflow: hidden;
 			// clip-path: polygon(0% 10%, 100% 10%, 100% 90%, 0% 90%);
-			a:focus{
+			a:focus {
 				border-width: 10px;
 			}
-			a{
+			a {
 				display: block;
 				height: 100%;
 				width: 100%;
@@ -57,7 +100,6 @@
 					object-fit: cover;
 					width: 100%;
 					height: 100%;
-
 				}
 				video {
 					object-fit: cover;
@@ -65,12 +107,11 @@
 					width: 100%;
 				}
 			}
-			
 		}
 		.description-and-like {
 			display: flex;
 			flex-flow: row nowrap;
-			h2{
+			h2 {
 				font-size: 24px;
 			}
 			align-items: center;
@@ -98,8 +139,11 @@
 	width: 200px;
 	height: 50px;
 	border-radius: 5px;
+	@include mobile-generic {
+		display: none;
+	}
 }
-.like-area{
+.like-area {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-around;

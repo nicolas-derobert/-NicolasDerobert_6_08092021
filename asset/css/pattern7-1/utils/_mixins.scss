@@ -1,12 +1,22 @@
 // Media Querries
 @mixin mobile-column-positionning {
-    @media screen and (max-width: $breakpoint-tablet) {
+    @media screen and (max-width: $breakpoint-desktop) {
         grid-template-columns: 1fr;
     }
   }
   
+  @mixin desktop-column-positionning {
+    @media screen and (max-width: $breakpoint-large) {
+        grid-template-columns: 1fr 1fr;
+    }
+  }
   @mixin desktop-generic {
     @media screen and (max-width: $breakpoint-large) {
+      @content;
+    }
+  }
+  @mixin mobile-generic {
+    @media screen and (max-width: $breakpoint-desktop) {
       @content;
     }
   }

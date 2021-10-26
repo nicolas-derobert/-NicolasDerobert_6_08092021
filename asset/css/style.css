@@ -1,40 +1,88 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
 .selection-area {
   position: relative;
-  margin-left: 20%;
-  width: 20%;
+  margin-left: 2vw;
+  width: 30vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.selection-area .arrow {
-  position: absolute;
-  display: block;
-  background: url("../img/icone/arrow-down.svg");
-  height: 100%;
-  width: 2rem;
-  background-repeat: no-repeat;
-  right: 0px;
-  top: 0;
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
-  pointer-events: none;
+.selection-area.custom-select {
+  position: relative;
 }
 
-.selection-area .arrow.active {
-  -webkit-transform: rotateX(180deg);
-          transform: rotateX(180deg);
+.selection-area.custom-select select {
+  display: none;
 }
 
-.selection-area select {
-  border-style: none;
-  padding: 0.6rem 0.9rem;
-  font-size: 1.6rem;
-  background-color: #901c1c;
+.selection-area .selected-item {
+  width: 50%;
+  background: #901c1c;
+  padding: 10px 20px;
   color: #FFFFFF;
-  width: 100%;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  padding: 1rem 5rem 1rem 1.5rem;
+  cursor: pointer;
+  z-index: 99;
+  border-radius: 5px;
+}
+
+.selection-area .selected-item:after {
+  font-family: FontAwesome;
+  content: "\f107";
+  font-size: 20px;
+  color: #FFFFFF;
+  position: absolute;
+  right: 10px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.selection-area .arrowanim.selected-item:after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.selection-area .item {
+  background: #901c1c;
+  padding: 10px 20px;
+  margin: 0px 10px;
+  color: #FFFFFF;
+  border-top: 2px solid #FFFFFF;
+  cursor: pointer;
+}
+
+.selection-area .item:hover {
+  background: #000000;
+}
+
+.selection-area .item-container {
+  background: #901c1c;
+}
+
+.selection-area .item-container:last-child {
+  border-radius: 0px 0px 5px 5px;
+}
+
+.selection-area .all-items {
+  position: absolute;
+  top: 93%;
+  left: 50%;
+  width: 50%;
+  z-index: 100;
+}
+
+.selection-area .all-items-hide {
+  display: none;
 }
 
 .modal {
@@ -191,7 +239,7 @@
 }
 
 .modal-form .modal-form-content form #h1-form {
-  font-size: 6.4rem;
+  font-size: 3rem;
   color: #000000;
   -webkit-margin-before: 0.2rem;
           margin-block-start: 0.2rem;
@@ -200,11 +248,11 @@
 }
 
 .modal-form .modal-form-content form label {
-  font-size: 3rem;
+  font-size: 1.5rem;
 }
 
 .modal-form .modal-form-content form input {
-  font-size: 2rem;
+  font-size: 1rem;
   height: 62px;
   width: 100%;
   border-radius: 5px;
@@ -309,19 +357,6 @@ h2 {
   margin-bottom: 0.2rem;
 }
 
-.image-container {
-  height: 200px;
-  margin: auto;
-  -webkit-clip-path: circle();
-          clip-path: circle();
-}
-
-.image-container img {
-  height: 150%;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-
 .location {
   color: #901c1c;
   font-size: 1.3rem;
@@ -336,6 +371,19 @@ h2 {
 .price {
   color: #525252;
   font-size: 0.9rem;
+}
+
+.index-page .image-container {
+  height: 200px;
+  margin: auto;
+  -webkit-clip-path: circle();
+          clip-path: circle();
+}
+
+.index-page .image-container img {
+  height: 150%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .index-page article {
@@ -391,7 +439,7 @@ h2 {
   clear: both;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   #all-photographers {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
@@ -465,10 +513,12 @@ h2 {
 }
 
 #photographer {
-  width: 84%;
+  max-width: 74vw;
+  height: 30vh;
+  clear: both;
   background-color: #FAFAFA;
   margin: 4%;
-  padding: 4%;
+  padding: 2%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -481,6 +531,30 @@ h2 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 992px) {
+  #photographer {
+    background-color: #FFFFFF;
+    width: 100%;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin: auto;
+  }
+}
+
+#photographer h1 {
+  color: #D3573C;
+  font-size: 2rem;
+}
+
+#photographer #location {
+  color: #901c1c;
+}
+
+#photographer #tagline {
+  color: #525252;
 }
 
 #photographer #button-area {
@@ -496,6 +570,38 @@ h2 {
   color: #FFFFFF;
   border-radius: 5px;
   border: none;
+  height: 69px;
+}
+
+@media screen and (max-width: 992px) {
+  #photographer #button-area button {
+    position: fixed;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0%);
+            transform: translate(-50%, 0%);
+    bottom: 1vh;
+    height: 35px;
+    padding: 1vh;
+  }
+}
+
+#photographer #image-area {
+  height: 100%;
+  width: 30%;
+}
+
+#photographer #image-area .image-container {
+  height: 100%;
+  width: 100%;
+  -webkit-clip-path: circle();
+          clip-path: circle();
+}
+
+#photographer #image-area .image-container img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #all-media {
@@ -507,7 +613,14 @@ h2 {
   margin: 10px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
+  #all-media {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 992px) {
   #all-media {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
@@ -524,6 +637,12 @@ h2 {
           flex-flow: column nowrap;
   margin: 10%;
   text-align: center;
+}
+
+@media screen and (max-width: 992px) {
+  .photographer-page article {
+    margin: 0%;
+  }
 }
 
 .photographer-page article .media-container {
@@ -604,6 +723,12 @@ h2 {
   width: 200px;
   height: 50px;
   border-radius: 5px;
+}
+
+@media screen and (max-width: 992px) {
+  #like-and-price {
+    display: none;
+  }
 }
 
 .like-area {
