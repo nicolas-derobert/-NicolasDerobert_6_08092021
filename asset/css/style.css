@@ -1,10 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
-.selection-area {
-  position: relative;
-  margin-left: 2vw;
-  width: 30vw;
+.visually-hidden {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.Select {
   display: -webkit-box;
   display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1rem;
+  position: relative;
+  margin-left: 2vw;
+  width: 40vw;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -18,71 +33,165 @@
           align-items: center;
 }
 
-.selection-area.custom-select {
+.Select-label {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  margin-left: 30px;
+}
+
+/* Reset Select */
+select {
+  background-image: none;
+  border: 0 !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline-offset: 0.25rem;
+  outline-color: #000000;
+  position: absolute;
+  left: 200px;
+}
+
+/* Custom Select */
+.Select-trigger {
+  background-color: #fff;
+  border: 0.125rem none #000000;
+  border-radius: 0.5px;
+  color: #000000;
+  display: inline-block;
+  overflow: hidden;
   position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 200px;
+  position: absolute;
+  left: 200px;
 }
 
-.selection-area.custom-select select {
-  display: none;
-}
-
-.selection-area .selected-item {
-  width: 50%;
+select,
+[role="combobox"] {
   background: #901c1c;
-  padding: 10px 20px;
-  color: #FFFFFF;
-  cursor: pointer;
-  z-index: 99;
+  color: white;
   border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  height: 3rem;
+  line-height: 3rem;
+  margin: 0;
+  padding: 0 0 0 0.5em;
+  width: 200px;
 }
 
-.selection-area .selected-item:after {
+[role="combobox"] {
+  padding-right: 1.563rem;
+  width: 200px;
+}
+
+select[multiple] {
+  height: 10rem;
+}
+
+.Select-trigger:focus,
+[role="listbox"]:focus {
+  -webkit-box-shadow: 0px 0px 1px 2px #000000;
+          box-shadow: 0px 0px 1px 2px #000000;
+  outline: none;
+  width: 200px;
+}
+
+[role="option"]:focus {
+  outline: none;
+  -webkit-box-shadow: inset 0px 0px 1px 4px #000000;
+          box-shadow: inset 0px 0px 1px 4px #000000;
+}
+
+/*.Select-trigger select::-ms-expand {
+	display: none;
+  }*/
+/* Arrow */
+[role="combobox"]::after {
+  content: "";
+  height: 10px;
+  pointer-events: none;
+  position: absolute;
+  right: 30px;
+  top: 5px;
+  width: 10px;
   font-family: FontAwesome;
   content: "\f107";
-  font-size: 20px;
+  font-size: 30px;
   color: #FFFFFF;
-  position: absolute;
-  right: 10px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
-.selection-area .arrowanim.selected-item:after {
+.arrowanim[role="combobox"]::after {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+  right: 15px;
+  top: 35px;
 }
 
-.selection-area .item {
+[role="listbox"] {
   background: #901c1c;
-  padding: 10px 20px;
-  margin: 0px 10px;
+  border: 2px none #000000;
+  border-radius: 0.25em;
+  color: #000000;
+  font-size: 1rem;
+  list-style-type: none;
+  margin: 0;
+  width: 200px;
+  max-height: 20rem;
+  overflow-y: auto;
+  padding: 0;
+  position: absolute;
+  left: 200px;
+  top: calc(100% + 5px);
+  z-index: 1;
+}
+
+[role="combobox"][aria-expanded="false"] + [role="listbox"] {
+  display: none;
+}
+
+li {
+  height: 3rem;
+  line-height: 3rem;
+  padding: 0 1rem 0 1.625rem;
+  margin: 0 2rem;
+  position: relative;
+  background: #901c1c;
   color: #FFFFFF;
-  border-top: 2px solid #FFFFFF;
+  border-top-style: solid;
+  /*        border-style: solid;*/
+  border-color: #FFFFFF;
+}
+
+li:not([role="option"]) {
+  padding-left: 0.75rem;
+}
+
+[role="option"] {
   cursor: pointer;
 }
 
-.selection-area .item:hover {
-  background: #000000;
+[role="option"]:focus,
+[role="option"]:hover {
+  background-color: #000000;
+  color: #FFFFFF;
 }
 
-.selection-area .item-container {
-  background: #901c1c;
-}
-
-.selection-area .item-container:last-child {
-  border-radius: 0px 0px 5px 5px;
-}
-
-.selection-area .all-items {
+li[aria-selected="true"]::before {
+  content: "\2713";
+  left: 0.5rem;
+  line-height: 1rem;
   position: absolute;
-  top: 93%;
-  left: 50%;
-  width: 50%;
-  z-index: 100;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
-.selection-area .all-items-hide {
-  display: none;
+.Select-isVisible {
+  overflow: hidden;
 }
 
 .modal {

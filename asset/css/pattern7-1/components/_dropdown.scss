@@ -50,86 +50,311 @@
 // display: none;	}
 // }
 
-.selection-area {	// margin-left: 10%;
+// ///V2 -  Style ok //Source : https://codepen.io/karolinaklein/pen/Jwrabq
+// .selection-area {	// margin-left: 10%;
+// 	position: relative;
+// 	margin-left: 2vw;
+// 	width: 30vw;
+// 	display: flex;
+// 	flex-flow: row nowrap;
+// 	justify-content: space-between;
+// 	align-items: center;
+
+// 	// border-radius: 5px;
+
+// 	&.custom-select {
+// 		// width: 100%;
+// 		position: relative;
+// 		// margin: 20px 0;
+
+// 		select {
+// 			display: none;
+
+// 		}
+// 	}
+
+// 	.selected-item {
+// 		width: 50%;
+// 		background: $color-primary;
+// 		padding: 10px 20px;
+// 		color: $color-sixthly;
+// 		cursor: pointer;
+// 		z-index: 99;
+// 		border-radius:5px;
+// 		&:after {
+// 			font-family: FontAwesome;
+// 			content: "\f107";
+// 			font-size: 20px;
+// 			color: $color-sixthly;
+// 			position: absolute;
+// 			right: 10px;
+// 			transition: 0.5s;
+// 		}
+// 	}
+
+// 	.arrowanim.selected-item:after {
+// 		transform: rotate(180deg);
+// 	}
+
+// 	.item {
+// 		background: $color-primary;
+// 		padding: 10px 20px;
+// 		margin: 0px 10px;
+// 		color: $color-sixthly;
+// 		border-top: 2px solid $color-sixthly;
+// 		cursor: pointer;
+// 		&:hover {
+// 			background:$color-fifthly;
+// 		}
+// 	}
+
+// 	.item-container{
+// 		background: $color-primary;
+// 		&:last-child{
+// 			border-radius: 0px 0px 5px 5px;
+// 		}
+// 	}
+// 	.all-items {
+// 		position: absolute;
+// 		top: 93%;
+// 		left: 50%;
+// 		width: 50%;
+// 		z-index: 100;
+// 	}
+
+// 	.all-items-hide {
+// 		display: none;
+// 	}
+
+// 	// .sdf {
+// 	// 	border: 1px solid red;
+// 	// }
+
+// }
+
+//V3
+
+// html {
+// 	background-size: cover;
+// 	box-sizing: border-box;
+// 	height: 100%;
+//   }
+
+//   *,
+//   *::before,
+//   *::after {
+// 	box-sizing: inherit;
+//   }
+
+//   body {
+// 	display: flex;
+// 	flex-direction: column;
+// 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+// 	height: 100%;
+//   }
+
+//   main {
+// 	flex: 1 0 auto;
+//   }
+
+//   footer {
+// 	flex-shrink: 0;
+// 	padding: 1rem;
+// 	text-align: center;
+//   }
+// .selection-area {
+// 	// margin-left: 10%;
+// }
+
+.visually-hidden {
+	border: 0;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+.Select {
+	display: flex;
+	// flex-direction: column;
+	margin-bottom: 1rem;
+
+	// width: 20rem;
+
 	position: relative;
 	margin-left: 2vw;
-	width: 30vw;
+	width: 40vw;
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
 	align-items: center;
-	
-	// border-radius: 5px;
+}
 
-	&.custom-select {
-		// width: 100%;
-		position: relative;
-		// margin: 20px 0;
-		
-		select {
-			display: none;
-			
-		}
-	}
+.Select-label {
+	font-size: 1rem;
+	margin-bottom: 0.25rem;
+	margin-left: 30px;
+}
 
-	.selected-item {
-		width: 50%;
-		background: $color-primary;
-		padding: 10px 20px;
-		color: $color-sixthly;
-		cursor: pointer;
-		z-index: 99;
-		border-radius:5px;
-		&:after {
-			font-family: FontAwesome;
-			content: "\f107";
-			font-size: 20px;
-			color: $color-sixthly;
-			position: absolute;
-			right: 10px;
-			transition: 0.5s;
-		}
-	}
+/* Reset Select */
+select {
+	background-image: none;
+	border: 0 !important;
+	box-shadow: none;
+	outline-offset: 0.25rem;
+	outline-color: $color-fifthly;
+	position: absolute;
+	left: 200px;
+}
 
+/* Custom Select */
+.Select-trigger {
+	background-color: #fff;
+	border: 0.125rem none $color-fifthly;
+	border-radius: 0.5px;
+	color: $color-fifthly;
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 200px;
+	position: absolute;
+	left: 200px;
+}
 
-	.arrowanim.selected-item:after {
+select,
+[role="combobox"] {
+	background: #901c1c;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 1rem;
+	height: 3rem;
+	line-height: 3rem;
+	margin: 0;
+	padding: 0 0 0 0.5em;
+	width: 200px;
+}
+
+[role="combobox"] {
+	padding-right: 1.563rem;
+	width: 200px;
+}
+
+select[multiple] {
+	height: 10rem;
+}
+
+.Select-trigger:focus,
+[role="listbox"]:focus {
+	box-shadow: 0px 0px 1px 2px $color-fifthly;
+	outline: none;
+	width: 200px;
+}
+
+[role="option"]:focus {
+	outline: none;
+	box-shadow: inset 0px 0px 1px 4px $color-fifthly;
+}
+
+/*.Select-trigger select::-ms-expand {
+	display: none;
+  }*/
+
+/* Arrow */
+[role="combobox"]::after {
+	// border-left: 0.313rem solid transparent;
+	// border-right: 0.313rem solid transparent;
+	// border-top: 0.625rem solid $color-sixthly;
+	content: "";
+	height: 10px;
+	pointer-events: none;
+	position: absolute;
+	right: 30px;
+	top: 5px;
+	// transform: translateY(-50%);
+	width: 10px;
+	font-family: FontAwesome;
+	content: "\f107";
+	font-size: 30px;
+	color: $color-sixthly;
+	// position: absolute;
+	// right: 10px;
+	transition:   0.5s;
+}
+.arrowanim {
+	&[role="combobox"]::after {
 		transform: rotate(180deg);
+		right: 15px;
+		top: 35px;
 	}
+}
 
-	.item {
-		background: $color-primary;
-		padding: 10px 20px;
-		margin: 0px 10px;
-		color: $color-sixthly;
-		border-top: 2px solid $color-sixthly;
-		cursor: pointer;
-		&:hover {
-			background:$color-fifthly;
-		}
-	}
-	
+[role="listbox"] {
+	background: $color-primary;
+	border: 2px none $color-fifthly;
+	border-radius: 0.25em;
+	color: $color-fifthly;
+	font-size: 1rem;
+	list-style-type: none;
+	margin: 0;
+	width: 200px;
+	// min-width: 100%;
+	max-height: 20rem;
+	overflow-y: auto;
+	padding: 0;
+	position: absolute;
+	left: 200px;
+	top: calc(100% + 5px);
+	z-index: 1;
+}
 
+[role="combobox"][aria-expanded="false"] + [role="listbox"] {
+	display: none;
+}
 
-	.item-container{
-		background: $color-primary;
-		&:last-child{
-			border-radius: 0px 0px 5px 5px;
-		}
-	}
-	.all-items {
-		position: absolute;
-		top: 93%;
-		left: 50%;
-		width: 50%;
-		z-index: 100;
-	}
+li {
+	height: 3rem;
+	line-height: 3rem;
+	padding: 0 1rem 0 1.625rem;
+	margin: 0 2rem;
+	position: relative;
+	background: $color-primary;
+	color: $color-sixthly;
+	border-top-style: solid;
+	/*        border-style: solid;*/
+	border-color: $color-sixthly;
+}
 
-	.all-items-hide {
-		display: none;
-	}
+li:not([role="option"]) {
+	padding-left: 0.75rem;
+}
 
-	// .sdf {
-	// 	border: 1px solid red;
-	// }
+[role="option"] {
+	cursor: pointer;
+}
 
+[role="option"]:focus,
+[role="option"]:hover {
+	background-color: $color-fifthly;
+	color: $color-sixthly;
+}
+
+li[aria-selected="true"]::before {
+	content: "\2713";
+	left: 0.5rem;
+	line-height: 1rem;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.Select-isVisible {
+	overflow: hidden;
 }

@@ -1,135 +1,417 @@
+//V3
 
-//Source : https://codepen.io/karolinaklein/pen/Jwrabq
-(function ($) {
-	$(document).ready(function () {
-		var customSelect = $(".custom-select");
 
-		customSelect.each(function () {
-			var thisCustomSelect = $(this),
-				options = thisCustomSelect.find("option"),
-				firstOptionText = options.first().text();
+'use strict';
+const arrowItem = document.querySelector('.Select-trigger')
+console.log(arrowItem);
 
-			var selectedItem = $("<div></div>", {
-				class: "selected-item",
-				role: "listbox",
-				tabindex: "0",				
-			})
-				.appendTo(thisCustomSelect)
-				.text(firstOptionText);
+const bindList = list => {
+  list.addEventListener('keydown', onKeydown);
+  list.addEventListener('click', onSelect);
+  list.addEventListener('blur', onBlur);
+  document.documentElement.setAttribute('tabindex', '-1');
+  document.addEventListener('focus', onFocus, true);
+};
 
-			var allItems = $("<div></div>", {
-				class: "all-items all-items-hide",
-			}).appendTo(thisCustomSelect);
+const unbindList = list => {
+  list.removeEventListener('keydown', onKeydown);
+  list.removeEventListener('click', onSelect);
+  list.removeEventListener('blur', onBlur);
+  document.documentElement.removeAttribute('tabindex');
+  document.removeEventListener('focus', onFocus, true);
+};
 
-			options.each(function () {
-				var that = $(this),optionText = that.text();
-				// console.log (optionText);
-				console.log (that);
-				console.log (that.text());
-				var item = $("<div></div>", {
-					class: "item",
-					on: {
-						click: function () {
-							var selectedOptionText = that.text();
-							selectedItem.text(selectedOptionText).removeClass("arrowanim");
-							allItems.addClass("all-items-hide");
-							console.log(selectedOptionText);
-							applySorting(selectedOptionText);
-						},
-					},
-				})
-					.appendTo(allItems)
-					.text(optionText);
-			}); //Usage  of jQuery instance method as a property of the object passed to the second parameter:https://api.jquery.com/jquery/ 
-			$(".item").wrap("<div class='item-container'></div>");
-			// $(".item").attr({role="option"	 });
-			// 	 $(".custom-select").attr({
-			// 		role="listbox", tabindex="0", id="listbox1"
-			// 		 });
-			$(".item").attr('role', 'option');
-			
+const hideList = list => {
+  const trigger = list.previousElementSibling;
+  console.log(trigger);
 
-				//  $(".custom-select").attr({
-				// 	role="listbox", tabindex="0", id="listbox1"
-				// 	 });
+  unbindList(list);
+  trigger.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('Select-isVisible');
+  trigger.classList.remove("arrowanim")
+  setTimeout(() => {
+	trigger.focus();
+  }, 100);
+};
 
-		});
+const showList = list => {
+  const trigger = list.previousElementSibling;
 
-		var selectedItem = $(".selected-item"),
-			allItems = $(".all-items");
+  trigger.setAttribute('aria-expanded', 'true');
+  list.focus();
+  document.body.classList.add('Select-isVisible');
+  trigger.classList.add("arrowanim");
+  console.log(arrowItem)
+  bindList(list);
+};
 
-		selectedItem.on("click", function (e) {
-			var currentSelectedItem = $(this),
-				currentAllItems = currentSelectedItem.next(".all-items");
+const updateSelected = (item, isSelected) => {
+  item.setAttribute('aria-label', `${item.textContent}${(isSelected) ? ", selected" : ""}`);
+  item.setAttribute('aria-selected', isSelected);
+};
 
-			allItems.not(currentAllItems).addClass("all-items-hide");
-			selectedItem.not(currentSelectedItem).removeClass("arrowanim");
+const updateTrigger = (trigger, content, label) => {
+  trigger.textContent = content;
+  trigger.setAttribute('aria-label', (label) ? label : content);
+};
 
-			currentAllItems.toggleClass("all-items-hide");
-			currentSelectedItem.toggleClass("arrowanim");
+const findMatch = (needle, haystack) => haystack.textContent.toLowerCase().startsWith(needle.toLowerCase());
 
-			e.stopPropagation();
-			
-		});
+const generateID = () => `_${Math.random().toString(36).substr(2, 9)}`;
 
-		$(document).on("click", function () {
-			var opened = $(".all-items:not(.all-items-hide)"),
-				index = opened.parent().index();
+const onSelect = event => {
+  const target = event.target;
+  const list = target.parentElement;
+  const isMultiple = list.getAttribute('aria-multiselectable') === 'true';
+  const trigger = list.previousElementSibling;
+  const current = list.querySelector('[aria-selected="true"]');
+  const native = list.nextElementSibling;
+  const items = Array.from(list.querySelectorAll('[role="option"]'));
 
-			customSelect.eq(index).find(".all-items").addClass("all-items-hide");
-			customSelect.eq(index).find(".selected-item").removeClass("arrowanim");
-		});
-	});
-})(jQuery);
+console.log(target.textContent);
+applySorting(target.textContent)
+  
+if (!isMultiple && current !== target) {
+	if (current) {
+	  updateSelected(current, false);
+	}
 
-/*
-Reference: http://jsfiddle.net/BB3JK/47/
-*/
+	updateSelected(target, true);
+	updateTrigger(trigger, target.textContent, `${target.textContent}, ${trigger.previousElementSibling.textContent}`);
 
-// $("select").each(function () {
-// 	var $this = $(this),
-// 		numberOfOptions = $(this).children("option").length;
+	// Keep native select in sync
+	native.selectedIndex = items.indexOf(target) + 1;
+  }
 
-// 	$this.addClass("select-hidden");
-// 	$this.wrap('<div class="select"></div>');
-// 	$this.after('<div class="select-styled"></div>');
+  if (isMultiple) {
 
-// 	var $styledSelect = $this.next("div.select-styled");
-// 	$styledSelect.text($this.children("option").eq(0).text());
+	updateSelected(target, target.getAttribute('aria-selected') !== 'true');
 
-// 	var $list = $("<ul />", {
-// 		class: "select-options",
-// 	}).insertAfter($styledSelect);
+	/* Update trigger label */
 
-// 	for (var i = 0; i < numberOfOptions; i++) {
-// 		$("<li />", {
-// 			text: $this.children("option").eq(i).text(),
-// 			rel: $this.children("option").eq(i).val(),
-// 		}).appendTo($list);
-// 	}
+	// Build the trigger label from selected items
+	const selected =
+	  Array
+		.from(list.querySelectorAll('[aria-selected="true"]'))
+		.map(item => item.textContent)
+		.join(', ');
 
-// 	var $listItems = $list.children("li");
+	if (selected.length) {
+	  updateTrigger(trigger, selected, `${selected}, ${trigger.previousElementSibling.textContent}`);
+	} else {
+	  updateTrigger(trigger, trigger.getAttribute('data-placeholder'));
+	}
 
-// 	$styledSelect.click(function (e) {
-// 		e.stopPropagation();
-// 		$("div.select-styled.active")
-// 			.not(this)
-// 			.each(function () {
-// 				$(this).removeClass("active").next("ul.select-options").hide();
-// 			});
-// 		$(this).toggleClass("active").next("ul.select-options").toggle();
-// 	});
+	// Keep native select in sync
+	native[items.indexOf(target) + 1].selected = (current !== target);
+  }
 
-// 	$listItems.click(function (e) {
-// 		e.stopPropagation();
-// 		$styledSelect.text($(this).text()).removeClass("active");
-// 		$this.val($(this).attr("rel"));
-// 		$list.hide();
-// 		//console.log($this.val());
-// 	});
+  if (!isMultiple) {
+	hideList(list);
+  }
+};
 
-// 	$(document).click(function () {
-// 		$styledSelect.removeClass("active");
-// 		$list.hide();
-// 	});
+/* Focus handler on body, to hide listbox. Mostly for iOS */
+const onFocus = event => {
+  const list = document.querySelector('[role="combobox"][aria-expanded="true"]').nextElementSibling;
+
+  if (!list.parentElement.contains(event.target)) {
+	hideList(list);
+  }
+};
+
+/* Blur handler on list, to hide listbox */
+const onBlur = function onBlur(event) {
+
+  const list = this;
+
+  if (!list.contains(event.relatedTarget)) {
+	hideList(list);
+  }
+};
+
+/* Keydown handler for events on the list */
+const onKeydown = function onKeydown(event) {
+  const target = event.target;
+  const key = event.key.replace('Arrow', '');
+  const list = this;
+  const options = Array.from(list.querySelectorAll('[role="option"]'));
+  let index = options.indexOf(target);
+
+  switch (key) {
+	case 'Up':
+	  event.preventDefault();
+	  if (index > 0) {
+		options[index -= 1].focus();
+	  }
+	  break;
+	case 'Down':
+	  event.preventDefault();
+	  if (index !== options.length - 1) {
+		options[index += 1].focus();
+	  }
+	  break;
+	case ' ':
+	case 'Spacebar':
+
+	  /* Selection made */
+	  if (!target.hasAttribute('aria-disabled')) {
+		event.preventDefault();
+		onSelect(event);
+	  }
+	  break;
+	case 'Home':
+	  event.preventDefault();
+	  options[0].focus();
+	  break;
+	case 'End':
+	  event.preventDefault();
+	  options[options.length - 1].focus();
+	  break;
+	case 'Esc':
+	case 'Escape':
+	case 'Tab':
+
+	  /* Hide list */
+	  event.preventDefault();
+	  hideList(list);
+	  break;
+	default:
+
+	  /* Type ahead */
+
+	  // Do any of the items start with the character? Easy out
+	  if (options.some(option => findMatch(key, option))) {
+		// Find out if an item is already focused
+		let focused = options.indexOf(document.activeElement);
+		let next;
+
+		 // Nothing focused, start from the top
+		if (focused === -1) {
+		  next = options.findIndex(option => findMatch(key, option));
+		} else {
+		  const start = focused += 1;
+		  const items = [].concat(options.slice(start), options.slice(0, start));
+
+		  next = options.indexOf(items.find(item => findMatch(key, item)));
+		}
+
+		// Found something
+		if (next !== -1) {
+		  options[next].focus();
+		}
+	  }
+	  break;
+  }
+};
+
+/* Event handler for combobox trigger */
+const onTrigger = event => {
+  const target = event.target;
+
+  if ((event.type === 'keydown' && event.key.match(/Up|Down|Spacebar|\s/u)) || event.type === 'click') {
+	const isExpanded = target.getAttribute('aria-expanded') === 'true';
+	const list = target.nextElementSibling;
+
+	event.preventDefault();
+
+	if (isExpanded) {
+	  hideList(list);
+	} else {
+	  showList(list);
+	}
+  }
+};
+
+/* The big setup */
+Array.from(document.querySelectorAll('.Select')).forEach(select => {
+  const labelElem = select.querySelector('label');
+  const label = labelElem.textContent;
+  const nativeWrapper = select.querySelector('.Select-trigger');
+  const nativeSelect = nativeWrapper.querySelector('select');
+  const selectID = nativeSelect.id;
+  const isRequired = nativeSelect.hasAttribute('required');
+  const isMultiple = nativeSelect.hasAttribute('multiple');
+  const nativeChildren = Array.from(nativeSelect.children);
+  const nativeClone = nativeSelect.cloneNode(true);
+  const placeholder = nativeChildren[0].textContent;
+
+  // Don't want the placeholder option to display in our list
+  nativeChildren.shift();
+  let options = '';
+
+  /* Build the options */
+  nativeChildren.forEach(child => {
+	if (child.nodeName === 'OPTION') {
+	  // Most common type
+	  options += `<li tabindex="-1" role="option" aria-selected="${child.selected}">${child.textContent}</li>`;
+	} else if (child.nodeName === 'OPTGROUP') {
+
+	  /* Grouped options come as an Array, need to treat differently */
+
+	  // Generate a random ID real quick */
+	  const groupID = generateID();
+
+	  /* Build the group heading from the optgroup label */
+	  options += `<li id="${groupID}" role="presentation" aria-hidden="true">${child.label}</li>`;
+
+	  options +=
+		Array
+		  .from(child.children)
+		  .map(item => `<li tabindex="-1" role="option" aria-describedby="${groupID}" aria-selected="${item.selected}">${item.textContent}</li>`)
+		  .join('');
+	}
+  });
+
+  /* Put the widget together */
+  const wrapper = document.createElement('div');
+
+  wrapper.classList.add('Select');
+  wrapper.insertAdjacentHTML(
+	'afterBegin',
+	`<span class="Select-label" id="${selectID}-label">${label}</span>
+	 <span id="${selectID}-trigger" class="Select-trigger" tabindex="0" role="combobox" aria-autocomplete="none" aria-expanded="false" aria-label="${placeholder}, ${label}" aria-owns="${selectID}-list" aria-required="${isRequired}" data-placeholder="${placeholder}">${placeholder}</span>
+	 <ul id="${selectID}-list" role="listbox" aria-label="${label} options${isMultiple ? ", multiple selections available" : ""}" aria-multiselectable="${isMultiple}" tabindex="-1">${options}</ul>`
+	 );
+
+  // Native select clone should be hidden from all user interaction
+  nativeClone.classList.add('visually-hidden');
+  nativeClone.setAttribute('aria-hidden', 'true');
+  nativeClone.setAttribute('tabindex', '-1');
+
+  wrapper.appendChild(nativeClone);
+
+  // Add the custom widget
+  select.parentElement.insertBefore(wrapper, select);
+
+  // Remove the native select
+  select.parentElement.removeChild(select);
+
+  // Set up main handlers
+  const trigger = wrapper.querySelector('[role="combobox"]');
+
+  trigger.addEventListener('click', onTrigger);
+
+  // Since this is not native interactive element, we have to listen to keydown in addition to click
+  trigger.addEventListener('keydown', onTrigger);
+
+});
+// FILTER
+// selectElement = document.querySelector(".select");
+
+// console.log(selectElement);
+// console.log(selectElement.selectedIndex);
+// dropboxStatus = selectElement.selectedIndex;
+// document.getElementById("sortTool").addEventListener("change", function () {
+// 	applySorting(this.value);
+// 	// document.querySelector(".arrow").classList.remove("active");
 // });
+// selectElement.addEventListener("click", function (e) {
+// 	document.querySelector(".arrow").classList.add("active");
+// 	let newStatus = selectElement.selectedIndex;
+// 	if (newStatus != dropboxStatus) {
+// 		document.querySelector(".arrow").classList.toggle("active");
+// 		dropboxStatus = selectElement.selectedIndex;
+// 		console.log(dropboxStatus);
+// 	}
+// });
+// selectElement.addEventListener("blur", function () {
+// 	document.querySelector(".arrow").classList.remove("active");
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// V2
+// //Source : https://codepen.io/karolinaklein/pen/Jwrabq
+// (function ($) {
+// 	$(document).ready(function () {
+// 		var customSelect = $(".custom-select");
+
+// 		customSelect.each(function () {
+// 			var thisCustomSelect = $(this),
+// 				options = thisCustomSelect.find("option"),
+// 				firstOptionText = options.first().text();
+
+// 			var selectedItem = $("<div></div>", {
+// 				class: "selected-item",
+// 				role: "listbox",
+// 				tabindex: "0",				
+// 			})
+// 				.appendTo(thisCustomSelect)
+// 				.text(firstOptionText);
+
+// 			var allItems = $("<div></div>", {
+// 				class: "all-items all-items-hide",
+// 			}).appendTo(thisCustomSelect);
+
+// 			options.each(function () {
+// 				var that = $(this),optionText = that.text();
+// 				// console.log (optionText);
+// 				console.log (that);
+// 				console.log (that.text());
+// 				var item = $("<div></div>", {
+// 					class: "item",
+// 					on: {
+// 						click: function () {
+// 							var selectedOptionText = that.text();
+// 							selectedItem.text(selectedOptionText).removeClass("arrowanim");
+// 							allItems.addClass("all-items-hide");
+// 							console.log(selectedOptionText);
+// 							applySorting(selectedOptionText);
+// 						},
+// 					},
+// 				})
+// 					.appendTo(allItems)
+// 					.text(optionText);
+// 			}); //Usage  of jQuery instance method as a property of the object passed to the second parameter:https://api.jquery.com/jquery/ 
+// 			$(".item").wrap("<div class='item-container'></div>");
+// 			// $(".item").attr({role="option"	 });
+// 			// 	 $(".custom-select").attr({
+// 			// 		role="listbox", tabindex="0", id="listbox1"
+// 			// 		 });
+// 			$(".item").attr('role', 'option');
+			
+
+// 				//  $(".custom-select").attr({
+// 				// 	role="listbox", tabindex="0", id="listbox1"
+// 				// 	 });
+
+// 		});
+
+// 		var selectedItem = $(".selected-item"),
+// 			allItems = $(".all-items");
+
+// 		selectedItem.on("click", function (e) {
+// 			var currentSelectedItem = $(this),
+// 				currentAllItems = currentSelectedItem.next(".all-items");
+
+// 			allItems.not(currentAllItems).addClass("all-items-hide");
+// 			selectedItem.not(currentSelectedItem).removeClass("arrowanim");
+
+// 			currentAllItems.toggleClass("all-items-hide");
+// 			currentSelectedItem.toggleClass("arrowanim");
+
+// 			e.stopPropagation();
+			
+// 		});
+
+// 		$(document).on("click", function () {
+// 			var opened = $(".all-items:not(.all-items-hide)"),
+// 				index = opened.parent().index();
+
+// 			customSelect.eq(index).find(".all-items").addClass("all-items-hide");
+// 			customSelect.eq(index).find(".selected-item").removeClass("arrowanim");
+// 		});
+// 	});
+// })(jQuery);

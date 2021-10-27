@@ -64,7 +64,7 @@
 				</div>
 			</section>
 
-			<div id="filter" class="selection-area custom-select">
+			<!-- <div id="filter" class="selection-area custom-select">
 				<label for="sortTool"> Trier par </label>
 				<select id="sortTool">
 					<option value="popularity">Popularité</option>
@@ -74,6 +74,18 @@
 					<option value="title">Titre</option>
 				</select>
 				<span class="arrow"></span>
+			</div> -->
+			<div id="filter" class="Select selection-area">
+				<label class="Select-label" for="sort">Trier par</label>
+				<div class="Select-trigger">
+					<select id="sort" name="sort" required>
+						<option value="">Trier par</option>
+						<option>Popularité</option>
+						<option>Date</option>
+						<option>Titre</option>
+	
+					</select>
+				</div>
 			</div>
 			
 			<section id="all-media"></section>

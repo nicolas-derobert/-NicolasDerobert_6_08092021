@@ -217,29 +217,7 @@ const mainFunction = async () => {
 		})
 		.map(mediaTemplate)
 		.join("")}`;
-	// FILTER
-	selectElement = document.querySelector("#sortTool");
-
-	// console.log(selectElement);
-	// console.log(selectElement.selectedIndex);
-	dropboxStatus = selectElement.selectedIndex;
-	document.getElementById("sortTool").addEventListener("change", function () {
-		applySorting(this.value);
-		// document.querySelector(".arrow").classList.remove("active");
-	});
-	selectElement.addEventListener("click", function (e) {
-		document.querySelector(".arrow").classList.add("active");
-		let newStatus = selectElement.selectedIndex;
-		if (newStatus != dropboxStatus) {
-			document.querySelector(".arrow").classList.toggle("active");
-			dropboxStatus = selectElement.selectedIndex;
-			console.log(dropboxStatus);
-		}
-	});
-	selectElement.addEventListener("blur", function () {
-		document.querySelector(".arrow").classList.remove("active");
-	});
-	applyListener();
+	
 
 	// Pour aller plus loin : https://www.youtube.com/watch?v=jk2rFuWImcI&t=207s
 	const modale = document.querySelector(".modal");
@@ -356,6 +334,7 @@ function submitform(e){
 	formButton.addEventListener("click", callform);
 
 	closeForm.addEventListener("click", exit);
+	applyListener();
 };
 
 document.addEventListener("DOMContentLoaded", (event) => {
