@@ -1,25 +1,20 @@
 
 //Global formating
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
-
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
-html{
-	font-size: 16px;
-}
+
 body{
 	width: 100%;
 	padding: 0px;
 	margin: 0px;
-	font-family: "DM Sans", sans-serif;
-
 }
+
 p {
-	margin-top: 0.6em;
-	margin-bottom: 0.6em;
+	margin-top: 0.4em;
+	margin-bottom: 0.4em;
 }
 h1{
 	margin: auto;
@@ -33,25 +28,17 @@ h2 {
     margin-top: 0.2rem;
 	margin-bottom: 0.2rem;
 }
-
-
-
 .location {
 	color: $color-primary;
 	font-size: 1.3rem;
 	margin-top: 0.2rem;
 	margin-bottom: 0.2rem;
 }
-// .tagline {
-// 	// font-size: 0.8rem;
-// }
+
 .categories {
 	font-size: 1.2rem;
 }
 .price {
 	color: $color-tertiary;
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 }
-
-
-

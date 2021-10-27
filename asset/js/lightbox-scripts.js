@@ -1,4 +1,69 @@
 
+// All function to manage lightbox
+function gotoprevious(e) {
+    let currentImagePosition = ImgDestination[0].childNodes[0]; //identify where is the currentPosition
+    let iteration = 0;
+    for (let link of links.entries()) {
+        // console.log(link[1]);
+        if (link[1].isEqualNode(currentImagePosition)) {
+            ImgDestination[0].childNodes[0].remove();
+            if (iteration < 1) {
+                iteration = 1;
+            }
+            let clonedNode = links[iteration - 1].cloneNode(true);
+            ImgDestination[0].appendChild(clonedNode);
+        }
+        iteration++;
+    }
+}
+
+function gotonext(e) {
+    let currentImagePosition = ImgDestination[0].childNodes[0];
+    let iteration = 0;
+    for (let link of links.entries()) {
+        if (link[1].isEqualNode(currentImagePosition)) {
+            ImgDestination[0].childNodes[0].remove();
+            if (iteration > links.length - 2) {
+                iteration = links.length - 2;
+            }
+            let clonedNode = links[iteration + 1].cloneNode(true);
+            ImgDestination[0].appendChild(clonedNode);
+        }
+        iteration++;
+    }
+}
+
+function choosedirection(e) {
+    e = e || window.event;
+    if (e.keyCode == "37") {
+        gotoprevious();
+    } else if (e.keyCode == "39") {
+        gotonext();
+    } else if (e.keyCode == "27") {
+        exit();
+    }
+}
+function exit(e) {
+    if (modale.classList.contains("displayed")) {
+        modale.classList.add("notdisplayed");
+        modale.classList.remove("displayed");
+        ImgDestination[0].childNodes[0].remove();
+    }else if(modaleForm.classList.contains("displayed"))
+    {
+        modaleForm.classList.add("notdisplayed");
+        modaleForm.classList.remove("displayed");		
+    }
+}
+
+function placemedia(e) {
+    // Add an eventLister on each image ;
+    e.preventDefault();
+    modale.classList.add("displayed"); //Display modal
+    modale.classList.remove("notdisplayed");
+    ImgDestination = modale.querySelectorAll(".modal-content"); //Identify where the image will be displayed
+    let clonedNode = this.cloneNode(true); // The image clicked is cloned
+    ImgDestination[0].appendChild(clonedNode); // The node is diplayed in modal
+}
 
 
 

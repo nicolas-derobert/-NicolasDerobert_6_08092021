@@ -1,4 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+}
+
 .visually-hidden {
   border: 0;
   clip: rect(1px 1px 1px 1px);
@@ -31,6 +39,12 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media screen and (max-width: 992px) {
+  .Select {
+    display: none;
+  }
 }
 
 .Select-label {
@@ -246,6 +260,7 @@ li[aria-selected="true"]::before {
 
 .modal .modal-box .modal-content {
   width: 90vw;
+  height: 100%;
 }
 
 .modal .modal-box .modal-content a {
@@ -436,20 +451,15 @@ a {
           box-sizing: border-box;
 }
 
-html {
-  font-size: 16px;
-}
-
 body {
   width: 100%;
   padding: 0px;
   margin: 0px;
-  font-family: "DM Sans", sans-serif;
 }
 
 p {
-  margin-top: 0.6em;
-  margin-bottom: 0.6em;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
 }
 
 h1 {
@@ -479,7 +489,7 @@ h2 {
 
 .price {
   color: #525252;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .index-page .image-container {
@@ -519,15 +529,9 @@ h2 {
   margin: 0px;
 }
 
-.index-page main {
-  position: relative;
-}
-
 .index-page main h1 {
-  position: absolute;
-  top: 1vh;
-  right: 5vh;
-  margin: 0px;
+  display: inline-block;
+  width: 10vw;
 }
 
 @media screen and (max-width: 1200px) {
@@ -563,16 +567,8 @@ h2 {
   -webkit-box-direction: normal;
       -ms-flex-flow: row nowrap;
           flex-flow: row nowrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
   float: left;
-  margin-right: 20px;
+  width: 60vw;
   margin-top: 0px;
 }
 

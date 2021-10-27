@@ -45,6 +45,8 @@ function mediaTemplate(mediaData) {
 	}
 }
  
+// to create eventlistener of likes 
+//-> Inspiration from video https://www.youtube.com/watch?v=JixTYeCLf4Q
 
 const applyListener = function () {
 	heartIcone = document.querySelectorAll("div.heart");
@@ -60,39 +62,7 @@ const applyListener = function () {
 		});
 	});
 };
-
-// const applySorting = function (sorting) {
-// 	let dataOfJsonFileMediaAfterclassAssociationSorted;
-// 	let medias = document.getElementById("all-media");
-
-// 	while (medias.firstChild) {
-// 		medias.firstChild.remove();
-// 	}
-// 	if (sorting == "popularity") {
-// 		dataOfJsonFileMediaAfterclassAssociationSorted =
-// 			dataOfJsonFileMediaAfterclassAssociation.slice().sort(function (a, b) {
-// 				return b.likes - a.likes;
-// 			});
-// 	} else if (sorting == "date") {
-// 		dataOfJsonFileMediaAfterclassAssociationSorted =
-// 			dataOfJsonFileMediaAfterclassAssociation
-// 				.slice()
-// 				.sort((a, b) => new Date(b.date) - new Date(a.date));
-// 	} else if (sorting == "title") {
-// 		dataOfJsonFileMediaAfterclassAssociationSorted =
-// 			dataOfJsonFileMediaAfterclassAssociation.sort((a, b) =>
-// 				a.title > b.title ? 1 : -1
-// 			);
-// 	}
-// 	document.getElementById(
-// 		"all-media"
-// 	).innerHTML = `${dataOfJsonFileMediaAfterclassAssociationSorted
-// 		.filter((obj) => {
-// 			return obj.photographerId == idOfPage;
-// 		})
-// 		.map(mediaTemplate)
-// 		.join("")}`;
-// };
+//To handle the sorting
 const applySorting = function (sorting) {
 	let dataOfJsonFileMediaAfterclassAssociationSorted;
 	let medias = document.getElementById("all-media");
@@ -126,11 +96,11 @@ const applySorting = function (sorting) {
 		.join("")}`;
 };
 
+// To totalize like when necessary
 const recountLike = function (event, val) {
 	let result = [];
 	idOfMedia = val.id;
 	let arrayLength = dataOfJsonFileMediaAfterclassAssociation.length;
-	console.log(arrayLength);
 	for (let i = 0; i < arrayLength; i++) {
 		const item = dataOfJsonFileMediaAfterclassAssociation[i];
 		if (
@@ -140,7 +110,6 @@ const recountLike = function (event, val) {
 			// Check the id of media and this media has already been checked
 			dataOfJsonFileMediaAfterclassAssociation[i].likes++;
 			dataOfJsonFileMediaAfterclassAssociation[i].Isliked = true;
-			console.log(dataOfJsonFileMediaAfterclassAssociation[i].likes);
 		}
 	}
 
@@ -168,10 +137,7 @@ const updateGlobalCounter = function () {
 };
 
 const mainFunction = async () => {
-	let idOfPage = document.getElementsByTagName("body")[0].id;
-	console.log(document.getElementsByTagName("body"));
-	console.log(document.getElementsByTagName("body")[0].id);
-	console.log(idOfPage);
+	idOfPage = document.getElementsByTagName("body")[0].id;
 	if (idOfPage == "index") {
 		urlToApply = urlFromIndex;
 	} else {
@@ -203,8 +169,6 @@ const mainFunction = async () => {
 		dataOfJsonFilePhotographer[1].tags
 	)}`;
 
-	//To add eventlitener on each heart -> Inspiration from video https://www.youtube.com/watch?v=JixTYeCLf4Q
-
 	document.getElementById("photograph-vignet").src =
 		urlOfImagesPagesOfPhotographers +
 		"/" +
@@ -231,12 +195,11 @@ const mainFunction = async () => {
 	let ImgDestination;
 
 	// All function to manage lightbox
-
 	function gotoprevious(e) {
 		let currentImagePosition = ImgDestination[0].childNodes[0]; //identify where is the currentPosition
 		let iteration = 0;
 		for (let link of links.entries()) {
-			console.log(link[1]);
+			// console.log(link[1]);
 			if (link[1].isEqualNode(currentImagePosition)) {
 				ImgDestination[0].childNodes[0].remove();
 				if (iteration < 1) {
@@ -311,7 +274,7 @@ const mainFunction = async () => {
 	const modaleForm = document.querySelector(".modal-form");
 	const form = document.querySelector("#form");
 	const closeForm = document.querySelector(".close-form");
-	const submitButtonn = document.querySelector(".btn-submit"); // Button to close modal
+	const submitButton = document.querySelector(".btn-submit"); // Button to close modal
 	const formButton = document.getElementById("contactez-moi");
 	const formTitle = document.getElementById("h1-form");
 	const formInputFirstName = document.getElementById("input-first-name");
@@ -335,6 +298,7 @@ function submitform(e){
 		formTitle.innerHTML = formeTitleText + dataOfJsonFilePhotographer[1].name;
 	}
 	formButton.addEventListener("click", callform);
+	submitButton.addEventListener("click", submitform);
 
 	closeForm.addEventListener("click", exit);
 	applyListener();

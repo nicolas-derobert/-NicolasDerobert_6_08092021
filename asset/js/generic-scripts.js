@@ -1,4 +1,9 @@
 //Ressources used for coding : https://www.linkedin.com/learning/javascript-essential-training/pass-arguments-through-event-listeners
+//Global strucure of code : 
+//-generic-scripts.js generic page 
+//index-scripts.js
+//lightbox
+
 
 // All const and variables that are used for website wit a global scope
 //URL
@@ -104,8 +109,9 @@ function tagsTemplate(tagsData) {
 		)
 		.join("")}	`;
 }
+
+// Function to place data in object
 function placeDataInObject(dataOfJsonFilePhotographer) {
-	// console.log(typeof dataOfJsonFilePhotographer)
 	for (var i = 0; i < dataOfJsonFilePhotographer.length; i++) {
 		let name = dataOfJsonFilePhotographer[i].name;
 		let id = dataOfJsonFilePhotographer[i].id;
@@ -130,8 +136,8 @@ function placeDataInObject(dataOfJsonFilePhotographer) {
 		);
 	}
 }
+// Function to place data in object
 function placeDataOfMediaInObject(dataOfJsonFileMedia) {
-	// console.log(typeof dataOfJsonFilePhotographer)
 	for (var i = 0; i < dataOfJsonFileMedia.length; i++) {
 		let id = dataOfJsonFileMedia[i].id;
 		let photographerId = dataOfJsonFileMedia[i].photographerId;
@@ -159,6 +165,8 @@ function placeDataOfMediaInObject(dataOfJsonFileMedia) {
 		); //url
 	}
 }
+
+//This function get data from JsonFile
 const getData = async () => {
 	try {
 		const response = await fetch(urlToApply);
