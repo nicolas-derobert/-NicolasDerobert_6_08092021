@@ -168,7 +168,10 @@ const updateGlobalCounter = function () {
 };
 
 const mainFunction = async () => {
-	idOfPage = document.querySelector("body").id;
+	let idOfPage = document.getElementsByTagName("body")[0].id;
+	console.log(document.getElementsByTagName("body"));
+	console.log(document.getElementsByTagName("body")[0].id);
+	console.log(idOfPage);
 	if (idOfPage == "index") {
 		urlToApply = urlFromIndex;
 	} else {

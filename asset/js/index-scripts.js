@@ -32,7 +32,9 @@ const filterOnHashtag = function (event, val) {
 
 //So to get the result back you can wrap this in an IIFE like this:
 const mainFunction = async () => {
-	let idOfPage = document.getElementsByTagName("body").id;
+	let idOfPage = document.getElementsByTagName("body")[0].id;
+	console.log(document.getElementsByTagName("body"));
+	console.log(document.getElementsByTagName("body")[0].id);
 	console.log(idOfPage);
 	if (idOfPage == "index" || idOfPage == "") {
 		urlToApply = urlFromIndex;
