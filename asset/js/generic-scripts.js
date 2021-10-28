@@ -105,7 +105,7 @@ class Media {
 function tagsTemplate(tagsData) {
 	return ` ${tagsData
 		.map(
-			(tagsData) => `<a href=${tagsData} class="hashtag-links">${tagsData}</a>`
+			(tagsData) => `<span href=${tagsData} class="hashtag-links">${tagsData}</span>`
 		)
 		.join("")}	`;
 }

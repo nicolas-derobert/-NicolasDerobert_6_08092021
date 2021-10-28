@@ -13,11 +13,13 @@ function mediaTemplate(mediaData) {
 			<div class="media-like-counter" >${mediaData.likes}</div>
 			<div class="heart" id="${
 				mediaData.id
-			}" tabindex="0" > <i class="fa fa-heart"></i></div>	
+			}" tabindex="0" role="button" aria-label="Mettez un like pour ${
+			mediaData.title
+		}"> <i class="fa fa-heart"></i></div>	
 		</div>		
 		</div>
 	</article>`;
-	}//<i class="fas fa-heart filled-heart"></i>
+	} //<i class="fas fa-heart filled-heart"></i>
 	if (mediaData.video) {
 		return `		 
 		<article class="">
@@ -37,15 +39,17 @@ function mediaTemplate(mediaData) {
 			<div class="media-like-counter" >${mediaData.likes}</div>
 			<div class="heart" id="${
 				mediaData.id
-			}" tabindex="0"> <i class="fa fa-heart"></i></div>	
+			}" tabindex="0" role="button" aria-label="Mettez un like pour  ${
+			mediaData.title
+		}"> <i class="fa fa-heart"></i></div>	
 		</div>		
 		</div>
 </article>
 		 `;
 	}
 }
- 
-// to create eventlistener of likes 
+
+// to create eventlistener of likes
 //-> Inspiration from video https://www.youtube.com/watch?v=JixTYeCLf4Q
 
 const applyListener = function () {
@@ -56,7 +60,7 @@ const applyListener = function () {
 			recountLike(e, val);
 		});
 		val.addEventListener("keypress", (e) => {
-			if(e.keyCode === 13) {
+			if (e.keyCode === 13) {
 				recountLike(e, val);
 			}
 		});
@@ -184,7 +188,6 @@ const mainFunction = async () => {
 		})
 		.map(mediaTemplate)
 		.join("")}`;
-	
 
 	// Pour aller plus loin : https://www.youtube.com/watch?v=jk2rFuWImcI&t=207s
 	const modale = document.querySelector(".modal");
@@ -195,6 +198,9 @@ const mainFunction = async () => {
 	let ImgDestination;
 
 	// All function to manage lightbox
+	// Global méchanism: The orginale node of the image of photographer page is cloned and the node of image that was displayed is removed
+
+	//-> Go to previous image
 	function gotoprevious(e) {
 		let currentImagePosition = ImgDestination[0].childNodes[0]; //identify where is the currentPosition
 		let iteration = 0;
@@ -211,7 +217,7 @@ const mainFunction = async () => {
 			iteration++;
 		}
 	}
-
+	//-> Go to next image
 	function gotonext(e) {
 		let currentImagePosition = ImgDestination[0].childNodes[0];
 		let iteration = 0;
@@ -229,26 +235,31 @@ const mainFunction = async () => {
 	}
 
 	function choosedirection(e) {
-		e = e || window.event;
+		e = e || window.event; //Next, e = e || event; is a standard way of saying "if the parameter was not passed, default it to whatever's after the ||". In this case, if the event parameter is not passed, then it looks for the global variable.
 		if (e.keyCode == "37") {
+			//left arrow
 			gotoprevious();
 		} else if (e.keyCode == "39") {
+			// Right arrow
 			gotonext();
 		} else if (e.keyCode == "27") {
+			//escape
 			exit();
 		}
 	}
+
+	//Manage display and node when exit the modal
 	function exit(e) {
 		if (modale.classList.contains("displayed")) {
 			modale.classList.add("notdisplayed");
 			modale.classList.remove("displayed");
 			ImgDestination[0].childNodes[0].remove();
-		}else if(modaleForm.classList.contains("displayed"))
-		{
+		} else if (modaleForm.classList.contains("displayed")) {
 			modaleForm.classList.add("notdisplayed");
-			modaleForm.classList.remove("displayed");		
+			modaleForm.classList.remove("displayed");
 		}
 	}
+	// When an image is clicked the original node is cloned
 
 	function placemedia(e) {
 		// Add an eventLister on each image ;
@@ -282,24 +293,49 @@ const mainFunction = async () => {
 	const formInputEmail = document.getElementById("input-email");
 	const formeTitleText = "Contactez-moi ";
 
-function submitform(e){
-	e.preventDefault();
-	console.log(formInputFirstName.value);
-	console.log(formInputLastName.value);
-	console.log(formInputEmail.value);
-	exit()
-}
 
-	form.addEventListener("submit", submitform);
-
-	function callform(e){
-				modaleForm.classList.add("displayed");
+	//Sequence when form is
+	function submitform(e) {
+		e.preventDefault();
+		console.log(formInputFirstName.value);
+		console.log(formInputLastName.value);
+		console.log(formInputEmail.value);
+		exit();
+	}
+	function callform(e) {
+		modaleForm.classList.add("displayed");
 		modaleForm.classList.remove("notdisplayed");
 		formTitle.innerHTML = formeTitleText + dataOfJsonFilePhotographer[1].name;
+		const  focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+		const firstFocusableElement = modaleForm.querySelectorAll(focusableElements)[0]; 
+		const firsttofocuson = modaleForm.querySelectorAll(focusableElements)[1];// get first element to be focused inside modal
+		const focusableContent = modaleForm.querySelectorAll(focusableElements);
+		const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+		document.addEventListener('keydown', function(e) {
+		let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+	  
+		if (!isTabPressed) {
+		  return;
+		}
+	  
+		if (e.shiftKey) { // if shift key pressed for shift + tab combination
+		  if (document.activeElement === firstFocusableElement) {
+			lastFocusableElement.focus(); // add focus for the last focusable element
+			e.preventDefault();
+		  }
+		} else { // if tab key is pressed
+		  if (document.activeElement === lastFocusableElement) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
+			firstFocusableElement.focus(); // add focus for the first focusable element
+			e.preventDefault();
+		  }
+		}
+	  });
+	  
+	  firsttofocuson.focus(); 
 	}
 	formButton.addEventListener("click", callform);
 	submitButton.addEventListener("click", submitform);
-
+	// form.addEventListener("submit", submitform);
 	closeForm.addEventListener("click", exit);
 	applyListener();
 };

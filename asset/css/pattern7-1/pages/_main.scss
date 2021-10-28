@@ -34,6 +34,22 @@ h2 {
 	margin-top: 0.2rem;
 	margin-bottom: 0.2rem;
 }
+a, button, [role="button"], input  {
+	&:focus{
+		// outline: none;
+	
+	@include new-outlined;
+	&:focus-visible{
+		@include new-outlined;
+	}
+}
+}
+a:focus{
+		// outline: none;
+	// border-width: 10px;
+	@include new-outlined;
+}
+
 
 .categories {
 	font-size: 1.2rem;

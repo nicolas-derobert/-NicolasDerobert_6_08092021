@@ -39,6 +39,9 @@
 			border-radius: 5px;
 			border: none;
 			height: 69px;
+			&:focus{
+			@include new-outlined;
+		}
 			@include mobile-generic {
 				position: fixed;
 				left: 50%;
@@ -89,9 +92,7 @@
 			margin: auto;
 			overflow: hidden;
 			// clip-path: polygon(0% 10%, 100% 10%, 100% 90%, 0% 90%);
-			a:focus {
-				border-width: 10px;
-			}
+			
 			a {
 				display: block;
 				height: 100%;

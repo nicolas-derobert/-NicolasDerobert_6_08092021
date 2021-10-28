@@ -106,16 +106,23 @@ select[multiple] {
 
 .Select-trigger:focus,
 [role="listbox"]:focus {
-  -webkit-box-shadow: 0px 0px 1px 2px #000000;
-          box-shadow: 0px 0px 1px 2px #000000;
+  outline: none;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #2478BD;
+  border-radius: 5px;
+  background-color: #2478BD;
   outline: none;
   width: 200px;
 }
 
 [role="option"]:focus {
   outline: none;
-  -webkit-box-shadow: inset 0px 0px 1px 4px #000000;
-          box-shadow: inset 0px 0px 1px 4px #000000;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #2478BD;
+  border-radius: 5px;
+  background-color: #2478BD;
 }
 
 /*.Select-trigger select::-ms-expand {
@@ -192,6 +199,12 @@ li:not([role="option"]) {
 [role="option"]:hover {
   background-color: #000000;
   color: #FFFFFF;
+  outline: none;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #2478BD;
+  border-radius: 5px;
+  background-color: #2478BD;
 }
 
 li[aria-selected="true"]::before {
@@ -483,6 +496,33 @@ h2 {
   margin-bottom: 0.2rem;
 }
 
+a:focus, button:focus, [role="button"]:focus, input:focus {
+  outline: none;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #2478BD;
+  border-radius: 5px;
+  background-color: #2478BD;
+}
+
+a:focus:focus-visible, button:focus:focus-visible, [role="button"]:focus:focus-visible, input:focus:focus-visible {
+  outline: none;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #2478BD;
+  border-radius: 5px;
+  background-color: #2478BD;
+}
+
+a:focus {
+  outline: none;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #2478BD;
+  border-radius: 5px;
+  background-color: #2478BD;
+}
+
 .categories {
   font-size: 1.2rem;
 }
@@ -572,9 +612,19 @@ h2 {
   margin-top: 0px;
 }
 
+.header-container .logo {
+  margin: 4px;
+}
+
+.header-container .logo a {
+  display: block;
+  height: auto;
+  width: auto;
+}
+
 @media screen and (max-width: 1200px) {
   .header-container .logo a img {
-    margin-top: 3vh;
+    margin-top: 1vh;
     height: 8vh;
   }
 }
@@ -678,6 +728,15 @@ h2 {
   height: 69px;
 }
 
+#photographer #button-area button:focus {
+  outline: none;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #2478BD;
+  border-radius: 5px;
+  background-color: #2478BD;
+}
+
 @media screen and (max-width: 992px) {
   #photographer #button-area button {
     position: fixed;
@@ -755,10 +814,6 @@ h2 {
   width: 350px;
   margin: auto;
   overflow: hidden;
-}
-
-.photographer-page article .media-container a:focus {
-  border-width: 10px;
 }
 
 .photographer-page article .media-container a {

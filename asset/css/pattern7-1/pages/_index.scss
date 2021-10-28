@@ -60,10 +60,14 @@
 	// margin-right: 20px;
 	margin-top: 0px;
 	.logo {
+		margin: 4px;;
 		a {
+			display: block;
+			height: auto;
+			width: auto;
 			img {
 				@include desktop-generic {
-					margin-top: 3vh;
+					margin-top: 1vh;
 					height: 8vh;
 				}
 			}
