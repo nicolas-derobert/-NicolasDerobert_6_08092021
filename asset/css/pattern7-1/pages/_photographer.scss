@@ -118,6 +118,14 @@
 			align-items: center;
 			justify-content: space-around;
 			color: $color-primary;
+			.heart{
+				margin-left: 10px;
+				// display: flex;
+				// flex-flow: row nowrap;			
+				// align-items: center;
+				// justify-content: center;
+
+			}
 		}
 	}
 }
@@ -125,6 +133,8 @@
 .fa-heart {
 	margin-left: 10px;
 	font-size: 16px;
+	text-align: center;
+	margin: auto;
 }
 #like-and-price {
 	display: block;
