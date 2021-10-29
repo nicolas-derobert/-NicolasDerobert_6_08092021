@@ -272,7 +272,7 @@ li[aria-selected="true"]::before {
 
 @media screen and (min-width: 1400px) {
   .modal .modal-box {
-    width: 1200px;
+    width: 1400px;
     margin: auto;
   }
 }
@@ -532,7 +532,7 @@ body {
 
 @media screen and (min-width: 1400px) {
   body {
-    width: 1200px;
+    width: 1400px;
     margin: auto;
   }
 }
@@ -776,6 +776,10 @@ a:focus {
     margin: 0;
     padding: 0;
   }
+}
+
+.index-page #all-photographers article a h2 {
+  font-size: 2.6rem;
 }
 
 @media screen and (max-width: 992px) {
