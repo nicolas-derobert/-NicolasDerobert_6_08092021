@@ -510,6 +510,7 @@ li[aria-selected="true"]::before {
   font-weight: bold;
   font-size: 1rem;
   margin: 0.5rem 0.2rem;
+  cursor: pointer;
 }
 
 a {
@@ -559,6 +560,10 @@ h2 {
   font-size: 1.3rem;
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
+}
+
+a, button, [role="button"], input {
+  cursor: pointer;
 }
 
 a:focus, button:focus, [role="button"]:focus, input:focus {

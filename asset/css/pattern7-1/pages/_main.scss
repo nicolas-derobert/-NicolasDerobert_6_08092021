@@ -39,6 +39,7 @@ h2 {
 	margin-bottom: 0.2rem;
 }
 a, button, [role="button"], input  {
+	cursor: pointer;
 	&:focus{
 		// outline: none;
 		@include new-outlined;
