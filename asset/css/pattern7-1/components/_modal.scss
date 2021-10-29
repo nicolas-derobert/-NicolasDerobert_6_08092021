@@ -4,7 +4,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba($color: $color-fifthly, $alpha: 0.4);
+	background: rgba($color: $color-sixthly, $alpha: 1);
 	z-index: 10;
 	overflow: auto;
 	&.displayed {
@@ -16,33 +16,45 @@
 	.modal-box {
 		// margin-left: 70px;
 		// margin-right: 70px;
-		height: 100vh;
+		@include larger-generic {
+			width: 1200px;
+			margin: auto;
+		}	
+		height: 100%;
 		display: flex;
 		flex-flow: row nowrap;
 		justify-content: center;
 		align-items: center;
 		.next,
 		.prev {
-			background: url(../img/icone/arrow.svg) center center / 100% 100%;
+			background: url(../img/icone/arrow.svg) center center / 80% 80% no-repeat transparent;
 			width: 4vw;
 			height: 100%;
 			margin: 0 2vw;
 			border: none;
-			// position: fixed;
-			// top: 0;
-			// left: 20px;
-			// margin-top: -24px;
-			// z-index: 11;
+			&:focus{
+			@include new-outlined;
+			}
 		}
 		.next {
 			transform: rotate(180deg);
 		}
 		.modal-content {
-			width: 90vw;
+			width: 86vw;
 			height: 100%;
-
+			display: flex;
+				flex-flow: column nowrap;
+				justify-content: center;
+				align-items: baseline;
+			.lightbox-title {
+				// align-self:flex-start;
+				// margin-left: 10%;
+				h2 {
+					font-size: 2rem;
+				}
+			}
 			a {
-				height: 100%;
+				height: 80%;
 				width: 100%;
 				display: flex;
 				flex-flow: row nowrap;
@@ -65,23 +77,27 @@
 
 	button {
 		cursor: pointer;
-		opacity: 0.5;
+		opacity: 0.9;
 		transition: opacity 0.3s;
-		text-indent: -3000px;
+		color: transparent;
 		&:hover {
 			opacity: 1;
+			@include new-over;
 		}
 	}
 	.close {
 		width: 42px;
 		height: 42px;
-		background: url(../img/icone/cross.svg) center center / 100% 100% no-repeat
-			transparent;
+		background: url(../img/icone/cross.svg) center center / 100% 100% no-repeat transparent;
 		border: none;
-		position: fixed;
+		position: absolute;
 		z-index: 12;
 		top: 20px;
 		right: 40px;
+		@include larger-generic {
+			top: 10vh;
+			right: 10vw;
+		}	
 
 		// color: $color-sixthly;
 		// font-size: 2em;
@@ -118,6 +134,7 @@
 		margin: auto;
 		max-width: 800px;
 		border-radius: 5px;
+		position: relative;
 		form {
 			margin: 35px;
 			max-width: 100%;
@@ -127,11 +144,9 @@
 				color: $color-fifthly;
 				margin-block-start: 0.2rem;
 				margin-block-end: 0.2rem;
-				
 			}
 			label {
 				font-size: 1.5rem;
-
 			}
 			input {
 				font-size: 1rem;
@@ -139,7 +154,7 @@
 				width: 100%;
 				border-radius: 5px;
 				border-style: none;
-				
+
 				&#input-message {
 					height: 170px;
 				}
@@ -154,26 +169,20 @@
 					margin: 16px;
 				}
 			}
-
+		}
+		.close-form {
+			width: 42px;
+			height: 42px;
+			background: url(../img/icone/white-cross.svg) center center / 100% 100%
+				no-repeat transparent;
+			border: none;
+			color: transparent;
+			position: absolute;
+			z-index: 12;
+			top: 20px;
+			right: 40px;
+			// color: $color-sixthly;
 		}
 	}
-	button.close-form {
-		width: 42px;
-		height: 42px;
-		background: url(../img/icone/white-cross.svg) center center / 100% 100%
-			no-repeat transparent;
-		border: none;
-		position: fixed;
-		z-index: 12;
-		top: 20px;
-		right: 40px;
-		color: $color-sixthly;
-		text-indent: -30000px;
 
-		// font-size: 2em;
-		// position: fixed;
-		// top: 10px;
-		// right: 10px;
-		// cursor: pointer;
-	}
 }

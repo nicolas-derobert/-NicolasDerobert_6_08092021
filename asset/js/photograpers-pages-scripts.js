@@ -1,9 +1,18 @@
 function mediaTemplate(mediaData) {
+	urlOfImagesPagesToapply = urlOfImagesPagesOfElie;
+	urlOfImagesPagesToapply = urlOfImages
+		.concat(currentPhotographer.name.split(" ")[0])
+		.replace("-", " ");
+	console.log(urlOfImagesPagesToapply);
+	console.log(currentPhotographer.name.split(" ")[0]);
+
 	if (mediaData.image) {
 		return `<article class="">
 		<div class="media-container">
-			<a href="${urlOfImagesPagesOfElie + "/" + mediaData.image}">
-				<img src="${urlOfImagesPagesOfElie + "/" + mediaData.image}"
+			<a href="${urlOfImagesPagesToapply + "/" + mediaData.image}" id="${
+			mediaData.id
+		}">
+				<img src="${urlOfImagesPagesToapply + "/" + mediaData.image}"
 					alt="${mediaData.title}"
 			/></a>
 		</div>
@@ -24,12 +33,14 @@ function mediaTemplate(mediaData) {
 		return `		 
 		<article class="">
 		<div class="media-container">
-			<a href="${urlOfImagesPagesOfElie + "/" + mediaData.video}"><video controls
+			<a href="${urlOfImagesPagesToapply + "/" + mediaData.video}"id="${
+			mediaData.id
+		}"><video controls
   poster="${
-		urlOfImagesPagesOfElie + "/" + mediaData.video.split(".")[0]
+		urlOfImagesPagesToapply + "/" + mediaData.video.split(".")[0]
 	}.png"  aria-label="${mediaData.title}">
   <source
-    src="${urlOfImagesPagesOfElie + "/" + mediaData.video}"
+    src="${urlOfImagesPagesToapply + "/" + mediaData.video}"
     type="video/${mediaData.video.split(".")[1]}">
 </video></a>
 </div>
@@ -151,34 +162,45 @@ const mainFunction = async () => {
 	dataOfJsonFileMedia = dataOfJsonFileData.media;
 	dataOfJsonFilePhotographer = dataOfJsonFileData.photographers;
 	placeDataOfMediaInObject(dataOfJsonFileMedia);
-	let currentPhotographer = dataOfJsonFileMediaAfterclassAssociation.filter(
+	placeDataInObject(dataOfJsonFilePhotographer);
+	currentPhotographer = dataOfJsonFilePhotographerAfterclassAssociation.filter(
 		(obj) => {
-			return obj.photographerId == idOfPage;
+			return obj.id == idOfPage;
 		}
-	);
-	document.getElementById("name").innerHTML =
-		dataOfJsonFilePhotographer[1].name;
+	)[0];
+
+	// let newArray = [];
+	// for (
+	// 	let i = 0;
+	// 	i < dataOfJsonFilePhotographerAfterclassAssociation.length;
+	// 	i++
+	// ) {
+	// 	if (dataOfJsonFilePhotographerAfterclassAssociation[i].Id == idOfPage) {
+	// 		newArray.push(dataOfJsonFilePhotographerAfterclassAssociation[i]);
+	// 	}
+	// }
+	// console.log(idOfPage);
+	// console.log(dataOfJsonFilePhotographer);
+	// console.log(dataOfJsonFilePhotographerAfterclassAssociation.length);
+	// console.log(dataOfJsonFilePhotographerAfterclassAssociation[1]);
+	console.log(currentPhotographer);
+
+	document.getElementById("name").innerHTML = currentPhotographer.name;
 	document.getElementById("location").innerHTML =
-		dataOfJsonFilePhotographer[1].city +
-		" " +
-		dataOfJsonFilePhotographer[1].country;
-	document.getElementById("tagline").innerHTML =
-		dataOfJsonFilePhotographer[1].tagline;
+		currentPhotographer.city + " " + currentPhotographer.country;
+	document.getElementById("tagline").innerHTML = currentPhotographer.tagline;
 	document.getElementById("media-like-counter").innerHTML =
 		updateGlobalCounter();
 
 	document.getElementById("price").innerHTML =
-		dataOfJsonFilePhotographer[1].price + "€ / jour";
+		currentPhotographer.price + "€ / jour";
 	document.getElementById("tags").innerHTML = `${tagsTemplate(
-		dataOfJsonFilePhotographer[1].tags
+		currentPhotographer.tags
 	)}`;
 
 	document.getElementById("photograph-vignet").src =
-		urlOfImagesPagesOfPhotographers +
-		"/" +
-		dataOfJsonFilePhotographer[1].portrait;
-	document.getElementById("photograph-vignet").alt =
-		dataOfJsonFilePhotographer[1].name;
+		urlOfImagesPagesOfPhotographers + "/" + currentPhotographer.portrait;
+	document.getElementById("photograph-vignet").alt = currentPhotographer.name;
 
 	document.getElementById(
 		"all-media"
@@ -200,6 +222,22 @@ const mainFunction = async () => {
 	// All function to manage lightbox
 	// Global méchanism: The orginale node of the image of photographer page is cloned and the node of image that was displayed is removed
 
+	// function addTitle(mediaData) {
+	// 	let p = document.createElement("p");
+	// 	container.appendChild(p);
+	// 	let span = document.createElement("span");
+
+	// 	divTitle = `${dataOfJsonFileMediaAfterclassAssociationSorted
+	// 		.filter((obj) => {
+	// 			return obj.id == clonedNode.id;
+	// 		})
+	// 		.map(titleTemplate)}`;
+	// 	divTitle.after(node);
+	// }
+	function titleTemplate(mediaData) {
+		return `<div class="lightbox-title"><h2>${mediaData.title}</h2></div>`;
+	}
+
 	//-> Go to previous image
 	function gotoprevious(e) {
 		let currentImagePosition = ImgDestination[0].childNodes[0]; //identify where is the currentPosition
@@ -207,12 +245,21 @@ const mainFunction = async () => {
 		for (let link of links.entries()) {
 			// console.log(link[1]);
 			if (link[1].isEqualNode(currentImagePosition)) {
-				ImgDestination[0].childNodes[0].remove();
+				// ImgDestination[0].childNodes[0].remove();
+				// ImgDestination[0].childNodes[0].remove();
+				ImgDestination[0].innerHTML = '';
+
 				if (iteration < 1) {
 					iteration = 1;
 				}
 				let clonedNode = links[iteration - 1].cloneNode(true);
-				ImgDestination[0].appendChild(clonedNode);
+				ImgDestination[0].appendChild(clonedNode); // The node is diplayed in modal
+				let divTitle = `${dataOfJsonFileMediaAfterclassAssociation
+					.filter((obj) => {
+						return obj.id == clonedNode.id;
+					})
+					.map(titleTemplate)}`;
+					ImgDestination[0].insertAdjacentHTML('beforeEnd', divTitle);
 			}
 			iteration++;
 		}
@@ -223,12 +270,20 @@ const mainFunction = async () => {
 		let iteration = 0;
 		for (let link of links.entries()) {
 			if (link[1].isEqualNode(currentImagePosition)) {
-				ImgDestination[0].childNodes[0].remove();
+				// ImgDestination[0].childNodes[0].remove();
+				// ImgDestination[0].childNodes[0].remove();
+				ImgDestination[0].innerHTML = '';
 				if (iteration > links.length - 2) {
 					iteration = links.length - 2;
 				}
 				let clonedNode = links[iteration + 1].cloneNode(true);
-				ImgDestination[0].appendChild(clonedNode);
+				ImgDestination[0].appendChild(clonedNode); // The node is diplayed in modal
+				let divTitle = `${dataOfJsonFileMediaAfterclassAssociation
+					.filter((obj) => {
+						return obj.id == clonedNode.id;
+					})
+					.map(titleTemplate)}`;
+					ImgDestination[0].insertAdjacentHTML('beforeEnd', divTitle);
 			}
 			iteration++;
 		}
@@ -253,7 +308,9 @@ const mainFunction = async () => {
 		if (modale.classList.contains("displayed")) {
 			modale.classList.add("notdisplayed");
 			modale.classList.remove("displayed");
-			ImgDestination[0].childNodes[0].remove();
+			// ImgDestination[0].childNodes[0].remove();
+			// ImgDestination[0].childNodes[0].remove();
+			ImgDestination[0].innerHTML = '';
 		} else if (modaleForm.classList.contains("displayed")) {
 			modaleForm.classList.add("notdisplayed");
 			modaleForm.classList.remove("displayed");
@@ -267,8 +324,45 @@ const mainFunction = async () => {
 		modale.classList.add("displayed"); //Display modal
 		modale.classList.remove("notdisplayed");
 		ImgDestination = modale.querySelectorAll(".modal-content"); //Identify where the image will be displayed
+		ImgDestination[0].innerHTML = '';
 		let clonedNode = this.cloneNode(true); // The image clicked is cloned
 		ImgDestination[0].appendChild(clonedNode); // The node is diplayed in modal
+		let divTitle = `${dataOfJsonFileMediaAfterclassAssociation
+			.filter((obj) => {
+				return obj.id == clonedNode.id;
+			})
+			.map(titleTemplate)}`;
+			ImgDestination[0].insertAdjacentHTML('beforeEnd', divTitle);
+			const focusableElements =
+			'button,  [tabindex]:not([tabindex="-1"]';
+		const firstFocusableElement =
+		modale.querySelectorAll(focusableElements)[0];
+		const firsttofocuson = modale.querySelectorAll(focusableElements)[1]; // get first element to be focused inside modal
+		const focusableContent = modale.querySelectorAll(focusableElements);
+		const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+		document.addEventListener("keydown", function (e) {
+			let isTabPressed = e.key === "Tab" || e.key === 9;
+
+			if (!isTabPressed) {
+				return;
+			}
+
+			if (e.shiftKey) {
+				// if shift key pressed for shift + tab combination
+				if (document.activeElement === firstFocusableElement) {
+					lastFocusableElement.focus(); // add focus for the last focusable element
+					e.preventDefault();
+				}
+			} else {
+				// if tab key is pressed
+				if (document.activeElement === lastFocusableElement) {
+					// if focused has reached to last focusable element then focus first focusable element after pressing tab
+					firstFocusableElement.focus(); // add focus for the first focusable element
+					e.preventDefault();
+				}
+			}
+		});
+		firsttofocuson.focus();	
 	}
 
 	// All event listener to manage lightbox
@@ -293,7 +387,6 @@ const mainFunction = async () => {
 	const formInputEmail = document.getElementById("input-email");
 	const formeTitleText = "Contactez-moi ";
 
-
 	//Sequence when form is
 	function submitform(e) {
 		e.preventDefault();
@@ -305,33 +398,37 @@ const mainFunction = async () => {
 	function callform(e) {
 		modaleForm.classList.add("displayed");
 		modaleForm.classList.remove("notdisplayed");
-		formTitle.innerHTML = formeTitleText + dataOfJsonFilePhotographer[1].name;
-		const  focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-		const firstFocusableElement = modaleForm.querySelectorAll(focusableElements)[0]; 
-		const firsttofocuson = modaleForm.querySelectorAll(focusableElements)[1];// get first element to be focused inside modal
+		formTitle.innerHTML = formeTitleText + currentPhotographer.name;
+		const focusableElements =
+			'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+		const firstFocusableElement =
+		modaleForm.querySelectorAll(focusableElements)[0];
+		const firsttofocuson = modaleForm.querySelectorAll(focusableElements)[1]; // get first element to be focused inside modal
 		const focusableContent = modaleForm.querySelectorAll(focusableElements);
 		const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
-		document.addEventListener('keydown', function(e) {
-		let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
-	  
-		if (!isTabPressed) {
-		  return;
-		}
-	  
-		if (e.shiftKey) { // if shift key pressed for shift + tab combination
-		  if (document.activeElement === firstFocusableElement) {
-			lastFocusableElement.focus(); // add focus for the last focusable element
-			e.preventDefault();
-		  }
-		} else { // if tab key is pressed
-		  if (document.activeElement === lastFocusableElement) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
-			firstFocusableElement.focus(); // add focus for the first focusable element
-			e.preventDefault();
-		  }
-		}
-	  });
-	  
-	  firsttofocuson.focus(); 
+		document.addEventListener("keydown", function (e) {
+			let isTabPressed = e.key === "Tab" || e.key === 9;
+
+			if (!isTabPressed) {
+				return;
+			}
+
+			if (e.shiftKey) {
+				// if shift key pressed for shift + tab combination
+				if (document.activeElement === firstFocusableElement) {
+					lastFocusableElement.focus(); // add focus for the last focusable element
+					e.preventDefault();
+				}
+			} else {
+				// if tab key is pressed
+				if (document.activeElement === lastFocusableElement) {
+					// if focused has reached to last focusable element then focus first focusable element after pressing tab
+					firstFocusableElement.focus(); // add focus for the first focusable element
+					e.preventDefault();
+				}
+			}
+		});
+		firsttofocuson.focus();
 	}
 	formButton.addEventListener("click", callform);
 	submitButton.addEventListener("click", submitform);

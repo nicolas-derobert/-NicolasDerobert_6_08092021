@@ -5,7 +5,7 @@ const filterOnHashtag = function (e, val) {
 	let articleElementAsArray = Array.prototype.slice.call(articleElement);
 
 	articleElementAsArray.forEach(function (val) {
-		let tagToLookAt = val.querySelectorAll("div a");
+		let tagToLookAt = val.querySelectorAll("div span");
 		let tagToLookAtAsArray = Array.prototype.slice.call(tagToLookAt); // This code line allow the transfomation of tagToLookAt collection in an array --> full explanation in  : https://shifteleven.com/articles/2007/06/28/array-like-objects-in-javascript/
 
 		let tagFound = false;

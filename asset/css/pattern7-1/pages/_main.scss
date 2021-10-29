@@ -10,6 +10,10 @@ body{
 	width: 100%;
 	padding: 0px;
 	margin: 0px;
+	@include larger-generic {
+		width: 1200px;
+		margin: auto;
+	}	
 }
 
 p {
@@ -25,8 +29,8 @@ h2 {
 	color: $color-secondary;
 	font-weight: 400;
 	font-size: 3.6rem;
-    margin-top: 0.2rem;
-	margin-bottom: 0.2rem;
+    // margin-top: 0.2rem;
+	// margin-bottom: 0.2rem;
 }
 .location {
 	color: $color-primary;
@@ -37,7 +41,8 @@ h2 {
 a, button, [role="button"], input  {
 	&:focus{
 		// outline: none;
-	
+		@include new-outlined;
+
 	@include new-outlined;
 	&:focus-visible{
 		@include new-outlined;

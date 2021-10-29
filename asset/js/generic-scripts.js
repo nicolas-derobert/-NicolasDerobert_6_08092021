@@ -12,7 +12,11 @@ const urlFromOtherPages = "../asset/data/FishEyeData.json";
 const urlOfHtmlPages = "./pages/";
 const urlOfImagesPages = "./asset/img/Photographers ID Photos";
 const urlOfImagesPagesOfPhotographers = "../asset/img/Photographers ID Photos";
+const urlOfImages = "../asset/img/";
 const urlOfImagesPagesOfElie = "../asset/img/Ellie Rose";
+let urlOfImagesPagesToapply;
+let currentPhotographer;
+
 // array of data
 
 let dataOfJsonFileMedia = [];

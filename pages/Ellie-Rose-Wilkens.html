@@ -98,21 +98,22 @@
 			</section>
 		</main>
 		<div role="dialog" class="modal notdisplayed">
-			<button class="close">close</button>
+			<button class="close" aria-label="Fermer" tabindex="0">close</button>
 			<div class="modal-box">
-				<button class="prev">Précédent</button>
+				<button class="prev" tabindex="0" aria-label="Précédent">Précédent</button>
 				<div class="modal-content"></div>
-				<button class="next">Suivant</button>
+				<button class="next" tabindex="0" aria-label="Suivant">Suivant</button>
 			</div>
 		</div>
+		
 		<div
 			role="dialog"
 			class="modal-form notdisplayed"
 			aria-labelledby="h1-form"
 			id="exampleModal"
 		>
-			<button class="close-form">close</button>
 			<div class="modal-form-content">
+				<button class="close-form">close</button>
 				<form
 					name="reserve"
 					action="index.html"

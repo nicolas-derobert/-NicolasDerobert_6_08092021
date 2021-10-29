@@ -16,8 +16,11 @@
 		width: 100%;
 		justify-content: space-between;
 		margin: auto;
+		margin: 4% 0;
+	padding: 2% 0;
 	}
 	h1 {
+
 		color: $color-secondary;
 		font-size: 2rem;
 	}
@@ -78,6 +81,16 @@
 }
 
 .photographer-page {
+	.header-container{
+		a{
+			display: block;
+			height: 100%;
+			width: 100%;
+			img{
+				
+			}
+		}
+	}
 	article {
 		display: flex;
 		flex-flow: column nowrap;

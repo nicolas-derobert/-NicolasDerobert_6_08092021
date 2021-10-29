@@ -28,6 +28,9 @@
 	flex-flow: row nowrap;
 	justify-content: space-between;
 	align-items: center;
+	#sort-label{
+		font-weight: bold;
+	}
 }
 
 .Select-label {
@@ -157,22 +160,31 @@ select[multiple] {
 	display: none;
 }
 
-li {
-	height: 3rem;
-	line-height: 3rem;
-	padding: 0 1rem 0 1.625rem;
-	margin: 0 2rem;
-	position: relative;
-	background: $color-primary;
-	color: $color-sixthly;
-	border-top-style: solid;
-	/*        border-style: solid;*/
-	border-color: $color-sixthly;
+
+ul{
+	li {
+		height: 3rem;
+		line-height: 3rem;
+		padding: 0 1rem 0 1.625rem;
+		margin: 0 1rem;
+		position: relative;
+		background: $color-primary;
+		color: $color-sixthly;
+		border-top-style: solid;
+		border-top-width: 1px;
+		/*        border-style: solid;*/
+		border-color: $color-sixthly;
+		&:first-child{
+			border-top-style: none;
+		}
+	}
+	border-radius: 5px;
+	li:not([role="option"]) {
+		padding-left: 0.75rem;
+	}
 }
 
-li:not([role="option"]) {
-	padding-left: 0.75rem;
-}
+
 
 [role="option"] {
 	cursor: pointer;
