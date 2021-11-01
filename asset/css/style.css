@@ -114,10 +114,21 @@ select[multiple] {
   border-width: 4px;
   border-style: solid;
   border-color: #2478BD;
-  border-radius: 5px;
   background-color: #2478BD;
+  color: #FFFFFF;
   outline: none;
   width: 200px;
+}
+
+.Select-trigger:focus img,
+[role="listbox"]:focus img {
+  background-color: #FFFFFF;
+}
+
+.Select-trigger:focus h2, .Select-trigger:focus h3,
+[role="listbox"]:focus h2,
+[role="listbox"]:focus h3 {
+  color: #FFFFFF;
 }
 
 [role="option"]:focus {
@@ -125,8 +136,16 @@ select[multiple] {
   border-width: 4px;
   border-style: solid;
   border-color: #2478BD;
-  border-radius: 5px;
   background-color: #2478BD;
+  color: #FFFFFF;
+}
+
+[role="option"]:focus img {
+  background-color: #FFFFFF;
+}
+
+[role="option"]:focus h2, [role="option"]:focus h3 {
+  color: #FFFFFF;
 }
 
 /*.Select-trigger select::-ms-expand {
@@ -216,8 +235,19 @@ ul li:not([role="option"]) {
   border-width: 4px;
   border-style: solid;
   border-color: #2478BD;
-  border-radius: 5px;
   background-color: #2478BD;
+  color: #FFFFFF;
+}
+
+[role="option"]:focus img,
+[role="option"]:hover img {
+  background-color: #FFFFFF;
+}
+
+[role="option"]:focus h2, [role="option"]:focus h3,
+[role="option"]:hover h2,
+[role="option"]:hover h3 {
+  color: #FFFFFF;
 }
 
 li[aria-selected="true"]::before {
@@ -292,8 +322,19 @@ li[aria-selected="true"]::before {
   border-width: 4px;
   border-style: solid;
   border-color: #2478BD;
-  border-radius: 5px;
   background-color: #2478BD;
+  color: #FFFFFF;
+}
+
+.modal .modal-box .next:focus img,
+.modal .modal-box .prev:focus img {
+  background-color: #FFFFFF;
+}
+
+.modal .modal-box .next:focus h2, .modal .modal-box .next:focus h3,
+.modal .modal-box .prev:focus h2,
+.modal .modal-box .prev:focus h3 {
+  color: #FFFFFF;
 }
 
 .modal .modal-box .next {
@@ -370,7 +411,6 @@ li[aria-selected="true"]::before {
   border-width: 4px;
   border-style: solid;
   border-color: #D3573C;
-  border-radius: 5px;
   background-color: #D3573C;
 }
 
@@ -513,6 +553,11 @@ li[aria-selected="true"]::before {
   cursor: pointer;
 }
 
+.hashtag-links:focus {
+  color: #FFFFFF;
+  border-radius: 500px;
+}
+
 a {
   text-decoration: none;
   color: #901c1c;
@@ -562,32 +607,60 @@ h2 {
   margin-bottom: 0.2rem;
 }
 
-a, button, [role="button"], input {
+button,
+[role="button"],
+input {
   cursor: pointer;
 }
 
-a:focus, button:focus, [role="button"]:focus, input:focus {
+button:focus,
+[role="button"]:focus,
+input:focus {
   outline: none;
   border-width: 4px;
   border-style: solid;
   border-color: #2478BD;
-  border-radius: 5px;
   background-color: #2478BD;
-  outline: none;
-  border-width: 4px;
-  border-style: solid;
-  border-color: #2478BD;
-  border-radius: 5px;
-  background-color: #2478BD;
+  color: #FFFFFF;
 }
 
-a:focus:focus-visible, button:focus:focus-visible, [role="button"]:focus:focus-visible, input:focus:focus-visible {
+button:focus img,
+[role="button"]:focus img,
+input:focus img {
+  background-color: #FFFFFF;
+}
+
+button:focus h2, button:focus h3,
+[role="button"]:focus h2,
+[role="button"]:focus h3,
+input:focus h2,
+input:focus h3 {
+  color: #FFFFFF;
+}
+
+button:focus:focus-visible,
+[role="button"]:focus:focus-visible,
+input:focus:focus-visible {
   outline: none;
   border-width: 4px;
   border-style: solid;
   border-color: #2478BD;
-  border-radius: 5px;
   background-color: #2478BD;
+  color: #FFFFFF;
+}
+
+button:focus:focus-visible img,
+[role="button"]:focus:focus-visible img,
+input:focus:focus-visible img {
+  background-color: #FFFFFF;
+}
+
+button:focus:focus-visible h2, button:focus:focus-visible h3,
+[role="button"]:focus:focus-visible h2,
+[role="button"]:focus:focus-visible h3,
+input:focus:focus-visible h2,
+input:focus:focus-visible h3 {
+  color: #FFFFFF;
 }
 
 a:focus {
@@ -595,8 +668,16 @@ a:focus {
   border-width: 4px;
   border-style: solid;
   border-color: #2478BD;
-  border-radius: 5px;
   background-color: #2478BD;
+  color: #FFFFFF;
+}
+
+a:focus img {
+  background-color: #FFFFFF;
+}
+
+a:focus h2, a:focus h3 {
+  color: #FFFFFF;
 }
 
 .categories {
@@ -864,8 +945,16 @@ a:focus {
   border-width: 4px;
   border-style: solid;
   border-color: #2478BD;
-  border-radius: 5px;
   background-color: #2478BD;
+  color: #FFFFFF;
+}
+
+#photographer #button-area button:focus img {
+  background-color: #FFFFFF;
+}
+
+#photographer #button-area button:focus h2, #photographer #button-area button:focus h3 {
+  color: #FFFFFF;
 }
 
 @media screen and (max-width: 576px) {

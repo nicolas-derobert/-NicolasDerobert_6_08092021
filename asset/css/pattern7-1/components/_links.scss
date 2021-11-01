@@ -9,6 +9,7 @@
 		&.displayed{
 			display: block;
 		}
+		
 }
 
 .hashtag-links {
@@ -24,6 +25,10 @@
 	font-size: 1rem;
 	margin: 0.5rem 0.2rem;
 	cursor: pointer;
+	&:focus{
+		color:$color-sixthly ;
+		border-radius: 500px;
+	}
 }
 a {
 	text-decoration: none;

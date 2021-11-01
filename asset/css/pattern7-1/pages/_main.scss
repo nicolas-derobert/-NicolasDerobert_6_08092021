@@ -1,26 +1,25 @@
-
 //Global formating
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-body{
+body {
 	width: 100%;
 	padding: 0px;
 	margin: 0px;
 	@include larger-generic {
 		width: 1400px;
 		margin: auto;
-	}	
+	}
 }
 
 p {
 	margin-top: 0.4em;
 	margin-bottom: 0.4em;
 }
-h1{
+h1 {
 	margin: auto;
 	padding-top: 1.5rem;
 	color: $color-primary;
@@ -29,7 +28,7 @@ h2 {
 	color: $color-secondary;
 	font-weight: 400;
 	font-size: 3.6rem;
-    // margin-top: 0.2rem;
+	// margin-top: 0.2rem;
 	// margin-bottom: 0.2rem;
 }
 .location {
@@ -38,24 +37,25 @@ h2 {
 	margin-top: 0.2rem;
 	margin-bottom: 0.2rem;
 }
-a, button, [role="button"], input  {
+// a,
+button,
+[role="button"],
+input {
 	cursor: pointer;
-	&:focus{
+	&:focus {
 		// outline: none;
+			// border-radius: 5px;
 		@include new-outlined;
-
-	@include new-outlined;
-	&:focus-visible{
-		@include new-outlined;
+		&:focus-visible {
+			@include new-outlined;
+		}
 	}
 }
-}
-a:focus{
-		// outline: none;
+a:focus {
+	// outline: none;
 	// border-width: 10px;
 	@include new-outlined;
 }
-
 
 .categories {
 	font-size: 1.2rem;
