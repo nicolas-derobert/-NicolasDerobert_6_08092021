@@ -3,9 +3,6 @@ function mediaTemplate(mediaData) {
 	urlOfImagesPagesToapply = urlOfImages
 		.concat(currentPhotographer.name.split(" ")[0])
 		.replace("-", " ");
-	console.log(urlOfImagesPagesToapply);
-	console.log(currentPhotographer.name.split(" ")[0]);
-
 	if (mediaData.image) {
 		return `<article class="">
 		<div class="media-container">
@@ -169,20 +166,6 @@ const mainFunction = async () => {
 		}
 	)[0];
 
-	// let newArray = [];
-	// for (
-	// 	let i = 0;
-	// 	i < dataOfJsonFilePhotographerAfterclassAssociation.length;
-	// 	i++
-	// ) {
-	// 	if (dataOfJsonFilePhotographerAfterclassAssociation[i].Id == idOfPage) {
-	// 		newArray.push(dataOfJsonFilePhotographerAfterclassAssociation[i]);
-	// 	}
-	// }
-	// console.log(idOfPage);
-	// console.log(dataOfJsonFilePhotographer);
-	// console.log(dataOfJsonFilePhotographerAfterclassAssociation.length);
-	// console.log(dataOfJsonFilePhotographerAfterclassAssociation[1]);
 	console.log(currentPhotographer);
 
 	document.getElementById("name").innerHTML = currentPhotographer.name;
@@ -308,8 +291,6 @@ const mainFunction = async () => {
 		if (modale.classList.contains("displayed")) {
 			modale.classList.add("notdisplayed");
 			modale.classList.remove("displayed");
-			// ImgDestination[0].childNodes[0].remove();
-			// ImgDestination[0].childNodes[0].remove();
 			ImgDestination[0].innerHTML = '';
 		} else if (modaleForm.classList.contains("displayed")) {
 			modaleForm.classList.add("notdisplayed");

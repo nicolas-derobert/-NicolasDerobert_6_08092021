@@ -52,8 +52,6 @@ input {
 	}
 }
 a:focus {
-	// outline: none;
-	// border-width: 10px;
 	@include new-outlined;
 }
 

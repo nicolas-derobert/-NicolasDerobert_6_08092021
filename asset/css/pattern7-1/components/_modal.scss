@@ -14,8 +14,6 @@
 		display: none;
 	}
 	.modal-box {
-		// margin-left: 70px;
-		// margin-right: 70px;
 		@include larger-generic {
 			width: 1400px;
 			margin: auto;
@@ -34,6 +32,7 @@
 			border: none;
 			&:focus{
 			@include new-outlined;
+			color: transparent;
 			}
 		}
 		.next {
@@ -47,8 +46,7 @@
 				justify-content: center;
 				align-items: baseline;
 			.lightbox-title {
-				// align-self:flex-start;
-				// margin-left: 10%;
+
 				h2 {
 					font-size: 2rem;
 				}
@@ -94,17 +92,13 @@
 		z-index: 12;
 		top: 20px;
 		right: 40px;
+		&:focus{
+			color: transparent;
+		}
 		@include larger-generic {
 			top: 10vh;
 			right: 10vw;
 		}	
-
-		// color: $color-sixthly;
-		// font-size: 2em;
-		// position: fixed;
-		// top: 10px;
-		// right: 10px;
-		// cursor: pointer;
 	}
 }
 
@@ -167,6 +161,9 @@
 					border: none;
 					width: auto;
 					margin: 16px;
+					&:focus{
+						@include new-outlined;
+							}
 				}
 			}
 		}
@@ -181,7 +178,10 @@
 			z-index: 12;
 			top: 20px;
 			right: 40px;
-			// color: $color-sixthly;
+			&:focus{
+				@include new-outlined;
+				color: transparent;
+				}
 		}
 	}
 

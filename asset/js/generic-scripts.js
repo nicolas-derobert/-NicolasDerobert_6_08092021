@@ -1,8 +1,8 @@
 //Ressources used for coding : https://www.linkedin.com/learning/javascript-essential-training/pass-arguments-through-event-listeners
 //Global strucure of code : 
 //-generic-scripts.js generic page 
-//index-scripts.js
-//lightbox
+//-index-scripts.js
+//-select-menu-scripts
 
 
 // All const and variables that are used for website wit a global scope
@@ -18,7 +18,6 @@ let urlOfImagesPagesToapply;
 let currentPhotographer;
 
 // array of data
-
 let dataOfJsonFileMedia = [];
 let dataOfJsonFileMediaAfterclassAssociation = [];
 let dataOfJsonFileData = [];
@@ -98,14 +97,6 @@ class Media {
 	}
 }
 
-// function tagsTemplate(tagsData) {
-// 	return ` ${tagsData
-// 		.map(
-// 			(tagsData) =>
-// 				`<a href=${tagsData}><span aria-label="${tagsData}" class="hashtag-links" role="link">${tagsData}</span></a>`
-// 		)
-// 		.join("")}	`;
-// }
 function tagsTemplate(tagsData) {
 	return ` ${tagsData
 		.map(

@@ -148,9 +148,6 @@ select[multiple] {
   color: #FFFFFF;
 }
 
-/*.Select-trigger select::-ms-expand {
-	display: none;
-  }*/
 /* Arrow */
 [role="combobox"]::after {
   content: "";
@@ -211,7 +208,6 @@ ul li {
   color: #FFFFFF;
   border-top-style: solid;
   border-top-width: 1px;
-  /*        border-style: solid;*/
   border-color: #FFFFFF;
 }
 
@@ -324,6 +320,7 @@ li[aria-selected="true"]::before {
   border-color: #2478BD;
   background-color: #2478BD;
   color: #FFFFFF;
+  color: transparent;
 }
 
 .modal .modal-box .next:focus img,
@@ -425,6 +422,10 @@ li[aria-selected="true"]::before {
   right: 40px;
 }
 
+.modal .close:focus {
+  color: transparent;
+}
+
 @media screen and (min-width: 1400px) {
   .modal .close {
     top: 10vh;
@@ -512,6 +513,23 @@ li[aria-selected="true"]::before {
   margin: 16px;
 }
 
+.modal-form .modal-form-content form input[type="submit"]:focus {
+  outline: none;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #2478BD;
+  background-color: #2478BD;
+  color: #FFFFFF;
+}
+
+.modal-form .modal-form-content form input[type="submit"]:focus img {
+  background-color: #FFFFFF;
+}
+
+.modal-form .modal-form-content form input[type="submit"]:focus h2, .modal-form .modal-form-content form input[type="submit"]:focus h3 {
+  color: #FFFFFF;
+}
+
 .modal-form .modal-form-content .close-form {
   width: 42px;
   height: 42px;
@@ -522,6 +540,24 @@ li[aria-selected="true"]::before {
   z-index: 12;
   top: 20px;
   right: 40px;
+}
+
+.modal-form .modal-form-content .close-form:focus {
+  outline: none;
+  border-width: 4px;
+  border-style: solid;
+  border-color: #2478BD;
+  background-color: #2478BD;
+  color: #FFFFFF;
+  color: transparent;
+}
+
+.modal-form .modal-form-content .close-form:focus img {
+  background-color: #FFFFFF;
+}
+
+.modal-form .modal-form-content .close-form:focus h2, .modal-form .modal-form-content .close-form:focus h3 {
+  color: #FFFFFF;
 }
 
 .skip-link {

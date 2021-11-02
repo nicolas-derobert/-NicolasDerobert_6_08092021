@@ -1,10 +1,6 @@
 
 @mixin new-outlined {
-  // box-shadow: 0 0 0 5px $color-seventhly ;
-  // outline: 7px solid $color-seventhly ;
-  // outline-offset: 4px;
-  // display: inline-block
-    outline: none;
+  outline: none;
   border-width: 4px;
   border-style: solid;
   border-color: $color-seventhly;
@@ -66,21 +62,3 @@ $breakpoint-large:1200px;
 $breakpoint-larger:1400px;
 
   
-  // @mixin tablet-and-more-row-positionning {
-  //   @media screen and (min-width: $breakpoint-tablet) {
-  //     display: flex;
-  //     flex-flow: row nowrap;
-  //     justify-content: space-around;
-  //   }
-  // }
-  
-  // @mixin tablet-and-more-generic {
-  //   @media screen and (min-width: $breakpoint-tablet) {
-  //     @content;
-  //   }
-  // }
-  // @mixin large-devices-and-more-generic {
-  //   @media screen and (min-width: $breakpoint-large) {
-  //     @content;
-  //   }
-  // }

@@ -3,8 +3,6 @@
 
 'use strict';
 const arrowItem = document.querySelector('.Select-trigger')
-console.log(arrowItem);
-
 const bindList = list => {
   list.addEventListener('keydown', onKeydown);
   list.addEventListener('click', onSelect);
@@ -23,8 +21,6 @@ const unbindList = list => {
 
 const hideList = list => {
   const trigger = list.previousElementSibling;
-  console.log(trigger);
-
   unbindList(list);
   trigger.setAttribute('aria-expanded', 'false');
   document.body.classList.remove('Select-isVisible');
@@ -41,7 +37,6 @@ const showList = list => {
   list.focus();
   document.body.classList.add('Select-isVisible');
   trigger.classList.add("arrowanim");
-  console.log(arrowItem)
   bindList(list);
 };
 
@@ -68,7 +63,6 @@ const onSelect = event => {
   const native = list.nextElementSibling;
   const items = Array.from(list.querySelectorAll('[role="option"]'));
 
-console.log(target.textContent);
 applySorting(target.textContent)
   
 if (!isMultiple && current !== target) {
