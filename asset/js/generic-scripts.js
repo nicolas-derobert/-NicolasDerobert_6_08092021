@@ -8,7 +8,7 @@
 //URL
 const urlFromIndex = "./asset/data/FishEyeData.json";
 const urlFromOtherPages = "../asset/data/FishEyeData.json";
-const urlOfHtmlPages = "./pages/";
+const urlOfHtmlPages = "./pages/photographerPage.html";
 const urlOfImagesPages = "./asset/img/Photographers ID Photos";
 const urlOfImagesPagesOfPhotographers = "../asset/img/Photographers ID Photos";
 const urlOfImages = "../asset/img/";
@@ -70,7 +70,7 @@ function createAPhotographe(
 	portrait
 ) {
 	function url() {
-		let url = urlOfHtmlPages + name.replace(" ", "-") + ".html";
+		let url = urlOfHtmlPages + "?id=" + id;
 		url = url.toLowerCase();
 		return url;
 	}

@@ -148,7 +148,10 @@ const updateGlobalCounter = function () {
 };
 
 const mainFunction = async () => {
-	idOfPage = document.getElementsByTagName("body")[0].id;
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const id = urlParams.get("id");
+	idOfPage = id;
 	if (idOfPage == "index") {
 		urlToApply = urlFromIndex;
 	} else {
@@ -165,7 +168,6 @@ const mainFunction = async () => {
 		}
 	)[0];
 
-	console.log(currentPhotographer);
 
 	document.getElementById("name").innerHTML = currentPhotographer.name;
 	document.getElementById("location").innerHTML =
@@ -229,7 +231,7 @@ const mainFunction = async () => {
 			if (link[1].isEqualNode(currentImagePosition)) {
 				// ImgDestination[0].childNodes[0].remove();
 				// ImgDestination[0].childNodes[0].remove();
-				ImgDestination[0].innerHTML = '';
+				ImgDestination[0].innerHTML = "";
 
 				if (iteration < 1) {
 					iteration = 1;
@@ -241,7 +243,7 @@ const mainFunction = async () => {
 						return obj.id == clonedNode.id;
 					})
 					.map(titleTemplate)}`;
-					ImgDestination[0].insertAdjacentHTML('beforeEnd', divTitle);
+				ImgDestination[0].insertAdjacentHTML("beforeEnd", divTitle);
 			}
 			iteration++;
 		}
@@ -254,7 +256,7 @@ const mainFunction = async () => {
 			if (link[1].isEqualNode(currentImagePosition)) {
 				// ImgDestination[0].childNodes[0].remove();
 				// ImgDestination[0].childNodes[0].remove();
-				ImgDestination[0].innerHTML = '';
+				ImgDestination[0].innerHTML = "";
 				if (iteration > links.length - 2) {
 					iteration = links.length - 2;
 				}
@@ -265,7 +267,7 @@ const mainFunction = async () => {
 						return obj.id == clonedNode.id;
 					})
 					.map(titleTemplate)}`;
-					ImgDestination[0].insertAdjacentHTML('beforeEnd', divTitle);
+				ImgDestination[0].insertAdjacentHTML("beforeEnd", divTitle);
 			}
 			iteration++;
 		}
@@ -290,7 +292,7 @@ const mainFunction = async () => {
 		if (modale.classList.contains("displayed")) {
 			modale.classList.add("notdisplayed");
 			modale.classList.remove("displayed");
-			ImgDestination[0].innerHTML = '';
+			ImgDestination[0].innerHTML = "";
 		} else if (modaleForm.classList.contains("displayed")) {
 			modaleForm.classList.add("notdisplayed");
 			modaleForm.classList.remove("displayed");
@@ -304,7 +306,7 @@ const mainFunction = async () => {
 		modale.classList.add("displayed"); //Display modal
 		modale.classList.remove("notdisplayed");
 		ImgDestination = modale.querySelectorAll(".modal-content"); //Identify where the image will be displayed
-		ImgDestination[0].innerHTML = '';
+		ImgDestination[0].innerHTML = "";
 		let clonedNode = this.cloneNode(true); // The image clicked is cloned
 		ImgDestination[0].appendChild(clonedNode); // The node is diplayed in modal
 		let divTitle = `${dataOfJsonFileMediaAfterclassAssociation
@@ -312,11 +314,9 @@ const mainFunction = async () => {
 				return obj.id == clonedNode.id;
 			})
 			.map(titleTemplate)}`;
-			ImgDestination[0].insertAdjacentHTML('beforeEnd', divTitle);
-			const focusableElements =
-			'button,  [tabindex]:not([tabindex="-1"]';
-		const firstFocusableElement =
-		modale.querySelectorAll(focusableElements)[0];
+		ImgDestination[0].insertAdjacentHTML("beforeEnd", divTitle);
+		const focusableElements = 'button,  [tabindex]:not([tabindex="-1"]';
+		const firstFocusableElement = modale.querySelectorAll(focusableElements)[0];
 		const firsttofocuson = modale.querySelectorAll(focusableElements)[1]; // get first element to be focused inside modal
 		const focusableContent = modale.querySelectorAll(focusableElements);
 		const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
@@ -342,7 +342,7 @@ const mainFunction = async () => {
 				}
 			}
 		});
-		firsttofocuson.focus();	
+		firsttofocuson.focus();
 	}
 
 	// All event listener to manage lightbox
@@ -382,7 +382,7 @@ const mainFunction = async () => {
 		const focusableElements =
 			'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 		const firstFocusableElement =
-		modaleForm.querySelectorAll(focusableElements)[0];
+			modaleForm.querySelectorAll(focusableElements)[0];
 		const firsttofocuson = modaleForm.querySelectorAll(focusableElements)[1]; // get first element to be focused inside modal
 		const focusableContent = modaleForm.querySelectorAll(focusableElements);
 		const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
