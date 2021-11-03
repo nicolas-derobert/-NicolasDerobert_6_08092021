@@ -1,5 +1,4 @@
 function mediaTemplate(mediaData) {
-	urlOfImagesPagesToapply = urlOfImagesPagesOfElie;
 	urlOfImagesPagesToapply = urlOfImages
 		.concat(currentPhotographer.name.split(" ")[0])
 		.replace("-", " ");

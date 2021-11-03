@@ -117,6 +117,7 @@ function placeDataInObject(dataOfJsonFilePhotographer) {
 		let price = dataOfJsonFilePhotographer[i].price;
 		let portrait = dataOfJsonFilePhotographer[i].portrait;
 		let url = urlOfHtmlPages + name.replace(" ", "-") + ".html";
+		url = url.toLowerCase();
 		// let urlOfPortrait = urlOfHtmlPages + name.replace(" ", "-") + ".html";
 		dataOfJsonFilePhotographerAfterclassAssociation[i] = new Photographers(
 			name,
