@@ -1,9 +1,8 @@
 //Ressources used for coding : https://www.linkedin.com/learning/javascript-essential-training/pass-arguments-through-event-listeners
-//Global strucure of code : 
-//-generic-scripts.js generic page 
+//Global strucure of code :
+//-generic-scripts.js generic page
 //-index-scripts.js
 //-select-menu-scripts
-
 
 // All const and variables that are used for website wit a global scope
 //URL
@@ -35,132 +34,16 @@ let tagListInHeader;
 let idOfMedia;
 let dropboxStatus;
 
-// const typePhotographer = "photographers";
-// const typeMedia = "media";
-
-class Photographers {
-	name;
-	id;
-	city;
-	country;
-	tags;
-	tagline;
-	price;
-	portrait;
-	constructor(name, id, city, country, tags, tagline, price, portrait, url) {
-		this.name = name;
-		this.id = id;
-		this.city = city;
-		this.country = country;
-		this.tags = tags;
-		this.tagline = tagline;
-		this.price = price;
-		this.portrait = portrait;
-		this.url = url;
-	}
-
-}
-
-class Media {
-	id;
-	photographerId;
-	title;
-	image;
-	video;
-	tags;
-	likes;
-	date;
-	price;
-	Isliked;
-	constructor(
-		id,
-		photographerId,
-		title,
-		image,
-		video,
-		tags,
-		likes,
-		date,
-		price,
-		Isliked
-	) {
-		this.id = id;
-		this.photographerId = photographerId;
-		this.title = title;
-		this.image = image;
-		this.video = video;
-		this.tags = tags;
-		this.likes = likes;
-		this.date = date;
-		this.price = price;
-		this.Isliked = Isliked;
-	}
-}
 
 function tagsTemplate(tagsData) {
 	return ` ${tagsData
 		.map(
-			(tagsData) => `<span href=${tagsData} class="hashtag-links">${tagsData}</span>`
+			(tagsData) =>
+				`<span href=${tagsData} class="hashtag-links">${tagsData}</span>`
 		)
 		.join("")}	`;
 }
 
-// Function to place data in object
-function placeDataInObject(dataOfJsonFilePhotographer) {
-	for (var i = 0; i < dataOfJsonFilePhotographer.length; i++) {
-		let name = dataOfJsonFilePhotographer[i].name;
-		let id = dataOfJsonFilePhotographer[i].id;
-		let city = dataOfJsonFilePhotographer[i].city;
-		let country = dataOfJsonFilePhotographer[i].country;
-		let tags = dataOfJsonFilePhotographer[i].tags;
-		let tagline = dataOfJsonFilePhotographer[i].tagline;
-		let price = dataOfJsonFilePhotographer[i].price;
-		let portrait = dataOfJsonFilePhotographer[i].portrait;
-		let url = urlOfHtmlPages + name.replace(" ", "-") + ".html";
-		url = url.toLowerCase();
-		// let urlOfPortrait = urlOfHtmlPages + name.replace(" ", "-") + ".html";
-		dataOfJsonFilePhotographerAfterclassAssociation[i] = new Photographers(
-			name,
-			id,
-			city,
-			country,
-			tags,
-			tagline,
-			price,
-			portrait,
-			url
-		);
-	}
-}
-// Function to place data in object
-function placeDataOfMediaInObject(dataOfJsonFileMedia) {
-	for (var i = 0; i < dataOfJsonFileMedia.length; i++) {
-		let id = dataOfJsonFileMedia[i].id;
-		let photographerId = dataOfJsonFileMedia[i].photographerId;
-		let title = dataOfJsonFileMedia[i].title;
-		let image = dataOfJsonFileMedia[i].image;
-		let video = dataOfJsonFileMedia[i].video;
-		let tags = dataOfJsonFileMedia[i].tags;
-		let likes = dataOfJsonFileMedia[i].likes;
-		let date = dataOfJsonFileMedia[i].date;
-		let price = dataOfJsonFileMedia[i].price;
-		let Isliked = false;
-
-		// let url = urlOfImagesPages +  + image;
-		dataOfJsonFileMediaAfterclassAssociation[i] = new Media(
-			id,
-			photographerId,
-			title,
-			image,
-			video,
-			tags,
-			likes,
-			date,
-			price,
-			Isliked
-		); //url
-	}
-}
 
 //This function get data from JsonFile
 const getData = async () => {
@@ -176,3 +59,107 @@ const getData = async () => {
 	}
 };
 
+function createAPhotographe(
+	name,
+	id,
+	city,
+	country,
+	tags,
+	tagline,
+	price,
+	portrait
+) {
+	function url() {
+		let url = urlOfHtmlPages + name.replace(" ", "-") + ".html";
+		url = url.toLowerCase();
+		return url;
+	}
+	return {
+		name,
+		id,
+		city,
+		country,
+		tags,
+		tagline,
+		price,
+		portrait,
+		url,
+	};
+}
+// Function to place data in object
+function placeDataInObject(dataOfJsonFilePhotographer) {
+	for (var i = 0; i < dataOfJsonFilePhotographer.length; i++) {
+		let name = dataOfJsonFilePhotographer[i].name;
+		let id = dataOfJsonFilePhotographer[i].id;
+		let city = dataOfJsonFilePhotographer[i].city;
+		let country = dataOfJsonFilePhotographer[i].country;
+		let tags = dataOfJsonFilePhotographer[i].tags;
+		let tagline = dataOfJsonFilePhotographer[i].tagline;
+		let price = dataOfJsonFilePhotographer[i].price;
+		let portrait = dataOfJsonFilePhotographer[i].portrait;
+		dataOfJsonFilePhotographerAfterclassAssociation[i] = createAPhotographe(
+			name,
+			id,
+			city,
+			country,
+			tags,
+			tagline,
+			price,
+			portrait
+		);
+	}
+}
+
+function createAMedia(
+	id,
+	photographerId,
+	title,
+	image,
+	video,
+	tags,
+	likes,
+	date,
+	price,
+	isLiked
+) {
+	return {
+		id,
+		photographerId,
+		title,
+		image,
+		video,
+		tags,
+		likes,
+		date,
+		price,
+		isLiked,
+	};
+}
+
+// Function to place data in object
+function placeDataOfMediaInObject(dataOfJsonFileMedia) {
+	for (var i = 0; i < dataOfJsonFileMedia.length; i++) {
+		let id = dataOfJsonFileMedia[i].id;
+		let photographerId = dataOfJsonFileMedia[i].photographerId;
+		let title = dataOfJsonFileMedia[i].title;
+		let image = dataOfJsonFileMedia[i].image;
+		let video = dataOfJsonFileMedia[i].video;
+		let tags = dataOfJsonFileMedia[i].tags;
+		let likes = dataOfJsonFileMedia[i].likes;
+		let date = dataOfJsonFileMedia[i].date;
+		let price = dataOfJsonFileMedia[i].price;
+		let isLiked = false;
+		dataOfJsonFileMediaAfterclassAssociation[i] = createAMedia(
+			id,
+			photographerId,
+			title,
+			image,
+			video,
+			tags,
+			likes,
+			date,
+			price,
+			isLiked
+		); //url
+	}
+}

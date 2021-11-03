@@ -116,11 +116,11 @@ const recountLike = function (event, val) {
 		const item = dataOfJsonFileMediaAfterclassAssociation[i];
 		if (
 			dataOfJsonFileMediaAfterclassAssociation[i].id == idOfMedia &&
-			dataOfJsonFileMediaAfterclassAssociation[i].Isliked == false
+			dataOfJsonFileMediaAfterclassAssociation[i].isLiked == false
 		) {
 			// Check the id of media and this media has already been checked
 			dataOfJsonFileMediaAfterclassAssociation[i].likes++;
-			dataOfJsonFileMediaAfterclassAssociation[i].Isliked = true;
+			dataOfJsonFileMediaAfterclassAssociation[i].isLiked = true;
 		}
 	}
 

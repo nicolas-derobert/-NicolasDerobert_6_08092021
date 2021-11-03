@@ -28,7 +28,7 @@ const filterOnHashtag = function (e, val) {
 function photographersTemplate(photographerData) {
 	return `
 	<article class="displayed" id="">
-	<a href="${photographerData.url}">
+	<a href="${photographerData.url()}">
 <div class="image-container">		<img
 			src="asset/img/Photographers ID Photos/${photographerData.portrait}"
 			alt=""
