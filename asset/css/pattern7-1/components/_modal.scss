@@ -148,7 +148,11 @@
 				width: 100%;
 				border-radius: 5px;
 				border-style: none;
-
+				&:focus{
+					@include new-outlined;
+					border-color: $color-fifthly;
+					border-style:   solid;
+						}
 				&#input-message {
 					height: 170px;
 				}
@@ -163,6 +167,7 @@
 					margin: 16px;
 					&:focus{
 						@include new-outlined;
+						border-style:   solid;
 							}
 				}
 			}

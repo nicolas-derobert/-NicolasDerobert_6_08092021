@@ -177,7 +177,6 @@ ul{
 
 [role="option"]:focus,
 [role="option"]:hover {
-	background-color: $color-fifthly;
 		color: $color-sixthly;
 	@include new-outlined;
 }

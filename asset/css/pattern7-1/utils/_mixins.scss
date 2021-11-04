@@ -3,23 +3,18 @@
   outline: none;
   border-width: 4px;
   border-style: solid;
-  border-color: $color-seventhly;
-  background-color: $color-seventhly;
-  color:$color-sixthly ;
-  
+  border-color: $color-fifthly;
+ 
   img{
-    background-color:$color-sixthly ;
+    // background-color:$color-fifthly ;
   }
-  h2,h3{
-    color:$color-sixthly ;
-  }
+
 }
 @mixin new-over {
     outline: none;
   border-width: 4px;
   border-style: solid;
   border-color: $color-secondary;
-  background-color: $color-secondary;
 }
 
 // Media Querries
@@ -55,10 +50,6 @@
       @content;
     }
   }
-  $breakpoint-mobile: 576px;
-$breakpoint-tablet: 768px;
-$breakpoint-desktop: 992px;
-$breakpoint-large:1200px;
-$breakpoint-larger:1400px;
+
 
   

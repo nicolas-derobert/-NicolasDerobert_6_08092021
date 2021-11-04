@@ -24,9 +24,7 @@
 						}
 					}
 				}
-				@include desktop-generic {
-					// width: 10%;
-				}
+
 			}
 			nav {
 				margin-top: 2vh;
@@ -41,7 +39,6 @@
 			}
 			@include desktop-generic {
 				flex-flow: column nowrap;
-				// margin-left: 10px;
 			}
 		}
 	}

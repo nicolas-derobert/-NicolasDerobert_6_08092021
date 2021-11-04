@@ -9,31 +9,16 @@
 const urlFromIndex = "./asset/data/FishEyeData.json";
 const urlFromOtherPages = "../asset/data/FishEyeData.json";
 const urlOfHtmlPages = "./pages/photographe.html";
-const urlOfImagesPages = "./asset/img/Photographers ID Photos";
+const urlOfImagesPages = "asset/img/Photographers ID Photos/";
 const urlOfImagesPagesOfPhotographers = "../asset/img/Photographers ID Photos";
 const urlOfImages = "../asset/img/";
-const urlOfImagesPagesOfElie = "../asset/img/Ellie Rose";
 let urlOfImagesPagesToapply;
 let currentPhotographer;
 
-// array of data
-let dataOfJsonFileMedia = [];
+
 let dataOfJsonFileMediaAfterclassAssociation = [];
-let dataOfJsonFileData = [];
-let dataOfJsonFilePhotographer = [];
 let dataOfJsonFilePhotographerAfterclassAssociation = [];
-let tagListInHeaderAsArray = [];
-let heartIconeAsArray = [];
-let counterOfLikesAsArray = [];
-
-let heartIcone;
-let counterOfLikes;
 let idOfPage;
-let filterToApply;
-let tagListInHeader;
-let idOfMedia;
-let dropboxStatus;
-
 
 function tagsTemplate(tagsData) {
 	return ` ${tagsData
@@ -160,6 +145,6 @@ function placeDataOfMediaInObject(dataOfJsonFileMedia) {
 			date,
 			price,
 			isLiked
-		); //url
+		); 
 	}
 }

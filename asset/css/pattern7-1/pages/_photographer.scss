@@ -3,7 +3,6 @@
 	max-width: 74vw;
 	height: 30vh;
 	clear: both;
-	// height: 50vh;
 	background-color: $color-fourthly;
 	margin: 4%;
 	padding: 2%;
@@ -31,7 +30,6 @@
 		color: $color-tertiary;
 	}
 	#button-area {
-		// position: absolute;
 		white-space: nowrap;
 		margin-block-start: 20px;
 		button {
@@ -100,9 +98,7 @@
 			height: 300px;
 			width: 350px;
 			margin: auto;
-			overflow: hidden;
-			// clip-path: polygon(0% 10%, 100% 10%, 100% 90%, 0% 90%);
-			
+			overflow: hidden;	
 			a {
 				display: block;
 				height: 100%;
@@ -130,11 +126,6 @@
 			color: $color-primary;
 			.heart{
 				margin-left: 10px;
-				// display: flex;
-				// flex-flow: row nowrap;			
-				// align-items: center;
-				// justify-content: center;
-
 			}
 		}
 	}
